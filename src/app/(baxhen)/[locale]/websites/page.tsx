@@ -11,7 +11,7 @@ const content = {
   pt: {
     title: 'Websites Profissionais — Baxhen',
     description: 'Websites empresariais e páginas de geração de leads. Suporte em português e inglês. Plano anual de infraestrutura.',
-    nav: { howItWorks: 'Como Funciona', whoItsFor: 'Para Quem', contact: 'Contacto' },
+    nav: { howItWorks: 'Como Funciona', solutions: 'Soluções', whoItsFor: 'Para Quem', contact: 'Contacto' },
     cta: 'Solicitar Preview',
     hero: {
       heading: 'Websites profissionais para o seu negócio — sem complexidade desnecessária.',
@@ -96,12 +96,12 @@ const content = {
       subtext: 'A recomendação será baseada nas prioridades e fase atual do seu negócio.',
     },
     footer: '© {year} Baxhen. Minimalismo Profissional em Consultoria Web.',
-    footerLinks: { privacyPolicy: 'Privacidade', termsOfService: 'Termos', security: 'Segurança' },
+    footerLinks: { privacy: 'Privacidade', terms: 'Termos', cookies: 'Cookies' },
   },
   en: {
     title: 'Professional Websites — Baxhen',
     description: 'Business websites and lead-generation pages. Portuguese and English support. Annual infrastructure plan.',
-    nav: { howItWorks: 'How it Works', whoItsFor: 'Who it\'s for', contact: 'Contact' },
+    nav: { howItWorks: 'How it Works', solutions: 'Solutions', whoItsFor: 'Who it\'s for', contact: 'Contact' },
     cta: 'Request a Preview',
     hero: {
       heading: 'Professional websites built for your business — without unnecessary complexity.',
@@ -186,7 +186,7 @@ const content = {
       subtext: 'The recommendation will be based on your business priorities and current stage.',
     },
     footer: '© {year} Baxhen. Professional Minimalism in Web Consulting.',
-    footerLinks: { privacyPolicy: 'Privacy', termsOfService: 'Terms', security: 'Security' },
+    footerLinks: { privacy: 'Privacy', terms: 'Terms', cookies: 'Cookies' },
   },
 }
 
@@ -265,12 +265,13 @@ export default async function BaxhenWebsitesPage({ params }: PageProps) {
             </span>
           </Link>
           <nav className="hidden md:flex items-center gap-8">
-            <a href={`/${locale}/websites#process`} className="text-sm font-bold" style={{ color: c.primary, borderBottom: `2px solid ${c.primary}`, paddingBottom: 4 }}>{t.nav.howItWorks}</a>
+            <a href={`/${locale}/websites`} className="text-sm font-bold" style={{ color: c.primary, borderBottom: `2px solid ${c.primary}`, paddingBottom: 4 }}>{t.nav.howItWorks}</a>
+            <a href={`/${locale}/websites/solutions`} className="text-sm hover:opacity-80 transition-colors" style={{ color: c.onSurfaceVariant }}>{t.nav.solutions}</a>
             <a href={`/${locale}/websites#sectors`} className="text-sm hover:opacity-80 transition-colors" style={{ color: c.onSurfaceVariant }}>{t.nav.whoItsFor}</a>
-            <a href={`/${locale}/websites#contact`} className="text-sm hover:opacity-80 transition-colors" style={{ color: c.onSurfaceVariant }}>{t.nav.contact}</a>
+            <a href={`/${locale}/websites/contact`} className="text-sm hover:opacity-80 transition-colors" style={{ color: c.onSurfaceVariant }}>{t.nav.contact}</a>
           </nav>
           <Link
-            href={`/${locale}/websites#contact`}
+            href={`/${locale}/websites/contact`}
             className="px-6 py-3 text-xs font-semibold uppercase tracking-wider hover:opacity-90 active:scale-95 transition-all rounded-sm"
             style={{ backgroundColor: c.primaryContainer, color: c.onPrimaryContainer }}
           >
@@ -295,14 +296,14 @@ export default async function BaxhenWebsitesPage({ params }: PageProps) {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Link
-                  href={`/${locale}/websites#contact`}
+                  href={`/${locale}/websites/contact`}
                   className="px-8 py-4 text-xs font-semibold uppercase tracking-wider hover:opacity-90 active:scale-95 transition-all rounded-sm text-center"
                   style={{ backgroundColor: c.primaryContainer, color: c.onPrimaryContainer }}
                 >
                   {t.hero.primaryCta}
                 </Link>
                 <Link
-                  href={`/${locale}/websites#solutions`}
+                  href={`/${locale}/websites/solutions`}
                   className="px-8 py-4 text-xs font-semibold uppercase tracking-wider hover:opacity-80 transition-all rounded-sm text-center border"
                   style={{ color: c.onSurface, borderColor: c.outlineVariant }}
                 >
@@ -361,7 +362,7 @@ export default async function BaxhenWebsitesPage({ params }: PageProps) {
                     ))}
                   </ul>
                   <Link
-                    href={`/${locale}/websites#contact`}
+                    href={`/${locale}/websites/solutions`}
                     className="block w-full py-4 text-xs font-semibold uppercase tracking-wider text-center hover:opacity-80 transition-all rounded-sm border"
                     style={{ color: c.primary, borderColor: c.primary }}
                   >
@@ -391,7 +392,7 @@ export default async function BaxhenWebsitesPage({ params }: PageProps) {
                     ))}
                   </ul>
                   <Link
-                    href={`/${locale}/websites#contact`}
+                    href={`/${locale}/websites/solutions`}
                     className="block w-full py-4 text-xs font-semibold uppercase tracking-wider text-center hover:opacity-80 transition-all rounded-sm border"
                     style={{ color: c.secondary, borderColor: c.secondary }}
                   >
@@ -468,7 +469,7 @@ export default async function BaxhenWebsitesPage({ params }: PageProps) {
               ))}
             </div>
             <div className="text-center mt-16">
-              <Link href={`/${locale}/websites#contact`} className="text-xs font-semibold uppercase tracking-wider hover:opacity-70 transition-all border-b pb-1" style={{ color: c.primary, borderColor: c.primary }}>
+              <Link href={`/${locale}/websites/process`} className="text-xs font-semibold uppercase tracking-wider hover:opacity-70 transition-all border-b pb-1" style={{ color: c.primary, borderColor: c.primary }}>
                 {t.process.seeMore}
               </Link>
             </div>
@@ -528,7 +529,7 @@ export default async function BaxhenWebsitesPage({ params }: PageProps) {
               {t.finalCta.heading}
             </h2>
             <Link
-              href={`/${locale}/websites#contact`}
+              href={`/${locale}/websites/contact`}
               className="inline-block px-12 py-6 text-xs font-extrabold uppercase tracking-widest hover:opacity-90 active:scale-95 transition-all mb-6 rounded-sm"
               style={{ backgroundColor: c.primaryContainer, color: c.onPrimaryContainer }}
             >
@@ -549,21 +550,15 @@ export default async function BaxhenWebsitesPage({ params }: PageProps) {
             <p className="text-xs" style={{ color: c.onSurfaceVariant }}>{t.footer.replace('{year}', String(new Date().getFullYear()))}</p>
           </div>
           <div className="flex flex-col gap-3">
-            {(['privacyPolicy', 'termsOfService', 'security'] as const).map((key) => (
-              <Link
-                key={key}
-                href={`/${locale}/websites/${key}`}
-                className="text-xs font-semibold uppercase tracking-wider hover:opacity-80 transition-colors"
-                style={{ color: c.onSurfaceVariant }}
-              >
-                {t.footerLinks[key]}
-              </Link>
-            ))}
+            <Link href={`/${locale}/websites/privacy`} className="text-xs font-semibold uppercase tracking-wider hover:opacity-80 transition-colors" style={{ color: c.onSurfaceVariant }}>{t.footerLinks.privacy}</Link>
+            <Link href={`/${locale}/websites/terms`} className="text-xs font-semibold uppercase tracking-wider hover:opacity-80 transition-colors" style={{ color: c.onSurfaceVariant }}>{t.footerLinks.terms}</Link>
+            <Link href={`/${locale}/websites/cookies`} className="text-xs font-semibold uppercase tracking-wider hover:opacity-80 transition-colors" style={{ color: c.onSurfaceVariant }}>{t.footerLinks.cookies}</Link>
           </div>
           <div className="flex flex-col gap-3">
-            <a href={`/${locale}/websites#process`} className="text-xs font-semibold uppercase tracking-wider hover:opacity-80 transition-colors" style={{ color: c.onSurfaceVariant }}>{t.nav.howItWorks}</a>
+            <a href={`/${locale}/websites`} className="text-xs font-semibold uppercase tracking-wider hover:opacity-80 transition-colors" style={{ color: c.onSurfaceVariant }}>{t.nav.howItWorks}</a>
+            <a href={`/${locale}/websites/solutions`} className="text-xs font-semibold uppercase tracking-wider hover:opacity-80 transition-colors" style={{ color: c.onSurfaceVariant }}>{t.nav.solutions}</a>
             <a href={`/${locale}/websites#sectors`} className="text-xs font-semibold uppercase tracking-wider hover:opacity-80 transition-colors" style={{ color: c.onSurfaceVariant }}>{t.nav.whoItsFor}</a>
-            <a href={`/${locale}/websites#contact`} className="text-xs font-semibold uppercase tracking-wider hover:opacity-80 transition-colors" style={{ color: c.onSurfaceVariant }}>{t.nav.contact}</a>
+            <a href={`/${locale}/websites/contact`} className="text-xs font-semibold uppercase tracking-wider hover:opacity-80 transition-colors" style={{ color: c.onSurfaceVariant }}>{t.nav.contact}</a>
           </div>
         </div>
       </footer>

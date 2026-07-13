@@ -43,6 +43,10 @@ component-name/
 9. Every component barrel exports a `componentManifest` of type `ComponentManifest` from `@/lib/manifest/types`
 10. Component directory name = kebab-case, component name = PascalCase, props type = PascalCase + `Props` suffix
 
+## shadcn/ui
+
+11. **Always use shadcn/ui components when possible** — buttons, inputs, selects, checkboxes, radio groups, labels, textareas, cards. Prefer shadcn primitives from `@/components/ui/` over raw HTML elements for form controls and interactive components. Only use raw elements when explicitly told not to, or when shadcn doesn't provide the component (e.g., chip/toggle groups).
+
 ## ViewModel Pattern
 
 Components receive a single ViewModel object, not raw CMS data:
