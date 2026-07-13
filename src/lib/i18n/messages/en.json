@@ -1,0 +1,49 @@
+{
+  "common": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "services": "Services",
+    "gallery": "Gallery",
+    "faq": "FAQ",
+    "testimonials": "Testimonials",
+    "callToAction": "Get in Touch",
+    "submit": "Submit",
+    "send": "Send Message",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "notFound": "Page not found",
+    "siteNotFound": "Site not found",
+    "allRightsReserved": "All rights reserved",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "languageSwitcher": "Switch language",
+    "languageLabel": {
+      "pt": "Português",
+      "en": "English"
+    }
+  },
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "required": "Required field",
+    "invalidEmail": "Invalid email",
+    "success": "Message sent successfully!",
+    "error": "Error sending. Please try again.",
+    "consent": "I accept the privacy policy",
+    "consentRequired": "You must accept the privacy policy"
+  },
+  "hero": {
+    "cta": "Learn More"
+  },
+  "theme": {
+    "toggleLight": "Light mode",
+    "toggleDark": "Dark mode"
+  }
+}

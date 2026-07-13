@@ -1,0 +1,373 @@
+<!DOCTYPE html><html lang="en" class="dark" style=""><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,500;0,600;1,400&amp;family=Hanken+Grotesk:wght@300;400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#bbc9cf",
+                    "on-error-container": "#ffdad6",
+                    "inverse-surface": "#dde3e7",
+                    "primary-fixed-dim": "#3cd7ff",
+                    "on-tertiary-container": "#594f35",
+                    "on-secondary-fixed-variant": "#004e5b",
+                    "surface": "#0e1417",
+                    "on-tertiary-fixed-variant": "#50462d",
+                    "on-secondary-fixed": "#001f25",
+                    "surface-container-lowest": "#080f12",
+                    "on-tertiary-fixed": "#221b06",
+                    "secondary-fixed": "#a6eeff",
+                    "primary-fixed": "#b4ebff",
+                    "surface-container-high": "#242b2e",
+                    "tertiary": "#ecddbc",
+                    "on-secondary": "#00363f",
+                    "error": "#ffb4ab",
+                    "error-container": "#93000a",
+                    "surface-variant": "#2f3639",
+                    "on-surface": "#dde3e7",
+                    "background": "#0e1417",
+                    "on-primary": "#003642",
+                    "on-primary-fixed": "#001f27",
+                    "on-primary-container": "#00586b",
+                    "surface-tint": "#3cd7ff",
+                    "outline": "#859398",
+                    "tertiary-container": "#d0c1a1",
+                    "primary-container": "#00d4ff",
+                    "secondary-fixed-dim": "#75d4e9",
+                    "primary": "#a8e8ff",
+                    "tertiary-fixed-dim": "#d4c5a5",
+                    "inverse-on-surface": "#2b3134",
+                    "surface-container-low": "#161d1f",
+                    "secondary-container": "#369db1",
+                    "tertiary-fixed": "#f1e1c0",
+                    "surface-container-highest": "#2f3639",
+                    "surface-bright": "#333a3d",
+                    "surface-container": "#1a2123",
+                    "on-secondary-container": "#002f37",
+                    "inverse-primary": "#00677e",
+                    "outline-variant": "#3c494e",
+                    "secondary": "#75d4e9",
+                    "surface-dim": "#0e1417",
+                    "on-background": "#dde3e7",
+                    "on-primary-fixed-variant": "#004e5f",
+                    "on-error": "#690005",
+                    "on-tertiary": "#383019"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "margin-desktop": "40px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": ["Literata"],
+                    "label-sm": ["Hanken Grotesk"],
+                    "headline-md": ["Literata"],
+                    "display-lg": ["Literata"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    }catch(_e){}</script><meta charset="utf-8"></head><body class="font-body-md text-body-md overflow-x-hidden">
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 left-0 w-full z-50 bg-background dark:bg-background border-b border-outline-variant/15">
+<nav class="max-w-container-max mx-auto px-margin-desktop py-4 flex justify-between items-center h-20">
+<div class="flex items-center gap-12">
+<a href="#" class="font-display-lg text-display-lg font-bold tracking-tighter text-primary dark:text-primary"><span class="" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; cursor: text; color: rgb(223, 226, 235); font-size: 24px; letter-spacing: -1.2px; background-color: rgba(16, 20, 26, 0.8);">baxh</span><span class="text-primary-container" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; cursor: text; --tw-text-opacity: 1; color: rgb(0, 212, 255); font-size: 24px; letter-spacing: -1.2px; background-color: rgba(16, 20, 26, 0.8);">e</span><span class="" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; cursor: text; color: rgb(223, 226, 235); font-size: 24px; letter-spacing: -1.2px; background-color: rgba(16, 20, 26, 0.8);">n</span></a>
+<div class="hidden md:flex items-center gap-8">
+<a href="#" class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors">How it works</a>
+<a href="#" class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors">Solutions</a>
+<a href="#" class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors">Who it's for</a>
+<a href="#" class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors">Contact</a>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-full font-bold hover:opacity-90 transition-all">Get Started</button>
+</nav>
+</header>
+<main class="pt-32 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Hero Header -->
+<div class="relative mb-16 overflow-hidden rounded-xl py-20 px-8 md:px-16 flex flex-col items-center text-center">
+
+<div class="relative z-10">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary mb-4 block">Compliance &amp; Legal</span>
+<h1 class="font-display-lg text-display-lg md:text-[64px] font-bold text-on-surface tracking-tighter mb-6">Privacy Policy</h1>
+<p class="max-w-2xl mx-auto font-body-lg text-body-lg text-on-surface-variant">
+                    At Baxhen Consulting, we protect your intellectual property and personal data with the same rigor we apply to our global strategy initiatives.
+                </p>
+<div class="mt-8 flex gap-4 justify-center">
+<div class="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-high/50 border border-outline-variant/30 backdrop-blur-sm">
+<span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
+<span class="font-label-sm text-label-sm">Last updated: October 2024</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Table of Contents Sidebar -->
+<aside class="lg:col-span-3 hidden lg:sticky lg:top-32 lg:block">
+<nav class="space-y-2">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-6 tracking-widest">In this policy</h3>
+<a class="block py-2 text-on-surface-variant hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary pl-4" href="#controller">Data Controller</a>
+<a class="block py-2 text-on-surface-variant hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary pl-4" href="#information">Information Collected</a>
+<a class="block py-2 text-on-surface-variant hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary pl-4" href="#contact-form">Contact-Form Processing</a>
+<a class="block py-2 text-on-surface-variant hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary pl-4" href="#legal-basis">Legal Basis</a>
+<a class="block py-2 text-on-surface-variant hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary pl-4" href="#retention">Data Retention</a>
+<a class="block py-2 text-on-surface-variant hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary pl-4" href="#providers">Service Providers</a>
+<a class="block py-2 text-on-surface-variant hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary pl-4" href="#rights">Subject Rights</a>
+</nav>
+</aside>
+<!-- Main-->
+<article class="lg:col-span-9 space-y-16">
+<!-- Section: Data Controller -->
+<section class="scroll-mt-32" id="controller">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-8 h-8 rounded-lg bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">corporate_fare</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary">1. Data Controller Information</h2>
+</div>
+<div class="glass-panel p-8 rounded-xl teal-accent-line">
+<p class="mb-4">Baxhen Business (referred to herein as "Baxhen", "we", "us", or "our") acts as the data controller for the processing of your personal data collected through this website and our consulting services.</p>
+<div class="space-y-2 mt-6">
+<div class="flex gap-4">
+<span class="font-bold text-on-surface min-w-[120px]">Entity:</span>
+<span class="text-on-surface-variant">Baxhen Consulting Group Ltd.</span>
+</div>
+<div class="flex gap-4">
+<span class="font-bold text-on-surface min-w-[120px]">Headquarters:</span>
+<span class="text-on-surface-variant">Global Plaza, Tower 2, International District</span>
+</div>
+<div class="flex gap-4">
+<span class="font-bold text-on-surface min-w-[120px]">Privacy Officer:</span>
+<span class="text-on-surface-variant">privacy@baxhen.com</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Information Collected -->
+<section class="scroll-mt-32" id="information">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-8 h-8 rounded-lg bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">database</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary">2. Information Collected</h2>
+</div>
+<div class="grid md:grid-cols-2 gap-6">
+<div class="glass-panel p-6 rounded-xl border-l-4 border-l-tertiary">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">Personal Data</h3>
+<p class="text-on-surface-variant mb-4">Information you provide directly to us through engagement:</p>
+<ul class="list-disc list-inside space-y-2 text-on-surface-variant text-[15px]">
+<li class="">Identity Data (Name, title, company)</li>
+<li class="">Contact Data (Email address, phone number)</li>
+<li class="">Professional Profiles (LinkedIn links, role details)</li>
+<li class="">Financial Data (Billing addresses, payment methods)</li>
+</ul>
+</div>
+<div class="glass-panel p-6 rounded-xl border-l-4 border-l-secondary">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">Usage Data</h3>
+<p class="text-on-surface-variant mb-4">Information collected automatically via site interaction:</p>
+<ul class="list-disc list-inside space-y-2 text-on-surface-variant text-[15px]">
+<li class="">IP address and geolocation (approximate)</li>
+<li class="">Browser type and versioning</li>
+<li class="">Page interaction heatmaps</li>
+<li class="">Referral source and session duration</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Section: Contact Form Processing -->
+<section class="scroll-mt-32" id="contact-form">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-8 h-8 rounded-lg bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">contact_mail</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary">3. Contact-Form Processing</h2>
+</div>
+<div class="glass-panel p-8 rounded-xl space-y-6">
+<p class="">When you submit an inquiry through our contact forms, your information is encrypted in transit and stored in our secure CRM environment. We use this data solely to respond to your request and assess potential business synergies.</p>
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant/20 italic text-on-surface-variant">
+                            "We do not sell, rent, or trade contact form submissions to third-party marketing lists. Your data is treated as a professional confidence."
+                        </div>
+</div>
+</section>
+<!-- Section: Purpose and Legal Basis -->
+<section class="scroll-mt-32" id="legal-basis">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-8 h-8 rounded-lg bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">gavel</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary">4. Purpose and Legal Basis</h2>
+</div>
+<div class="overflow-hidden rounded-xl border border-outline-variant/30">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high">
+<th class="p-4 font-label-sm text-label-sm text-primary uppercase">Activity</th>
+<th class="p-4 font-label-sm text-label-sm text-primary uppercase">Legal Basis</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+<tr>
+<td class="p-4 font-bold">Consultation Requests</td>
+<td class="p-4 text-on-surface-variant">Performance of a contract / Pre-contractual steps</td>
+</tr>
+<tr>
+<td class="p-4 font-bold">Website Optimization</td>
+<td class="p-4 text-on-surface-variant">Legitimate Interest (Improving site performance)</td>
+</tr>
+<tr>
+<td class="p-4 font-bold">Newsletter Subscription</td>
+<td class="p-4 text-on-surface-variant">Explicit Consent (Opt-in)</td>
+</tr>
+<tr>
+<td class="p-4 font-bold">Risk Management</td>
+<td class="p-4 text-on-surface-variant">Legal Obligation (Compliance with laws)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Section: Retention -->
+<section class="scroll-mt-32" id="retention">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-8 h-8 rounded-lg bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">history</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary">5. Retention</h2>
+</div>
+<div class="glass-panel p-8 rounded-xl flex flex-col md:flex-row gap-8 items-center">
+<div class="md:w-1/3">
+<div class="w-32 h-32 rounded-full border-4 border-dashed border-primary/30 flex items-center justify-center mx-auto">
+<span class="font-display-lg text-[40px] text-primary">7y</span>
+</div>
+</div>
+<div class="md:w-2/3">
+<p class="text-body-lg mb-4">We retain personal data only for as long as necessary to fulfill the purposes we collected it for, including for the purposes of satisfying any legal, accounting, or reporting requirements.</p>
+<ul class="space-y-2 text-on-surface-variant list-none">
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Financial Records: 7 Years</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Client Communications: 5 Years</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Marketing Data: Until unsubscribe</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Section: Service Providers & International Transfers -->
+<section class="scroll-mt-32" id="providers">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-8 h-8 rounded-lg bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">cloud_sync</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary">6. Service Providers &amp; Transfers</h2>
+</div>
+<div class="space-y-6">
+<p class="">We leverage industry-leading third-party tools to maintain our infrastructure. These partners are compliant with GDPR, CCPA, and global privacy frameworks.</p>
+<div class="flex flex-wrap gap-4">
+<span class="px-4 py-2 bg-surface-container-high rounded-lg border border-outline-variant/30 font-label-sm">Google Analytics</span>
+<span class="px-4 py-2 bg-surface-container-high rounded-lg border border-outline-variant/30 font-label-sm">Salesforce CRM</span>
+<span class="px-4 py-2 bg-surface-container-high rounded-lg border border-outline-variant/30 font-label-sm">Amazon Web Services</span>
+<span class="px-4 py-2 bg-surface-container-high rounded-lg border border-outline-variant/30 font-label-sm">Mailchimp</span>
+</div>
+<div class="p-6 bg-tertiary-container/10 border border-tertiary-container/30 rounded-xl">
+<h4 class="font-bold text-tertiary-container mb-2">International Transfers</h4>
+<p class="text-on-surface-variant text-sm">Where we transfer your personal data out of the EEA, we ensure a similar degree of protection is afforded to it by ensuring at least one of the following safeguards is implemented: Standard Contractual Clauses (SCCs) or adequacy decisions by the European Commission.</p>
+</div>
+</div>
+</section>
+<!-- Section: Data Subject Rights -->
+<section class="scroll-mt-32" id="rights">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-8 h-8 rounded-lg bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">person_check</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary">7. Your Rights</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-6 rounded-xl bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<span class="font-bold text-on-surface block mb-1">Right to Access</span>
+<p class="text-on-surface-variant text-sm">You have the right to request a copy of the personal information we hold about you.</p>
+</div>
+<div class="p-6 rounded-xl bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<span class="font-bold text-on-surface block mb-1">Right to Erasure</span>
+<p class="text-on-surface-variant text-sm">You can ask us to delete or remove personal data where there is no good reason for us continuing to process it.</p>
+</div>
+<div class="p-6 rounded-xl bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<span class="font-bold text-on-surface block mb-1">Right to Rectification</span>
+<p class="text-on-surface-variant text-sm">You have the right to have any incomplete or inaccurate data we hold about you corrected.</p>
+</div>
+<div class="p-6 rounded-xl bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<span class="font-bold text-on-surface block mb-1">Right to Object</span>
+<p class="text-on-surface-variant text-sm">You can object to processing where we are relying on a legitimate interest.</p>
+</div>
+</div>
+</section>
+</article>
+</div>
+</main>
+<!-- Contact & Footer Section -->
+<section class="bg-surface-container-lowest border-t border-outline-variant/10">
+<div class="max-w-container-max mx-auto px-margin-desktop py-16 text-center">
+<h2 class="font-display-lg text-[32px] font-bold text-on-surface mb-4">Have Questions?</h2>
+<p class="text-on-surface-variant mb-8">Reach out to our global compliance team for any privacy-related inquiries.</p>
+<a class="inline-flex items-center gap-3 text-primary font-bold hover:gap-5 transition-all" href="mailto:privacy@baxhen.com">
+                privacy@baxhen.com
+                <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<footer class="max-w-container-max mx-auto py-12 px-margin-desktop border-t border-outline-variant/5 flex flex-col md:flex-row justify-between items-center gap-gutter">
+<div class="flex flex-col gap-2">
+<span class="font-headline-md text-headline-md font-bold text-on-surface"><span class="cursor-text" spellcheck="false" data-stitch-added-classes="cursor-text" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; cursor: text; color: rgb(223, 226, 235); letter-spacing: -1.2px; background-color: rgba(16, 20, 26, 0.8);">baxh</span><span class="text-primary-container cursor-text" spellcheck="false" data-stitch-added-classes="cursor-text" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; cursor: text; --tw-text-opacity: 1; color: rgb(0, 212, 255); letter-spacing: -1.2px; background-color: rgba(16, 20, 26, 0.8);">e</span><span class="cursor-text" spellcheck="false" data-stitch-added-classes="cursor-text" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; cursor: text; color: rgb(223, 226, 235); letter-spacing: -1.2px; background-color: rgba(16, 20, 26, 0.8);">n</span></span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 Baxhen Consulting. All rights reserved.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-label-sm text-label-sm text-primary" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">LinkedIn</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Insights</a>
+</div>
+</footer>
+</section>
+<!-- Floating Atmosphere Elements -->
+<div class="fixed top-1/4 -left-32 w-64 h-64 bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="fixed bottom-1/4 -right-32 w-80 h-80 bg-secondary/5 rounded-full blur-[140px] pointer-events-none"></div>
+<script class="">
+        // Smooth scroll for anchor links
+        document.querySelectorAll('aside a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple active state listener for sidebar
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('aside a');
+            
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach(link => {
+                link</script></body></html>

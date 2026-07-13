@@ -1,0 +1,49 @@
+{
+  "common": {
+    "home": "Início",
+    "about": "Sobre",
+    "contact": "Contacto",
+    "services": "Serviços",
+    "gallery": "Galeria",
+    "faq": "Perguntas Frequentes",
+    "testimonials": "Testemunhos",
+    "callToAction": "Solicitar Informação",
+    "submit": "Enviar",
+    "send": "Enviar Mensagem",
+    "close": "Fechar",
+    "back": "Voltar",
+    "next": "Seguinte",
+    "previous": "Anterior",
+    "loading": "A carregar...",
+    "error": "Ocorreu um erro",
+    "notFound": "Página não encontrada",
+    "siteNotFound": "Site não encontrado",
+    "allRightsReserved": "Todos os direitos reservados",
+    "privacyPolicy": "Política de Privacidade",
+    "termsOfService": "Termos de Serviço",
+    "languageSwitcher": "Mudar idioma",
+    "languageLabel": {
+      "pt": "Português",
+      "en": "English"
+    }
+  },
+  "form": {
+    "name": "Nome",
+    "email": "E-mail",
+    "phone": "Telefone",
+    "message": "Mensagem",
+    "required": "Campo obrigatório",
+    "invalidEmail": "E-mail inválido",
+    "success": "Mensagem enviada com sucesso!",
+    "error": "Erro ao enviar. Tente novamente.",
+    "consent": "Aceito a política de privacidade",
+    "consentRequired": "É necessário aceitar a política de privacidade"
+  },
+  "hero": {
+    "cta": "Saber Mais"
+  },
+  "theme": {
+    "toggleLight": "Modo claro",
+    "toggleDark": "Modo escuro"
+  }
+}

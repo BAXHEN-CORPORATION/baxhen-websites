@@ -1,17 +1,32 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
+import { multiTenantPlugin } from '@payloadcms/plugin-multi-tenant'
 import sharp from 'sharp'
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
 
-import { Categories } from './collections/Categories'
+// Collections
+import { Clients } from './collections/Clients'
+import { Contracts } from './collections/Contracts'
+import { ContractDocuments } from './collections/ContractDocuments'
+import { Deployments } from './collections/Deployments'
+import { Domains } from './collections/Domains'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
-import { Posts } from './collections/Posts'
+import { ServicePlans } from './collections/ServicePlans'
+import { Sites } from './collections/Sites'
+import { Tenants } from './collections/Tenants'
 import { Users } from './collections/Users'
-import { Footer } from './Footer/config'
-import { Header } from './Header/config'
+
+// Globals
+import { Footer } from './globals/Footer/config'
+import { Header } from './globals/Header/config'
+import { PlatformSettings } from './globals/PlatformSettings'
+
+// Plugins
 import { plugins } from './plugins'
+
+// Utilities
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
 
@@ -21,11 +36,7 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     components: {
-      // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
-      // Feel free to delete this at any time. Simply remove the line below.
       beforeLogin: ['@/components/BeforeLogin'],
-      // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
-      // Feel free to delete this at any time. Simply remove the line below.
       beforeDashboard: ['@/components/BeforeDashboard'],
     },
     importMap: {
@@ -55,17 +66,53 @@ export default buildConfig({
       ],
     },
   },
-  // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || '',
     },
   }),
-  collections: [Pages, Posts, Media, Categories, Users],
+  collections: [
+    Users,
+    Tenants,
+    Clients,
+    Sites,
+    Pages,
+    Media,
+    Domains,
+    ServicePlans,
+    Contracts,
+    ContractDocuments,
+    Deployments,
+  ],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer],
-  plugins,
+  globals: [Header, Footer, PlatformSettings],
+  localization: {
+    locales: ['pt', 'en'],
+    defaultLocale: 'pt',
+    fallback: true,
+  },
+  plugins: [
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    multiTenantPlugin({
+      collections: {
+        sites: { customTenantField: true },
+        pages: { customTenantField: true },
+        media: { customTenantField: true },
+        domains: { customTenantField: true },
+        contracts: { customTenantField: true },
+        'contract-documents': { customTenantField: true },
+        deployments: { customTenantField: true },
+      },
+      tenantsSlug: 'tenants',
+      userHasAccessToAllTenants: (user) => {
+        if (!user) return false
+        const roles = (user as unknown as Record<string, unknown>).roles as string[] | undefined
+        return roles?.includes('super-admin') || roles?.includes('baxhen-admin') || false
+      },
+    }),
+    ...plugins,
+  ],
   secret: process.env.PAYLOAD_SECRET,
   sharp,
   typescript: {
@@ -74,15 +121,11 @@ export default buildConfig({
   jobs: {
     access: {
       run: ({ req }: { req: PayloadRequest }): boolean => {
-        // Allow logged in users to execute this endpoint (default)
         if (req.user) return true
 
         const secret = process.env.CRON_SECRET
         if (!secret) return false
 
-        // If there is no logged in user, then check
-        // for the Vercel Cron secret to be present as an
-        // Authorization header:
         const authHeader = req.headers.get('authorization')
         return authHeader === `Bearer ${secret}`
       },

@@ -1,20 +1,12 @@
-import { Post } from '@/payload-types'
-
 /**
- * Formats an array of populatedAuthors from Posts into a prettified string.
- * @param authors - The populatedAuthors array from a Post.
- * @returns A prettified string of authors.
- * @example
+ * Formats an array of author names into a prettified string.
+ * Generic utility — no longer tied to Post type.
  *
- * [Author1, Author2] becomes 'Author1 and Author2'
- * [Author1, Author2, Author3] becomes 'Author1, Author2, and Author3'
- *
+ * @param authors - Array of objects with a `name` property
+ * @returns A prettified string of author names
  */
-export const formatAuthors = (
-  authors: NonNullable<NonNullable<Post['populatedAuthors']>[number]>[],
-) => {
-  // Ensure we don't have any authors without a name
-  const authorNames = authors.map((author) => author.name).filter(Boolean)
+export const formatAuthors = (authors: Array<{ name?: string | null }>) => {
+  const authorNames = authors.map((author) => author.name).filter(Boolean) as string[]
 
   if (authorNames.length === 0) return ''
   if (authorNames.length === 1) return authorNames[0]

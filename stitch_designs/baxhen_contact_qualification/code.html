@@ -1,0 +1,455 @@
+<!DOCTYPE html><html lang="en" class="dark" style=""><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#3cd7ff",
+                        "tertiary-fixed": "#f1e1c0",
+                        "secondary-container": "#369db1",
+                        "error-container": "#93000a",
+                        "surface-container-high": "#242b2e",
+                        "surface-container-highest": "#2f3639",
+                        "tertiary-container": "#d0c1a1",
+                        "primary-container": "#00d4ff",
+                        "on-tertiary-fixed": "#221b06",
+                        "on-tertiary-container": "#594f35",
+                        "on-background": "#dde3e7",
+                        "secondary-fixed-dim": "#75d4e9",
+                        "on-surface-variant": "#bbc9cf",
+                        "tertiary": "#ecddbc",
+                        "background": "#0e1417",
+                        "tertiary-fixed-dim": "#d4c5a5",
+                        "on-error-container": "#ffdad6",
+                        "surface-dim": "#0e1417",
+                        "surface-bright": "#333a3d",
+                        "on-secondary-fixed": "#001f25",
+                        "on-primary-fixed-variant": "#004e5f",
+                        "secondary-fixed": "#a6eeff",
+                        "outline-variant": "#3c494e",
+                        "on-primary": "#003642",
+                        "on-secondary-fixed-variant": "#004e5b",
+                        "primary": "#a8e8ff",
+                        "surface-container": "#1a2123",
+                        "primary-fixed": "#b4ebff",
+                        "error": "#ffb4ab",
+                        "primary-fixed-dim": "#3cd7ff",
+                        "inverse-surface": "#dde3e7",
+                        "inverse-primary": "#00677e",
+                        "on-secondary-container": "#002f37",
+                        "secondary": "#75d4e9",
+                        "inverse-on-surface": "#2b3134",
+                        "surface": "#0e1417",
+                        "on-surface": "#dde3e7",
+                        "on-primary-container": "#00586b",
+                        "on-primary-fixed": "#001f27",
+                        "on-tertiary-fixed-variant": "#50462d",
+                        "surface-container-lowest": "#080f12",
+                        "on-error": "#690005",
+                        "surface-variant": "#2f3639",
+                        "outline": "#859398",
+                        "surface-container-low": "#161d1f",
+                        "on-tertiary": "#383019",
+                        "on-secondary": "#00363f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "base": "8px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Literata"],
+                        "body-md": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "display-lg-mobile": ["Literata"],
+                        "headline-md": ["Literata"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    }catch(_e){}</script><meta charset="utf-8"></head><body class="font-body-md text-body-md overflow-x-hidden bg-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 px-margin-desktop py-4 dark:bg-background border-b border-outline-variant/15 bg-surface/90 backdrop-blur-md"><div class="w-full max-w-container-max mx-auto flex justify-between items-center">
+<a href="#" class="font-display-lg text-display-lg font-bold tracking-tighter text-primary dark:text-primary"><span class="" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; color: rgb(223, 226, 235); font-size: 24px; letter-spacing: -1.2px; background-color: rgba(16, 20, 26, 0.8);">baxh</span><span class="text-primary-container" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; --tw-text-opacity: 1; color: rgb(0, 212, 255); font-size: 24px; letter-spacing: -1.2px; background-color: rgba(16, 20, 26, 0.8);">e</span><span class="" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; color: rgb(223, 226, 235); font-size: 24px; letter-spacing: -1.2px; background-color: rgba(16, 20, 26, 0.8);">n</span></a>
+<nav class="hidden md:flex gap-8 items-center">
+<a href="#" class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors">How it works</a>
+<a href="#" class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors">Solutions</a>
+<a href="#" class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors">Who it's for</a>
+<a href="#" class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1">Contact</a>
+</nav>
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-bold hover:bg-surface-tint transition-all duration-300">Get Started</button>
+</div></header>
+<main class="pt-32 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto relative">
+<!-- Background Shader Ambient -->
+<div class="fixed inset-0 pointer-events-none -z-10 opacity-30">
+
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Sidebar / Intro -->
+<div class="lg:col-span-4 lg:sticky lg:top-32 h-fit">
+<h1 class="font-display-lg text-display-lg text-primary mb-6">Let's build your presence.</h1>
+<p class="text-on-surface-variant font-body-lg mb-8 leading-relaxed">
+                    Tell Baxhen a little about your business and what you need. After completing the form, a WhatsApp message will be prepared with the relevant information so we can continue the conversation directly.
+                </p>
+<div class="p-6 rounded-xl border border-outline-variant/20 bg-surface-container">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary-fixed">verified_user</span>
+<div>
+<p class="text-on-surface font-bold">Confidential &amp; Direct</p>
+<p class="text-label-sm text-on-surface-variant mt-1">Your data is only used to prepare your initial brief. No cookies, no spam.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Form Content -->
+<div class="lg:col-span-8">
+<form class="space-y-12" id="qualificationForm">
+<!-- Section 1: Contact Details -->
+<section class="form-section">
+<div class="flex items-center gap-3 mb-6">
+<span class="text-tertiary font-display-lg">01</span>
+<h2 class="font-headline-md text-on-surface text-primary">Contact Details</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-label-sm uppercase tracking-widest text-on-surface" for="name">Full Name *</label>
+<input class="input-baxhen py-3 text-on-surface bg-surface-container-lowest px-4 rounded-lg placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all border-outline-variant/40" id="name" placeholder="e.g. Elena Rodriguez" required="" type="text">
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-label-sm uppercase tracking-widest text-on-surface" for="businessName">Business Name *</label>
+<input class="input-baxhen py-3 text-on-surface bg-surface-container-lowest px-4 rounded-lg placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all border-outline-variant/40" id="businessName" placeholder="e.g. Lumina Creative Agency" required="" type="text">
+</div>
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="text-label-sm uppercase tracking-widest text-on-surface" for="phone">Telephone Number (Optional)</label>
+<input class="input-baxhen py-3 text-on-surface bg-surface-container-lowest px-4 rounded-lg placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all border-outline-variant/40" id="phone" placeholder="+00 000 000 000" type="tel">
+</div>
+</div>
+</section>
+<!-- Section 2: Business Information -->
+<section class="form-section">
+<div class="flex items-center gap-3 mb-6">
+<span class="text-tertiary font-display-lg">02</span>
+<h2 class="font-headline-md text-on-surface text-primary">Business Context</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-label-sm uppercase tracking-widest text-on-surface" for="category">Business Category *</label>
+<select class="input-baxhen py-3 text-on-surface appearance-none bg-surface-container-lowest px-4 rounded-lg placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all border-outline-variant/40" id="category" required="">
+<option disabled="" selected="" value="" class="bg-surface-container-lowest text-on-surface">Select a category</option>
+<option value="Consulting" class="bg-surface-container-lowest text-on-surface">Consulting / B2B</option>
+<option value="E-commerce" class="bg-surface-container-lowest text-on-surface">E-commerce / Retail</option>
+<option value="Tourism" class="bg-surface-container-lowest text-on-surface">Tourism / Hospitality</option>
+<option value="Service" class="bg-surface-container-lowest text-on-surface">Professional Service</option>
+<option value="Other" class="bg-surface-container-lowest text-on-surface">Other</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-label-sm uppercase tracking-widest text-on-surface" for="location">Location *</label>
+<input class="input-baxhen py-3 text-on-surface bg-surface-container-lowest px-4 rounded-lg placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all border-outline-variant/40" id="location" placeholder="City, Country" required="" type="text">
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-label-sm uppercase tracking-widest text-on-surface" for="website">Existing Website (Optional)</label>
+<input class="input-baxhen py-3 text-on-surface bg-surface-container-lowest px-4 rounded-lg placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all border-outline-variant/40" id="website" placeholder="https://..." type="url">
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-label-sm uppercase tracking-widest text-on-surface" for="social">Instagram / Social (Optional)</label>
+<input class="input-baxhen py-3 text-on-surface bg-surface-container-lowest px-4 rounded-lg placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all border-outline-variant/40" id="social" placeholder="@username" type="text">
+</div>
+</div>
+</section>
+<!-- Section 3: Main Website Objective -->
+<section class="form-section">
+<div class="flex items-center gap-3 mb-6">
+<span class="text-tertiary font-display-lg">03</span>
+<h2 class="font-headline-md text-on-surface text-primary">Main Website Objective</h2>
+</div>
+<p class="text-label-sm mb-4 text-on-surface">SELECT ALL THAT APPLY</p>
+<div class="flex flex-wrap gap-3">
+<!-- Multi-select Chips -->
+<div class="chip-option">
+<input class="hidden" id="obj1" name="objective" type="checkbox" value="Create presence">
+<label class="border border-outline-variant px-4 py-2 rounded-full cursor-pointer hover:border-primary-container transition-all block text-body-md text-on-surface" for="obj1">Create presence</label>
+</div>
+<div class="chip-option">
+<input class="hidden" id="obj2" name="objective" type="checkbox" value="Explain services">
+<label class="border border-outline-variant px-4 py-2 rounded-full cursor-pointer hover:border-primary-container transition-all block text-body-md text-on-surface" for="obj2">Explain services</label>
+</div>
+<div class="chip-option">
+<input class="hidden" id="obj3" name="objective" type="checkbox" value="Receive calls/messages">
+<label class="border border-outline-variant px-4 py-2 rounded-full cursor-pointer hover:border-primary-container transition-all block text-body-md text-on-surface" for="obj3">Receive calls/messages</label>
+</div>
+<div class="chip-option">
+<input class="hidden" id="obj4" name="objective" type="checkbox" value="Receive bookings">
+<label class="border border-outline-variant px-4 py-2 rounded-full cursor-pointer hover:border-primary-container transition-all block text-body-md text-on-surface" for="obj4">Receive bookings</label>
+</div>
+<div class="chip-option">
+<input class="hidden" id="obj5" name="objective" type="checkbox" value="Promote service">
+<label class="border border-outline-variant px-4 py-2 rounded-full cursor-pointer hover:border-primary-container transition-all block text-body-md text-on-surface" for="obj5">Promote service</label>
+</div>
+<div class="chip-option">
+<input class="hidden" id="obj6" name="objective" type="checkbox" value="Support campaign">
+<label class="border border-outline-variant px-4 py-2 rounded-full cursor-pointer hover:border-primary-container transition-all block text-body-md text-on-surface" for="obj6">Support campaign</label>
+</div>
+<div class="chip-option">
+<input class="hidden" id="obj7" name="objective" type="checkbox" value="Communicate with tourists">
+<label class="border border-outline-variant px-4 py-2 rounded-full cursor-pointer hover:border-primary-container transition-all block text-body-md text-on-surface" for="obj7">Communicate with tourists</label>
+</div>
+<div class="chip-option">
+<input class="hidden" id="obj8" name="objective" type="checkbox" value="Replace/improve site">
+<label class="border border-outline-variant px-4 py-2 rounded-full cursor-pointer hover:border-primary-container transition-all block text-body-md text-on-surface" for="obj8">Replace/improve site</label>
+</div>
+<div class="chip-option">
+<input class="hidden" id="obj9" name="objective" type="checkbox" value="Not sure">
+<label class="border border-outline-variant px-4 py-2 rounded-full cursor-pointer hover:border-primary-container transition-all block text-body-md text-on-surface" for="obj9">Not sure</label>
+</div>
+</div>
+</section>
+<!-- Section 4 & 5: Website Type & Language -->
+<section class="form-section">
+<div class="flex items-center gap-3 mb-6">
+<span class="text-tertiary font-display-lg">04</span>
+<h2 class="font-headline-md text-on-surface text-primary">Configuration</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+<div>
+<p class="text-label-sm uppercase tracking-widest mb-4 text-on-surface">Website Type</p>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="text-primary focus:ring-primary bg-surface-container border-outline-variant" name="webType" type="radio" value="Complete business website">
+<span class="text-on-surface group-hover:text-primary transition-colors font-bold">Complete business website</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="text-primary focus:ring-primary bg-surface-container border-outline-variant" name="webType" type="radio" value="Focused lead-generation page">
+<span class="text-on-surface group-hover:text-primary transition-colors font-bold">Focused lead-generation page</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="text-primary focus:ring-primary bg-surface-container border-outline-variant" name="webType" type="radio" value="Help me choose">
+<span class="text-on-surface group-hover:text-primary transition-colors font-bold">Help me choose</span>
+</label>
+</div>
+</div>
+<div>
+<p class="text-label-sm uppercase tracking-widest mb-4 text-on-surface">Language Requirements</p>
+<select class="input-baxhen py-3 w-full bg-surface-container-lowest px-4 rounded-lg placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all border-outline-variant/40 text-on-surface" id="languages">
+<option value="Portuguese" class="bg-surface-container-lowest text-on-surface">Portuguese</option>
+<option value="English" class="bg-surface-container-lowest text-on-surface">English</option>
+<option value="Portuguese and English" class="bg-surface-container-lowest text-on-surface">Portuguese and English (Bilingual)</option>
+<option value="Other" class="bg-surface-container-lowest text-on-surface">Other</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Section 6: Current Situation -->
+<section class="form-section">
+<div class="flex items-center gap-3 mb-6">
+<span class="text-tertiary font-display-lg">05</span>
+<h2 class="font-headline-md text-on-surface text-primary">Current Situation</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-6">
+<div>
+<p class="text-label-sm mb-3 text-on-surface">Do you already have text and images?</p>
+<div class="flex gap-4">
+<label class="flex items-center gap-2 text-on-surface"><input class="text-primary" name="assets" type="radio" value="Yes"> Yes</label>
+<label class="flex items-center gap-2 text-on-surface"><input class="text-primary" name="assets" type="radio" value="Partial"> Partial</label>
+<label class="flex items-center gap-2 text-on-surface"><input class="text-primary" name="assets" type="radio" value="No"> No</label>
+</div>
+</div>
+<div>
+<p class="text-label-sm mb-3 text-on-surface">Do you currently have a website?</p>
+<div class="flex gap-4">
+<label class="flex items-center gap-2 text-on-surface"><input class="text-primary" name="hasSite" type="radio" value="Yes"> Yes</label>
+<label class="flex items-center gap-2 text-on-surface"><input class="text-primary" name="hasSite" type="radio" value="No"> No</label>
+</div>
+</div>
+</div>
+<div class="">
+<p class="text-label-sm mb-3 text-on-surface">When would you like to launch?</p>
+<div class="grid grid-cols-2 gap-3">
+<div class="chip-option">
+<input class="hidden" id="launch1" name="launch" type="radio" value="ASAP">
+<label class="border border-outline-variant px-4 py-2 rounded-lg cursor-pointer hover:border-primary-container transition-all block text-center text-on-surface" for="launch1">ASAP</label>
+</div>
+<div class="chip-option">
+<input class="hidden" id="launch2" name="launch" type="radio" value="1 month">
+<label class="border border-outline-variant px-4 py-2 rounded-lg cursor-pointer hover:border-primary-container transition-all block text-center text-on-surface" for="launch2">1 month</label>
+</div>
+<div class="chip-option">
+<input class="hidden" id="launch3" name="launch" type="radio" value="3 months">
+<label class="border border-outline-variant px-4 py-2 rounded-lg cursor-pointer hover:border-primary-container transition-all block text-center text-on-surface" for="launch3">3 months</label>
+</div>
+<div class="chip-option">
+<input class="hidden" id="launch4" name="launch" type="radio" value="Exploring">
+<label class="border border-outline-variant px-4 py-2 rounded-lg cursor-pointer hover:border-primary-container transition-all block text-center text-on-surface" for="launch4">Exploring</label>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 7: Additional Info -->
+<section class="form-section">
+<div class="flex flex-col gap-2">
+<label class="text-headline-md text-on-surface mb-2" for="additional">Is there anything important Baxhen should know?</label>
+<textarea class="input-baxhen py-3 text-on-surface w-full resize-none custom-scrollbar bg-surface-container-lowest px-4 rounded-lg placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all border-outline-variant/40" id="additional" placeholder="Tell us more about your specific needs, competitors, or inspiration..." rows="4"></textarea>
+</div>
+</section>
+<!-- Action Area -->
+<div class="pt-8 border-t border-outline-variant/10">
+<button class="w-full md:w-auto bg-primary-container text-on-primary-container px-12 py-5 rounded-full font-bold text-headline-md hover:bg-surface-tint transition-all duration-300 flex items-center justify-center gap-3 group" type="submit">
+                            Continue on WhatsApp
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<p class="mt-6 text-label-sm max-w-lg leading-relaxed text-on-surface">
+                            By continuing, you will open WhatsApp with a message containing the information entered above. The message is not sent until you confirm it inside WhatsApp. View our <a class="underline text-primary" href="#">Privacy Policy</a>.
+                        </p>
+</div>
+</form>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter max-w-container-max mx-auto border-t border-outline-variant/10 bg-surface-container-lowest dark:bg-surface-container-lowest">
+<div class="flex flex-col gap-2">
+<span class="font-headline-md text-headline-md font-bold text-on-surface"><span class="cursor-text" spellcheck="false" data-stitch-added-classes="cursor-text" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; color: rgb(223, 226, 235); letter-spacing: -1.2px; background-color: rgba(16, 20, 26, 0.8);">baxh</span><span class="text-primary-container cursor-text" spellcheck="false" data-stitch-added-classes="cursor-text" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; --tw-text-opacity: 1; color: rgb(0, 212, 255); letter-spacing: -1.2px; background-color: rgba(16, 20, 26, 0.8);">e</span><span class="cursor-text" spellcheck="false" data-stitch-added-classes="cursor-text" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; color: rgb(223, 226, 235); letter-spacing: -1.2px; background-color: rgba(16, 20, 26, 0.8);">n</span></span>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-80">© 2024 Baxhen Consulting. All rights reserved.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">LinkedIn</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Insights</a>
+</div>
+</footer>
+<!-- Error/Fallback Modal (Hidden by default) -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-sm hidden p-6" id="fallbackModal">
+<div class="bg-surface-container p-8 rounded-2xl max-w-md w-full border border-outline-variant shadow-2xl">
+<h3 class="font-headline-md text-primary mb-4">Couldn't open WhatsApp</h3>
+<p class="text-on-surface-variant mb-6">No problem. You can copy the message and our number to send it manually.</p>
+<div class="space-y-4">
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant flex justify-between items-center">
+<div>
+<p class="text-label-sm text-on-surface-variant">Baxhen WhatsApp</p>
+<p class="font-bold text-on-surface">+1234567890</p>
+</div>
+<button class="text-primary hover:text-surface-tint" onclick="copyToClipboard('+1234567890')">
+<span class="material-symbols-outlined">content_copy</span>
+</button>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant">
+<p class="text-label-sm text-on-surface-variant mb-2">Message</p>
+<p class="text-sm text-on-surface line-clamp-3 mb-2 italic" id="fallbackMessage"></p>
+<button class="text-primary hover:text-surface-tint flex items-center gap-2 text-label-sm" onclick="copyToClipboard(document.getElementById('fallbackMessage').innerText)">
+<span class="material-symbols-outlined text-sm">content_copy</span> Copy Full Message
+                    </button>
+</div>
+</div>
+<button class="w-full mt-8 py-3 rounded-full border border-outline-variant text-on-surface font-bold" onclick="closeModal()">Close</button>
+</div>
+</div>
+<script>
+        const BAXHEN_PHONE = "1234567890"; // Example number
+
+        document.getElementById('qualificationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validation (Basic required handled by browser, but we can add more)
+            const name = document.getElementById('name').value;
+            const businessName = document.getElementById('businessName').value;
+            const location = document.getElementById('location').value;
+            const category = document.getElementById('category').value;
+            
+            // Collect Multi-select
+            const objectives = Array.from(document.querySelectorAll('input[name="objective"]:checked')).map(cb => cb.value).join(', ');
+            
+            // Collect Radios
+            const webType = document.querySelector('input[name="webType"]:checked')?.value || 'Not specified';
+            const launch = document.querySelector('input[name="launch"]:checked')?.value || 'Not specified';
+            const assets = document.querySelector('input[name="assets"]:checked')?.value || 'Not specified';
+            const hasSite = document.querySelector('input[name="hasSite"]:checked')?.value || 'Not specified';
+            
+            const languages = document.getElementById('languages').value;
+            const additional = document.getElementById('additional').value;
+
+            // Construct Message
+            let message = `Hello Baxhen, I would like to discuss a website for my business.\n\n`;
+            message += `*Contact Information*\n`;
+            message += `- Name: ${name}\n`;
+            message += `- Business: ${businessName}\n`;
+            message += `- Phone: ${document.getElementById('phone').value || 'N/A'}\n\n`;
+            
+            message += `*Business Details*\n`;
+            message += `- Category: ${category}\n`;
+            message += `- Location: ${location}\n`;
+            message += `- Website: ${document.getElementById('website').value || 'None'}\n`;
+            message += `- Social: ${document.getElementById('social').value || 'None'}\n\n`;
+            
+            message += `*Project Vision*\n`;
+            message += `- Objectives: ${objectives || 'None selected'}\n`;
+            message += `- Type: ${webType}\n`;
+            message += `- Languages: ${languages}\n\n`;
+            
+            message += `*Current Status*\n`;
+            message += `- Assets Ready: ${assets}\n`;
+            message += `- Current Site: ${hasSite}\n`;
+            message += `- Launch Target: ${launch}\n\n`;
+            
+            if(additional) {
+                message += `*Additional Info*\n${additional}\n`;
+            }
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${BAXHEN_PHONE}?text=${encodedMessage}`;
+
+            // Attempt to open WhatsApp
+            const win = window.open(whatsappUrl, '_blank');
+            
+            // Fallback Logic
+            if (!win || win.closed || typeof win.closed == 'undefined') {
+                showFallback(message);
+            }
+        });
+
+        function showFallback(message) {
+            document.getElementById('fallbackMessage').innerText = message;
+            document.getElementById('fallbackModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('fallbackModal').classList.add('hidden');
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Copied to clipboard!');
+            });
+        }
+
+        // Visual Interaction: Form Step Highlight
+        const sections = document.querySelectorAll('.form-section');
+        window.addEventListener('scroll', () => {
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (</script>
+
+
+
+</body></html>

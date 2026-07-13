@@ -1,0 +1,417 @@
+<!DOCTYPE html><html lang="en" class="dark" style=""><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Literata:wght@500;600;700&amp;family=Hanken+Grotesk:wght@400;600&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#ecddbc",
+                        "surface-tint": "#3cd7ff",
+                        "secondary-container": "#369db1",
+                        "on-secondary-container": "#002f37",
+                        "on-primary": "#003642",
+                        "inverse-on-surface": "#2b3134",
+                        "on-tertiary-fixed": "#221b06",
+                        "on-error-container": "#ffdad6",
+                        "primary-container": "#00d4ff",
+                        "surface-dim": "#0e1417",
+                        "on-surface": "#dde3e7",
+                        "surface-variant": "#2f3639",
+                        "outline": "#859398",
+                        "secondary-fixed": "#a6eeff",
+                        "on-primary-fixed-variant": "#004e5f",
+                        "outline-variant": "#3c494e",
+                        "primary-fixed-dim": "#3cd7ff",
+                        "tertiary-fixed": "#f1e1c0",
+                        "surface-bright": "#333a3d",
+                        "primary": "#a8e8ff",
+                        "on-surface-variant": "#bbc9cf",
+                        "on-secondary": "#00363f",
+                        "on-background": "#dde3e7",
+                        "inverse-primary": "#00677e",
+                        "background": "#0e1417",
+                        "on-tertiary": "#383019",
+                        "surface-container-high": "#242b2e",
+                        "inverse-surface": "#dde3e7",
+                        "on-error": "#690005",
+                        "surface-container-low": "#161d1f",
+                        "secondary": "#75d4e9",
+                        "on-secondary-fixed": "#001f25",
+                        "error": "#ffb4ab",
+                        "secondary-fixed-dim": "#75d4e9",
+                        "surface-container": "#1a2123",
+                        "on-primary-fixed": "#001f27",
+                        "error-container": "#93000a",
+                        "on-primary-container": "#00586b",
+                        "on-secondary-fixed-variant": "#004e5b",
+                        "tertiary-fixed-dim": "#d4c5a5",
+                        "surface-container-highest": "#2f3639",
+                        "on-tertiary-container": "#594f35",
+                        "tertiary-container": "#d0c1a1",
+                        "primary-fixed": "#b4ebff",
+                        "surface": "#0e1417",
+                        "surface-container-lowest": "#080f12",
+                        "on-tertiary-fixed-variant": "#50462d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "container-max": "1280px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Literata"],
+                        "headline-md": ["Literata"],
+                        "body-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    }catch(_e){}</script></head><body class="bg-background text-on-background font-body-md overflow-x-hidden">
+
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-outline-variant/15 transition-all duration-300">
+        <div class="max-w-container-max mx-auto px-margin-desktop py-4 flex justify-between items-center">
+            <span class="font-display-lg text-[24px] lg:text-[32px] font-bold tracking-tighter text-primary"><font color="#dfe2eb"><span style="font-size: 24px; letter-spacing: -1.2px; background-color: rgba(16, 20, 26, 0.8);">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></font></span>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#" class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md">How it works</a>
+                <a href="#" class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md">Solutions</a>
+                <a href="#" class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md">Who it's for</a>
+                <a href="#" class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md">Contact</a>
+            </div>
+
+            <button class="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-full font-bold hover:brightness-110 transition-all">
+                Get Started
+            </button>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-24">
+        <!-- Hero Section -->
+        <section class="max-w-container-max mx-auto px-margin-desktop mb-24 text-center">
+            <div class="inline-block px-4 py-1 mb-6 rounded-full border border-primary/20 bg-primary/5">
+                <span class="text-primary font-label-sm uppercase tracking-widest text-[10px]">Methodology</span>
+            </div>
+            <h1 class="font-display-lg text-display-lg text-on-surface mb-6 max-w-3xl mx-auto">Our Structured Process</h1>
+            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto opacity-80 leading-relaxed">
+                Precision is not a luxury; it is the foundation of scale. Our disciplined 9-stage journey ensures every decision is backed by data and aligned with your long-term vision.
+            </p>
+        </section>
+
+        <!-- Process Roadmap Section -->
+        <section class="max-w-container-max mx-auto px-margin-desktop relative">
+            <!-- Central Vertical Line (Desktop Only) -->
+            <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-[1px] line-draw -translate-x-1/2 z-0 opacity-20"></div>
+
+            <div class="space-y-12 md:space-y-0 relative z-10">
+                
+                <!-- Stage 1 -->
+                <div class="flex flex-col md:flex-row items-center md:items-start group">
+                    <div class="md:w-1/2 md:pr-12 md:text-right pb-8 md:pb-24">
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-surface-container-high border border-outline-variant/30 mb-4 md:mb-0 md:hidden">
+                            <span class="material-symbols-outlined text-primary">analytics</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">01. Business Review</h3>
+                        <p class="text-on-surface-variant leading-relaxed">A comprehensive audit of your digital ecosystem. We review your existing site, social media presence, Google visibility, services, and competitive landscape to establish a baseline.</p>
+                    </div>
+                    <div class="hidden md:flex flex-col items-center px-6">
+                        <div class="w-12 h-12 rounded-full bg-background border-2 border-primary flex items-center justify-center z-20 transition-transform duration-500 group-hover:scale-110 shadow-[0_0_15px_rgba(168,232,255,0.3)]">
+                            <span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">analytics</span>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 pt-4 hidden md:block">
+                        <div class="w-full h-40 bg-surface-container rounded-2xl border border-outline-variant/10 overflow-hidden relative">
+                            <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
+                            <div class="p-6">
+                                <div class="flex gap-2 mb-4">
+                                    <div class="w-2 h-2 rounded-full bg-primary/40"></div>
+                                    <div class="w-2 h-2 rounded-full bg-primary/40"></div>
+                                    <div class="w-2 h-2 rounded-full bg-primary/40"></div>
+                                </div>
+                                <div class="h-2 w-3/4 bg-outline-variant/20 rounded mb-2"></div>
+                                <div class="h-2 w-1/2 bg-outline-variant/20 rounded"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 2 -->
+                <div class="flex flex-col md:flex-row-reverse items-center md:items-start group">
+                    <div class="md:w-1/2 md:pl-12 pb-8 md:pb-24">
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-surface-container-high border border-outline-variant/30 mb-4 md:mb-0 md:hidden">
+                            <span class="material-symbols-outlined text-primary">forum</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">02. Discovery Conversation</h3>
+                        <p class="text-on-surface-variant leading-relaxed">Deep-dive dialogue regarding core objectives. We align on primary services, desired customer actions, linguistic requirements, necessary integrations, and deployment timelines.</p>
+                    </div>
+                    <div class="hidden md:flex flex-col items-center px-6">
+                        <div class="w-12 h-12 rounded-full bg-background border-2 border-primary flex items-center justify-center z-20 transition-transform duration-500 group-hover:scale-110 shadow-[0_0_15px_rgba(168,232,255,0.3)]">
+                            <span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">forum</span>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pr-12 pt-4 hidden md:block">
+                         <div class="w-full h-40 bg-surface-container rounded-2xl border border-outline-variant/10 overflow-hidden flex items-center justify-center">
+                            <div class="flex -space-x-4">
+                                <div class="w-16 h-16 rounded-full border-2 border-background bg-surface-container-high flex items-center justify-center"><span class="material-symbols-outlined text-on-surface-variant">person</span></div>
+                                <div class="w-16 h-16 rounded-full border-2 border-background bg-primary/20 flex items-center justify-center"><span class="material-symbols-outlined text-primary">person</span></div>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+
+                <!-- Stage 3 -->
+                <div class="flex flex-col md:flex-row items-center md:items-start group">
+                    <div class="md:w-1/2 md:pr-12 md:text-right pb-8 md:pb-24">
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-surface-container-high border border-outline-variant/30 mb-4 md:mb-0 md:hidden">
+                            <span class="material-symbols-outlined text-primary">fact_check</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">03. Recommendation</h3>
+                        <p class="text-on-surface-variant leading-relaxed">Technical determination of project structure: Business Presence, Lead-Generation focus, or a Hybrid model. We ruthlessly exclude any services that do not offer direct value to your goals.</p>
+                    </div>
+                    <div class="hidden md:flex flex-col items-center px-6">
+                        <div class="w-12 h-12 rounded-full bg-background border-2 border-primary flex items-center justify-center z-20 transition-transform duration-500 group-hover:scale-110 shadow-[0_0_15px_rgba(168,232,255,0.3)]">
+                            <span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">fact_check</span>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 pt-4 hidden md:block">
+                        <div class="grid grid-cols-2 gap-4 h-40">
+                            <div class="bg-surface-container rounded-2xl border border-outline-variant/10 flex flex-col items-center justify-center p-4">
+                                <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mb-2"><span class="material-symbols-outlined text-primary text-sm">check</span></div>
+                                <span class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Essential</span>
+                            </div>
+                            <div class="bg-surface-container rounded-2xl border border-outline-variant/10 opacity-40 flex flex-col items-center justify-center p-4">
+                                <div class="w-8 h-8 rounded-full bg-error/10 flex items-center justify-center mb-2"><span class="material-symbols-outlined text-error text-sm">close</span></div>
+                                <span class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Omitted</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 4 -->
+                <div class="flex flex-col md:flex-row-reverse items-center md:items-start group">
+                    <div class="md:w-1/2 md:pl-12 pb-8 md:pb-24">
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-surface-container-high border border-outline-variant/30 mb-4 md:mb-0 md:hidden">
+                            <span class="material-symbols-outlined text-primary">description</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">04. Private Proposal</h3>
+                        <p class="text-on-surface-variant leading-relaxed">A detailed blueprint of the solution. This document clearly defines the scope, infrastructure choices, specific pages, delivery milestones, and fixed pricing structure.</p>
+                    </div>
+                    <div class="hidden md:flex flex-col items-center px-6">
+                        <div class="w-12 h-12 rounded-full bg-background border-2 border-primary flex items-center justify-center z-20 transition-transform duration-500 group-hover:scale-110 shadow-[0_0_15px_rgba(168,232,255,0.3)]">
+                            <span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">description</span>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pr-12 pt-4 hidden md:block">
+                        <div class="w-full h-40 bg-surface-container rounded-2xl border border-outline-variant/10 p-6 flex flex-col justify-between">
+                            <div class="space-y-2">
+                                <div class="h-1.5 w-full bg-outline-variant/30 rounded"></div>
+                                <div class="h-1.5 w-5/6 bg-outline-variant/30 rounded"></div>
+                                <div class="h-1.5 w-4/6 bg-outline-variant/30 rounded"></div>
+                            </div>
+                            <div class="flex justify-end">
+                                <div class="h-8 w-24 bg-primary/10 border border-primary/20 rounded-md"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 5 -->
+                <div class="flex flex-col md:flex-row items-center md:items-start group">
+                    <div class="md:w-1/2 md:pr-12 md:text-right pb-8 md:pb-24">
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-surface-container-high border border-outline-variant/30 mb-4 md:mb-0 md:hidden">
+                            <span class="material-symbols-outlined text-primary">verified_user</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">05. Content Confirmation</h3>
+                        <p class="text-on-surface-variant leading-relaxed">Validation of the building blocks. The client confirms accuracy of business data, brand guidelines, imagery, and professional translations before production begins.</p>
+                    </div>
+                    <div class="hidden md:flex flex-col items-center px-6">
+                        <div class="w-12 h-12 rounded-full bg-background border-2 border-primary flex items-center justify-center z-20 transition-transform duration-500 group-hover:scale-110 shadow-[0_0_15px_rgba(168,232,255,0.3)]">
+                            <span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 pt-4 hidden md:block">
+                         <div class="w-full h-40 flex gap-4">
+                            <div class="flex-1 bg-surface-container rounded-2xl border border-outline-variant/10 flex items-center justify-center"><span class="material-symbols-outlined text-on-surface-variant">image</span></div>
+                            <div class="flex-1 bg-surface-container rounded-2xl border border-outline-variant/10 flex items-center justify-center"><span class="material-symbols-outlined text-on-surface-variant">translate</span></div>
+                            <div class="flex-1 bg-primary/5 rounded-2xl border border-primary/20 flex items-center justify-center"><span class="material-symbols-outlined text-primary">done_all</span></div>
+                         </div>
+                    </div>
+                </div>
+
+                <!-- Stage 6 -->
+                <div class="flex flex-col md:flex-row-reverse items-center md:items-start group">
+                    <div class="md:w-1/2 md:pl-12 pb-8 md:pb-24">
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-surface-container-high border border-outline-variant/30 mb-4 md:mb-0 md:hidden">
+                            <span class="material-symbols-outlined text-primary">engineering</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">06. Production</h3>
+                        <p class="text-on-surface-variant leading-relaxed">Baxhen engineers execute the build using our proprietary design system. We focus on high-fidelity visual translation and technical optimization for performance and SEO.</p>
+                    </div>
+                    <div class="hidden md:flex flex-col items-center px-6">
+                        <div class="w-12 h-12 rounded-full bg-background border-2 border-primary flex items-center justify-center z-20 transition-transform duration-500 group-hover:scale-110 shadow-[0_0_15px_rgba(168,232,255,0.3)]">
+                            <span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">engineering</span>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pr-12 pt-4 hidden md:block">
+                        <div class="w-full h-40 bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-6 flex flex-col justify-center items-center overflow-hidden">
+                            <div class="w-full max-w-[200px] space-y-3">
+                                <div class="h-1 bg-primary/20 rounded w-full overflow-hidden">
+                                    <div class="h-full bg-primary w-2/3 animate-[pulse_2s_infinite]"></div>
+                                </div>
+                                <div class="h-1 bg-primary/20 rounded w-full overflow-hidden">
+                                    <div class="h-full bg-primary w-1/2 animate-[pulse_2s_infinite_0.5s]"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 7 -->
+                <div class="flex flex-col md:flex-row items-center md:items-start group">
+                    <div class="md:w-1/2 md:pr-12 md:text-right pb-8 md:pb-24">
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-surface-container-high border border-outline-variant/30 mb-4 md:mb-0 md:hidden">
+                            <span class="material-symbols-outlined text-primary">visibility</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">07. Review &amp; Approval</h3>
+                        <p class="text-on-surface-variant leading-relaxed">A structured QA phase where the client reviews the live staging version. Any final corrections are managed against the initial proposal specifications to ensure perfection.</p>
+                    </div>
+                    <div class="hidden md:flex flex-col items-center px-6">
+                        <div class="w-12 h-12 rounded-full bg-background border-2 border-primary flex items-center justify-center z-20 transition-transform duration-500 group-hover:scale-110 shadow-[0_0_15px_rgba(168,232,255,0.3)]">
+                            <span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">visibility</span>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 pt-4 hidden md:block">
+                        <div class="w-full h-40 bg-surface-container rounded-2xl border border-outline-variant/10 p-4 relative">
+                            <div class="flex items-center gap-2 mb-4">
+                                <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+                            </div>
+                            <div class="absolute right-4 top-4 bg-tertiary text-on-tertiary px-2 py-1 rounded text-[10px] font-bold">STAGING</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 8 -->
+                <div class="flex flex-col md:flex-row-reverse items-center md:items-start group">
+                    <div class="md:w-1/2 md:pl-12 pb-8 md:pb-24">
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-surface-container-high border border-outline-variant/30 mb-4 md:mb-0 md:hidden">
+                            <span class="material-symbols-outlined text-primary">rocket_launch</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">08. Launch</h3>
+                        <p class="text-on-surface-variant leading-relaxed">The transition to production. This includes domain DNS mapping, SSL deployment, comprehensive cross-device testing, form logic validation, and final server config.</p>
+                    </div>
+                    <div class="hidden md:flex flex-col items-center px-6">
+                        <div class="w-12 h-12 rounded-full bg-background border-2 border-primary flex items-center justify-center z-20 transition-transform duration-500 group-hover:scale-110 shadow-[0_0_15px_rgba(168,232,255,0.3)]">
+                            <span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pr-12 pt-4 hidden md:block">
+                         <div class="w-full h-40 bg-primary/10 rounded-2xl border border-primary/30 flex items-center justify-center">
+                            <div class="text-primary flex flex-col items-center gap-2">
+                                <span class="material-symbols-outlined text-4xl animate-bounce">rocket</span>
+                                <span class="font-label-sm tracking-widest text-[10px]">LIVE</span>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+
+                <!-- Stage 9 -->
+                <div class="flex flex-col md:flex-row items-center md:items-start group">
+                    <div class="md:w-1/2 md:pr-12 md:text-right pb-8 md:pb-24">
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-surface-container-high border border-outline-variant/30 mb-4 md:mb-0 md:hidden">
+                            <span class="material-symbols-outlined text-primary">support_agent</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">09. Continued Support</h3>
+                        <p class="text-on-surface-variant leading-relaxed">Long-term partnership. We manage updates, track analytics performance, facilitate advertising campaigns, and provide custom development as your business evolves.</p>
+                    </div>
+                    <div class="hidden md:flex flex-col items-center px-6">
+                        <div class="w-12 h-12 rounded-full bg-background border-2 border-primary flex items-center justify-center z-20 transition-transform duration-500 group-hover:scale-110 shadow-[0_0_15px_rgba(168,232,255,0.3)]">
+                            <span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 pt-4 hidden md:block">
+                         <div class="w-full h-40 bg-surface-container rounded-2xl border border-outline-variant/10 p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-[10px] text-primary">Monthly Performance</span>
+                                <span class="text-[10px] text-green-400">+12%</span>
+                            </div>
+                            <div class="flex items-end gap-1 h-12">
+                                <div class="w-2 h-[40%] bg-outline-variant/30 rounded-t"></div>
+                                <div class="w-2 h-[55%] bg-outline-variant/30 rounded-t"></div>
+                                <div class="w-2 h-[45%] bg-outline-variant/30 rounded-t"></div>
+                                <div class="w-2 h-[70%] bg-primary rounded-t"></div>
+                                <div class="w-2 h-[85%] bg-primary rounded-t"></div>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section class="max-w-container-max mx-auto px-margin-desktop mt-24">
+            <div class="bg-surface-container rounded-[2rem] border border-outline-variant/10 p-12 lg:p-24 text-center overflow-hidden relative">
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 blur-[100px] rounded-full"></div>
+                <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-secondary/5 blur-[100px] rounded-full"></div>
+                
+                <h2 class="font-display-lg text-[32px] md:text-[40px] text-on-surface mb-8 relative z-10">Ready to initiate your journey?</h2>
+                <p class="text-on-surface-variant font-body-lg mb-12 max-w-xl mx-auto relative z-10">Our assessment is the first step toward a transformative digital presence tailored precisely to your operational needs.</p>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-6 relative z-10">
+                    <button class="bg-primary-container text-on-primary-container font-bold text-lg px-10 py-5 rounded-full hover:scale-105 active:scale-95 transition-all step-glow">
+                        Start the Assessment
+                    </button>
+                    <a href="#" class="text-primary font-bold border-b-2 border-primary/0 hover:border-primary/100 pb-1 transition-all">
+                        Speak with a Consultant
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-container-lowest border-t border-outline-variant/10">
+        <div class="max-w-container-max mx-auto py-12 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter">
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <span class="font-headline-md text-headline-md font-bold text-on-surface"><span style="color: rgb(223, 226, 235); letter-spacing: -1.2px; background-color: rgba(16, 20, 26, 0.8);" class="">baxh</span><span class="text-primary-container" style="--tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; --tw-text-opacity: 1; color: rgb(0, 212, 255); letter-spacing: -1.2px; background-color: rgba(16, 20, 26, 0.8);">e</span><span style="color: rgb(223, 226, 235); letter-spacing: -1.2px; background-color: rgba(16, 20, 26, 0.8);" class="">n</span></span>
+                <span class="font-label-sm text-label-sm text-on-surface-variant opacity-80 uppercase tracking-widest">© 2024 Baxhen Consulting. All rights reserved.</span>
+            </div>
+            
+            <div class="flex gap-8">
+                <a href="#" class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest">Privacy Policy</a>
+                <a href="#" class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest">Terms of Service</a>
+                <a href="#" class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest">LinkedIn</a>
+                <a href="#" class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest">Insights</a>
+            </div>
+        </div>
+    </footer>
+
+    <script class="">
+        // Subtle scroll reveal effect for roadmap items
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {</script>
+
+</body></html>

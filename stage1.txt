@@ -1,0 +1,1723 @@
+# Baxhen Platform — First-Stage Architecture Implementation Brief
+
+You are working as the lead software architect and senior full-stack engineer for the initial Baxhen website platform.
+
+Your task is to create the first-stage architecture and everything technically necessary before onboarding the first paying client.
+
+Do not build a speculative enterprise platform. Build a clean, secure, tested foundation that can support Baxhen’s first five clients and can be extended later without requiring a complete rewrite.
+
+Before changing files:
+
+1. Inspect the existing repository.
+2. Read the current `package.json`, Payload configuration, Next.js configuration, TypeScript configuration, environment files, collections, routes, and tests.
+3. Report any conflict between this brief and the existing code.
+4. Produce a concise implementation plan.
+5. Then implement the plan in small, verifiable stages.
+6. Run type checking, linting, integration tests, and the production build after implementation.
+7. Do not silently remove existing functionality.
+
+---
+
+# 1. Business Context
+
+Baxhen creates websites for small and medium businesses.
+
+The first commercial offer may include website implementation at no additional cost when the client purchases the annual Baxhen infrastructure plan.
+
+The system must initially support two website types:
+
+## Business Presence Website
+
+A multi-page website intended to:
+
+* Explain the business.
+* Present services, products, menus, rooms, portfolios, or other content.
+* Establish credibility.
+* Provide contact information.
+* Support Portuguese and English content.
+* Support basic technical SEO.
+* Generate calls, messages, or inquiries.
+
+## Lead-Generation Website
+
+A focused website or landing page intended to:
+
+* Promote one service, offer, or campaign.
+* Receive traffic from advertisements or social media.
+* Present a specific value proposition.
+* Collect qualified leads.
+* Track form submissions and conversion events.
+* Support a shorter and more focused user journey.
+
+Both website types must use the same technical platform and reusable section system. Do not create two separate frameworks.
+
+---
+
+# 2. Required Technology
+
+Use the existing technology pattern:
+
+* Next.js 16 App Router.
+* React 19.
+* TypeScript with strict mode.
+* Payload CMS 3.84.1.
+* Payload Postgres adapter.
+* Payload Lexical editor.
+* Payload UI.
+* Payload translations.
+* Payload S3 storage adapter.
+* Supabase Postgres.
+* Supabase Storage through its S3-compatible API.
+* `next-intl`.
+* Tailwind CSS 4.
+* Base UI.
+* shadcn.
+* `class-variance-authority`.
+* `clsx`.
+* `tailwind-merge`.
+* Lucide icons.
+* Vitest.
+* Testing Library.
+* Cypress with Cucumber support.
+* Netlify deployment.
+
+Keep all related Payload packages pinned to the exact same version.
+
+Add these packages if they are not already installed:
+
+```json
+{
+  "@payloadcms/plugin-multi-tenant": "3.84.1",
+  "@payloadcms/plugin-form-builder": "3.84.1",
+  "@payloadcms/plugin-seo": "3.84.1",
+  "@payloadcms/plugin-redirects": "3.84.1"
+}
+```
+
+Do not add a new state-management library, ORM, authentication provider, design system, API framework, or form framework unless there is a demonstrated requirement that cannot be solved cleanly with the existing stack.
+
+Use Payload authentication for CMS and administrative users. Do not add Supabase Auth during this stage.
+
+Use Payload’s Local API for server-side CMS access. Do not introduce GraphQL unless the existing project already depends on it for a real feature.
+
+---
+
+# 3. Architectural Pattern
+
+Use the following separation:
+
+```text
+Model
+  ↓
+Repository
+  ↓
+Service
+  ↓
+ViewModel / Presenter
+  ↓
+View
+```
+
+Next.js route files, layouts, Server Components, route handlers, and Server Actions act as the composition or controller layer.
+
+Do not implement traditional class-based MVC.
+
+## 3.1 Model Layer
+
+The Model layer contains:
+
+* Payload collection definitions.
+* Payload global definitions.
+* Generated Payload types.
+* Domain types.
+* Domain enums.
+* Validation rules.
+* Relationships.
+* Collection hooks that protect data integrity.
+* Access-control rules.
+
+The Model layer must not import React components.
+
+Examples:
+
+```text
+Tenants
+Users
+Clients
+Sites
+Pages
+Media
+Forms
+FormSubmissions
+Domains
+ServicePlans
+Contracts
+ContractDocuments
+Deployments
+```
+
+## 3.2 Repository Layer
+
+The Repository layer is responsible only for data access.
+
+Examples:
+
+```ts
+findSiteByHostname(hostname)
+findSiteBySlug(siteSlug)
+findPageByPath(siteId, locale, path)
+findNavigation(siteId, locale)
+findSiteSettings(siteId, locale)
+createFormSubmission(input)
+findClientContracts(clientId)
+```
+
+Repository rules:
+
+* Payload Local API calls belong here.
+* Every public website query must be scoped to a specific site or tenant.
+* Never perform an unrestricted query and filter the records afterward in application memory.
+* Never trust a tenant or site ID supplied by the browser without validation.
+* Avoid returning complete Payload documents when the consumer needs only a small subset.
+* Keep database details out of React components.
+* Use generated Payload types.
+* Handle “not found” conditions explicitly.
+* Do not leak draft, private, billing, contract, or cross-tenant information.
+
+Suggested path:
+
+```text
+src/repositories/
+```
+
+## 3.3 Service Layer
+
+The Service layer contains application and business logic.
+
+Examples:
+
+```ts
+resolveWebsiteRequest(hostname, pathname, locale)
+buildWebsitePage(site, page, navigation)
+submitLeadForm(input, requestMetadata)
+determineEnabledLocales(site)
+createCanonicalURL(site, locale, path)
+createWebsiteSEO(site, page, locale)
+provisionDemoTenant()
+```
+
+Service rules:
+
+* Services may call repositories.
+* Services must not render React.
+* Services must not depend on a particular page component.
+* Services should be independently testable.
+* Services should return explicit success or failure results where failure is expected.
+* Business rules must not be duplicated across route files or components.
+
+Suggested path:
+
+```text
+src/services/
+```
+
+## 3.4 ViewModel and Presenter Layer
+
+The ViewModel layer transforms domain data into presentation-ready data.
+
+Examples:
+
+```ts
+toHeaderViewModel(site, navigation, locale)
+toFooterViewModel(site, settings, locale)
+toHeroViewModel(block, context)
+toServiceGridViewModel(block, context)
+toContactFormViewModel(form, context)
+toSEOViewModel(site, page, locale)
+toPageViewModel(site, page, locale)
+```
+
+ViewModels should:
+
+* Resolve localized values.
+* Apply safe defaults.
+* Normalize image data.
+* Normalize links.
+* Remove CMS-specific field shapes from the View.
+* Expose only the values the View requires.
+* Create stable component props.
+* Avoid returning Payload request objects or Local API objects.
+* Avoid querying the database.
+
+Suggested paths:
+
+```text
+src/view-models/
+src/presenters/
+```
+
+Use one of these names consistently. Prefer `view-models`.
+
+## 3.5 View Layer
+
+The View layer contains React components.
+
+Views must:
+
+* Receive data through typed props.
+* Remain unaware of Payload.
+* Not call the Payload Local API.
+* Not query Supabase.
+* Not determine tenant permissions.
+* Not contain billing or contract logic.
+* Not access secrets.
+* Be reusable across business-presence and lead-generation sites.
+* Use Server Components by default.
+* Use Client Components only when browser interaction or browser APIs are genuinely required.
+
+The View layer should be divided into:
+
+```text
+Primitives
+Components
+Sections
+Templates
+Pages
+```
+
+### Primitives
+
+Small visual elements:
+
+```text
+Button
+Link
+Container
+Heading
+Text
+Image
+Icon
+Stack
+Grid
+Badge
+```
+
+### Components
+
+Reusable interface units:
+
+```text
+Logo
+LanguageSwitcher
+ContactDetails
+SocialLinks
+FormField
+NavigationMenu
+MobileNavigation
+BusinessHours
+```
+
+### Sections
+
+Reusable page-level content sections:
+
+```text
+HeroSection
+ContentSection
+ServicesSection
+GallerySection
+TestimonialsSection
+FAQSection
+CallToActionSection
+ContactSection
+LeadFormSection
+MapSection
+LogoCloudSection
+TeamSection
+PricingSection
+```
+
+### Templates
+
+Compositions for business use cases:
+
+```text
+BusinessPresenceTemplate
+LeadGenerationTemplate
+LegalPageTemplate
+ContactPageTemplate
+```
+
+A template should compose sections. It must not fetch CMS data directly.
+
+---
+
+# 4. Proposed Project Structure
+
+Adapt this structure to the existing repository rather than duplicating existing folders unnecessarily.
+
+```text
+src/
+├── app/
+│   ├── (payload)/
+│   │   ├── admin/
+│   │   └── api/
+│   │
+│   ├── (baxhen)/
+│   │   ├── websites/
+│   │   ├── portfolio/
+│   │   └── dashboard/
+│   │
+│   ├── (sites)/
+│   │   └── _sites/
+│   │       └── [siteSlug]/
+│   │           └── [locale]/
+│   │               └── [[...path]]/
+│   │
+│   ├── site-not-found/
+│   ├── not-found.tsx
+│   ├── error.tsx
+│   └── layout.tsx
+│
+├── collections/
+│   ├── Users/
+│   ├── Tenants/
+│   ├── Clients/
+│   ├── Sites/
+│   ├── Pages/
+│   ├── Media/
+│   ├── Domains/
+│   ├── Forms/
+│   ├── FormSubmissions/
+│   ├── ServicePlans/
+│   ├── Contracts/
+│   ├── ContractDocuments/
+│   └── Deployments/
+│
+├── globals/
+│   └── PlatformSettings/
+│
+├── access/
+│   ├── isAuthenticated.ts
+│   ├── isSuperAdmin.ts
+│   ├── canAccessTenant.ts
+│   ├── canAccessSite.ts
+│   └── publicReadPublishedSiteContent.ts
+│
+├── domain/
+│   ├── site/
+│   ├── tenant/
+│   ├── page/
+│   ├── forms/
+│   └── shared/
+│
+├── repositories/
+│   ├── site.repository.ts
+│   ├── page.repository.ts
+│   ├── navigation.repository.ts
+│   ├── form.repository.ts
+│   └── contract.repository.ts
+│
+├── services/
+│   ├── website-resolution.service.ts
+│   ├── page-rendering.service.ts
+│   ├── localization.service.ts
+│   ├── seo.service.ts
+│   └── form-submission.service.ts
+│
+├── view-models/
+│   ├── page.view-model.ts
+│   ├── navigation.view-model.ts
+│   ├── seo.view-model.ts
+│   └── blocks/
+│
+├── views/
+│   ├── primitives/
+│   ├── components/
+│   ├── sections/
+│   ├── templates/
+│   └── block-renderer/
+│
+├── blocks/
+│   ├── Hero/
+│   ├── Content/
+│   ├── Services/
+│   ├── Gallery/
+│   ├── Testimonials/
+│   ├── FAQ/
+│   ├── CallToAction/
+│   ├── Contact/
+│   └── LeadForm/
+│
+├── hooks/
+│   ├── revalidateSite.ts
+│   ├── normalizeDomain.ts
+│   └── protectTenantRelationship.ts
+│
+├── lib/
+│   ├── payload/
+│   ├── i18n/
+│   ├── storage/
+│   ├── seo/
+│   ├── security/
+│   └── environment/
+│
+├── seeds/
+│   ├── demo-tenant.ts
+│   ├── demo-business-site.ts
+│   └── demo-lead-site.ts
+│
+├── payload.config.ts
+├── payload-types.ts
+└── proxy.ts
+
+migrations/
+tests/
+cypress/
+public/
+netlify.toml
+next.config.ts
+package.json
+```
+
+Use barrel exports sparingly. Avoid large global `index.ts` files that create circular dependencies.
+
+---
+
+# 5. Required Data Model
+
+## 5.1 Users
+
+Enable Payload authentication.
+
+Fields:
+
+```text
+name
+email
+roles
+tenants
+active
+```
+
+Roles:
+
+```text
+super-admin
+baxhen-admin
+baxhen-editor
+client-admin
+client-editor
+client-viewer
+```
+
+Rules:
+
+* `super-admin` can access all tenants.
+* Baxhen administrative roles can manage assigned areas.
+* Client users can access only their assigned tenants.
+* Client users cannot access internal notes, Baxhen-wide settings, unrelated clients, infrastructure secrets, or commercial records unless explicitly permitted.
+* New client users should not automatically receive access to every collection.
+
+## 5.2 Tenants
+
+Fields:
+
+```text
+name
+slug
+status
+client
+enabled
+```
+
+Statuses:
+
+```text
+lead
+onboarding
+active
+suspended
+archived
+```
+
+## 5.3 Clients
+
+This is the commercial client record.
+
+Fields:
+
+```text
+legalName
+displayName
+primaryContact
+email
+phone
+billingAddress
+taxIdentifier
+internalNotes
+status
+```
+
+Client financial and internal information must not be publicly queryable.
+
+## 5.4 Sites
+
+Fields:
+
+```text
+tenant
+name
+slug
+siteType
+status
+template
+defaultLocale
+enabledLocales
+primaryDomain
+previewDomain
+theme
+contactConfiguration
+socialLinks
+analyticsConfiguration
+seoDefaults
+launchDate
+```
+
+`siteType`:
+
+```text
+business-presence
+lead-generation
+combined
+custom
+```
+
+`status`:
+
+```text
+draft
+preview
+approved
+published
+suspended
+archived
+```
+
+The initial implementation must support one tenant having more than one site.
+
+## 5.5 Domains
+
+Fields:
+
+```text
+tenant
+site
+hostname
+type
+status
+isPrimary
+verifiedAt
+redirectToPrimary
+```
+
+Types:
+
+```text
+baxhen-preview
+baxhen-subdomain
+custom-domain
+```
+
+Statuses:
+
+```text
+pending
+verified
+active
+failed
+disabled
+```
+
+Normalize hostnames:
+
+* Lowercase.
+* Remove protocol.
+* Remove path.
+* Remove trailing dot.
+* Handle `www` deliberately rather than inconsistently.
+
+Enforce uniqueness for active hostnames.
+
+## 5.6 Pages
+
+Fields:
+
+```text
+tenant
+site
+title
+slug
+path
+status
+pageType
+layout
+seo
+publishedAt
+```
+
+Use Payload localized fields for:
+
+```text
+title
+navigationLabel
+layout content
+SEO title
+SEO description
+image alternative text
+```
+
+Page statuses:
+
+```text
+draft
+published
+archived
+```
+
+The `layout` field should contain reusable Payload blocks.
+
+## 5.7 Media
+
+Fields should include:
+
+```text
+tenant
+site
+alt
+caption
+usage
+```
+
+Use tenant/site prefixes or equivalent organization in Supabase Storage.
+
+Public website media and private contract documents must not share the same public access policy.
+
+## 5.8 Forms and Form Submissions
+
+Support:
+
+* Contact forms.
+* Lead-generation forms.
+* Qualification fields.
+* Consent checkboxes.
+* Source metadata.
+* Campaign metadata.
+* Spam protection integration point.
+* Submission status.
+
+Form submission fields should include:
+
+```text
+tenant
+site
+form
+submittedData
+submittedAt
+sourceURL
+locale
+utmSource
+utmMedium
+utmCampaign
+consent
+status
+```
+
+Statuses:
+
+```text
+new
+contacted
+qualified
+converted
+spam
+archived
+```
+
+Do not place sensitive form values in logs.
+
+## 5.9 Service Plans
+
+Before the first client, this collection only needs administrative record keeping.
+
+Fields:
+
+```text
+name
+code
+billingInterval
+price
+currency
+includedFeatures
+limits
+active
+```
+
+No payment-provider integration is required yet.
+
+## 5.10 Contracts
+
+Fields:
+
+```text
+client
+tenant
+site
+servicePlan
+status
+startDate
+endDate
+renewalDate
+implementationPrice
+annualInfrastructurePrice
+currency
+signedAt
+internalNotes
+```
+
+Statuses:
+
+```text
+draft
+sent
+signed
+active
+expired
+cancelled
+```
+
+## 5.11 Contract Documents
+
+Private uploads only.
+
+Fields:
+
+```text
+client
+contract
+documentType
+file
+uploadedAt
+```
+
+These documents must never be publicly accessible through the website media URLs.
+
+---
+
+# 6. Multi-Tenant Security
+
+Configure the Payload multi-tenant plugin for all tenant-owned collections.
+
+At minimum:
+
+```text
+Sites
+Pages
+Media
+Domains
+Forms
+FormSubmissions
+Contracts
+ContractDocuments
+Deployments
+```
+
+Security requirements:
+
+1. Tenant filtering must happen at the database-query level.
+2. Client users may only access assigned tenants.
+3. Public website visitors may only read published content belonging to the resolved active site.
+4. Draft content must not be public.
+5. Contract and billing information must never be public.
+6. Suspended sites must not render normal website content.
+7. Local API usage must not accidentally bypass tenant restrictions.
+8. Administrative operations using elevated privileges must be explicit and documented.
+9. Add integration tests proving that one tenant cannot access another tenant’s records.
+10. Do not rely only on hidden Admin Panel fields for security.
+
+Create centralized access functions rather than rewriting similar access rules in every collection.
+
+---
+
+# 7. Hostname and Site Resolution
+
+Use `src/proxy.ts` because the repository uses a `src` directory.
+
+The proxy should:
+
+1. Read the request hostname.
+2. Normalize the hostname.
+3. Allow Baxhen’s own application routes to continue normally.
+4. Rewrite client website requests to an internal site route.
+5. Exclude Payload Admin, API routes, Next.js assets, static files, and health checks.
+6. Avoid database calls directly inside Proxy.
+7. Pass the normalized hostname to the internal route through a rewrite-safe method.
+8. Handle unknown domains with a site-not-found experience.
+
+Do not hardcode each client inside `proxy.ts`.
+
+Because Proxy should not perform the Payload database lookup, use this flow:
+
+```text
+Incoming hostname
+    ↓
+Proxy rewrites to internal website route
+    ↓
+Website resolution service receives normalized hostname
+    ↓
+Domain repository resolves active Domain and Site
+    ↓
+Page service resolves locale and path
+    ↓
+ViewModel transforms CMS data
+    ↓
+Template renders reusable sections
+```
+
+Support these local-development formats:
+
+```text
+demo.localhost:3000
+lead-demo.localhost:3000
+```
+
+Also support an environment-variable fallback when subdomain-based localhost behavior is unavailable.
+
+---
+
+# 8. Localization
+
+Initial locales:
+
+```text
+pt
+en
+```
+
+Portuguese should be supported as the default, but each site can choose its own default locale.
+
+Use:
+
+* Payload localization for editable website content.
+* `next-intl` for frontend interface strings and locale routing.
+* Payload translations for Admin Panel localization.
+
+Requirements:
+
+* Every site has `defaultLocale`.
+* Every site has `enabledLocales`.
+* Unsupported locales return a valid fallback or not-found response according to a single documented rule.
+* Language switching preserves the current page when a translation exists.
+* Localized SEO metadata is supported.
+* Canonical URLs are locale-aware.
+* Alternate-language URLs can be generated.
+* Forms display localized labels and messages.
+* Do not duplicate an entire page record solely to provide another language unless there is a clear reason.
+
+Create a localization service so locale fallback logic is not duplicated across components.
+
+---
+
+# 9. Reusable Block and Section System
+
+Payload blocks define editable content structure.
+
+React sections render the visual result.
+
+Keep these concepts separate.
+
+Example:
+
+```text
+Payload block configuration:
+src/blocks/Hero/config.ts
+
+Payload block type:
+HeroBlock
+
+ViewModel:
+src/view-models/blocks/hero.view-model.ts
+
+View:
+src/views/sections/HeroSection.tsx
+```
+
+Create an explicit typed block renderer:
+
+```ts
+type SectionViewModel =
+  | HeroSectionViewModel
+  | ContentSectionViewModel
+  | ServicesSectionViewModel
+  | GallerySectionViewModel
+  | TestimonialsSectionViewModel
+  | FAQSectionViewModel
+  | CallToActionSectionViewModel
+  | ContactSectionViewModel
+  | LeadFormSectionViewModel
+```
+
+Avoid a block renderer containing large amounts of transformation logic.
+
+The renderer should only map a view-model discriminator to a section component.
+
+Each section must support:
+
+* Consistent spacing.
+* A stable container system.
+* Responsive layouts.
+* Optional theme variants.
+* Accessible heading levels.
+* Typed CTA links.
+* Localized content.
+* Sensible empty-state behavior.
+* No dependency on Payload request objects.
+
+Build these initial sections:
+
+1. Hero.
+2. Rich content.
+3. Services or features.
+4. Gallery.
+5. Testimonials.
+6. FAQ.
+7. Call to action.
+8. Contact information.
+9. Contact form.
+10. Lead-generation form.
+
+Do not build a drag-and-drop visual page editor.
+
+---
+
+# 10. Themes and Client Customization
+
+Create a lightweight theme model.
+
+Support configuration for:
+
+```text
+logo
+favicon
+primary font
+heading font
+border radius
+content width
+header style
+footer style
+button style
+light/dark section variants
+```
+
+Use CSS custom properties for theme tokens.
+
+Do not create a new Tailwind configuration for each client.
+
+Do not place client names or design values directly inside shared components.
+
+A site theme should produce a typed theme view model that the root website layout converts into CSS variables.
+
+The first-stage platform only needs a small number of controlled variants. Avoid allowing arbitrary client CSS in Payload.
+
+---
+
+# 11. Website Rendering
+
+Use Server Components by default.
+
+Recommended route flow:
+
+```text
+Internal website route
+    ↓
+Resolve domain and site
+    ↓
+Resolve locale
+    ↓
+Resolve requested page
+    ↓
+Create page view model
+    ↓
+Render selected template
+    ↓
+Render section view models
+```
+
+Do not fetch the same site, navigation, or settings independently from multiple sections.
+
+The route-level composition should obtain the complete required website context once and pass appropriate view models downward.
+
+Use Next.js metadata generation for:
+
+* Page title.
+* Description.
+* Canonical URL.
+* Alternate locales.
+* Open Graph metadata.
+* Social image.
+* Robots directives.
+
+Draft and preview sites should be marked so search engines do not index them.
+
+---
+
+# 12. Forms
+
+Create a central form-submission service.
+
+The View should submit to one controlled application endpoint or Server Action.
+
+The form-submission service must:
+
+1. Validate the site and form.
+2. Confirm the form belongs to the current tenant/site.
+3. Validate allowed fields.
+4. Normalize data.
+5. Record consent.
+6. Capture permitted campaign metadata.
+7. Apply an anti-spam abstraction.
+8. Store the submission.
+9. Return a safe success result.
+10. Avoid returning internal errors to the browser.
+11. Avoid logging submitted personal data.
+
+Provide an interface for email notification, but a full email provider integration may remain a clearly documented TODO when credentials are unavailable.
+
+Add rate-limiting and CAPTCHA integration points without coupling the entire form system to one provider.
+
+---
+
+# 13. Supabase Storage
+
+Configure Payload’s S3 adapter for Supabase Storage.
+
+Use environment variables for:
+
+```text
+S3_ENDPOINT
+S3_REGION
+S3_ACCESS_KEY_ID
+S3_SECRET_ACCESS_KEY
+S3_PUBLIC_BUCKET
+S3_PRIVATE_BUCKET
+S3_PUBLIC_BASE_URL
+```
+
+Requirements:
+
+* Secrets must remain server-only.
+* Public website media can use the public-media bucket.
+* Contract documents must use private storage.
+* Media paths should include tenant and site context where practical.
+* Validate MIME type and file size.
+* Generate descriptive image metadata.
+* Keep storage implementation behind a small configuration module.
+
+Add documentation explaining that database backups and Storage backups are separate.
+
+Do not attempt to build a complete automated backup platform during this stage. Add a tested manual backup and restoration runbook.
+
+---
+
+# 14. Baxhen Website-Service Landing Page
+
+Create the initial Baxhen website-service landing page under the Baxhen application route.
+
+It should explain:
+
+* Business websites.
+* Lead-generation websites.
+* Portuguese and English support.
+* Annual infrastructure.
+* Optional changes and custom development.
+* The limited first-five-client launch offer.
+* The process from preview to launch.
+* A contact or qualification form.
+
+The page must use the same reusable primitives and sections as client websites where appropriate.
+
+Do not hardcode the service landing page into client-specific code.
+
+Content may initially be seeded through Payload so Baxhen can edit it without changing source code.
+
+---
+
+# 15. Demo Content Required Before Client One
+
+Create seed scripts for:
+
+## Demo Tenant One
+
+A fictional Portuguese tourism or hospitality business with:
+
+* Portuguese and English content.
+* Business Presence site type.
+* Home page.
+* About page.
+* Services or experiences page.
+* Gallery.
+* FAQ.
+* Contact page.
+* Contact form.
+* Baxhen preview domain.
+
+## Demo Tenant Two
+
+A fictional service business with:
+
+* Portuguese and English content.
+* Lead-Generation site type.
+* One focused landing page.
+* Lead qualification form.
+* Testimonials.
+* FAQ.
+* Strong call to action.
+* Baxhen preview domain.
+
+The demo data must not contain a real company’s private or copyrighted content.
+
+Seed scripts must be idempotent or clearly warn before creating duplicates.
+
+---
+
+# 16. Administrative Experience
+
+Before the first client, Baxhen administrators must be able to:
+
+* Log into Payload.
+* Create a tenant.
+* Create a client.
+* Create a site.
+* Add a domain.
+* Select the website type.
+* Select supported locales.
+* Create pages.
+* Add and reorder content blocks.
+* Upload media.
+* Preview draft content.
+* Publish content.
+* Review form submissions.
+* Record a service plan.
+* Record a contract.
+* Upload a private contract document.
+
+Client users are not required for the first public release, but the role and access architecture must be ready for later activation.
+
+Do not build a separate custom dashboard when the Payload Admin Panel can provide the required functionality.
+
+---
+
+# 17. Preview and Publishing
+
+Support these content states:
+
+```text
+draft
+preview
+published
+```
+
+Requirements:
+
+* Public sites show only published content.
+* Baxhen administrators can preview draft content securely.
+* Preview URLs are tenant- and locale-aware.
+* Preview sites include `noindex`.
+* Publishing or updating a page should invalidate or revalidate the relevant website content.
+* Avoid rebuilding every client site when one client changes one page.
+* Abstract revalidation behind a service or hook so deployment strategy can change later.
+
+For the initial single Netlify application, use the simplest reliable Next.js revalidation approach supported by the existing application.
+
+---
+
+# 18. Netlify Configuration
+
+Create or update `netlify.toml`.
+
+Requirements:
+
+* Use PNPM.
+* Use a Node.js version supported by Next.js 16.
+* Run database migrations in the production deployment process only where safe.
+* Run the production build.
+* Do not expose secrets through client-side environment variables.
+* Document all required Netlify environment variables.
+* Ensure Payload Admin and API routes work on the deployed Next.js application.
+* Keep Deploy Previews usable.
+* Do not use one permanent Git branch per client.
+
+Suggested scripts:
+
+```json
+{
+  "build": "next build",
+  "build:ci": "pnpm payload migrate && pnpm build",
+  "dev": "next dev",
+  "dev:clean": "rm -rf .next && next dev",
+  "start": "next start",
+  "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+  "payload:types": "pnpm payload generate:types",
+  "payload:importmap": "pnpm payload generate:importmap",
+  "db:migrate:create": "pnpm payload migrate:create",
+  "db:migrate": "pnpm payload migrate",
+  "db:migrate:status": "pnpm payload migrate:status",
+  "typecheck": "tsc --noEmit",
+  "lint": "eslint .",
+  "test:int": "vitest run --config ./vitest.config.mts",
+  "test:e2e": "cypress run",
+  "test:e2e:open": "cypress open",
+  "verify": "pnpm typecheck && pnpm lint && pnpm test:int"
+}
+```
+
+Adapt these scripts if equivalent scripts already exist.
+
+---
+
+# 19. Environment Validation
+
+Create a typed server-side environment module.
+
+Validate required environment variables when the server starts.
+
+Suggested variables:
+
+```text
+DATABASE_URL
+PAYLOAD_SECRET
+NEXT_PUBLIC_SERVER_URL
+
+S3_ENDPOINT
+S3_REGION
+S3_ACCESS_KEY_ID
+S3_SECRET_ACCESS_KEY
+S3_PUBLIC_BUCKET
+S3_PRIVATE_BUCKET
+S3_PUBLIC_BASE_URL
+
+BAXHEN_PLATFORM_HOSTS
+BAXHEN_PREVIEW_DOMAIN
+BAXHEN_DEFAULT_LOCALE
+BAXHEN_SUPPORTED_LOCALES
+```
+
+Rules:
+
+* Keep secret and public variables in separate objects.
+* Never expose database, Payload, or S3 credentials through `NEXT_PUBLIC_` variables.
+* Provide `.env.example`.
+* Do not commit real credentials.
+* Fail with a clear message when required server variables are missing.
+
+Do not add a dependency only for environment validation unless it materially improves the existing project. A small typed validation module is acceptable.
+
+---
+
+# 20. Testing Requirements
+
+## Unit Tests
+
+Test:
+
+* Hostname normalization.
+* Locale resolution.
+* Site-type selection.
+* URL creation.
+* View-model transformations.
+* Theme token creation.
+* Form normalization.
+* SEO metadata creation.
+
+## Integration Tests
+
+Test:
+
+* Site resolution by hostname.
+* Published page retrieval.
+* Draft content exclusion.
+* Tenant isolation.
+* Unauthorized contract access.
+* Localized page retrieval.
+* Form submission ownership.
+* Suspended-site behavior.
+
+## Component Tests
+
+Test representative sections:
+
+* Hero.
+* Services.
+* FAQ.
+* Contact form.
+* Lead form.
+
+Views should be testable without creating Payload request objects.
+
+## Cypress End-to-End Tests
+
+Create critical journeys:
+
+1. Baxhen administrator logs in.
+2. Administrator creates or edits demo content.
+3. Portuguese business website renders.
+4. English version renders.
+5. Language switch works.
+6. Lead-generation landing page renders.
+7. Contact form submits successfully.
+8. Unknown hostname returns site-not-found.
+9. Preview content is not visible through the public published URL.
+10. Client A content cannot be retrieved using Client B’s hostname.
+
+Do not attempt to test every Payload Admin feature.
+
+---
+
+# 21. Logging and Error Handling
+
+Create consistent application errors for expected failures:
+
+```text
+SiteNotFoundError
+SiteSuspendedError
+PageNotFoundError
+UnsupportedLocaleError
+InvalidFormSubmissionError
+UnauthorizedTenantAccessError
+```
+
+Rules:
+
+* Public responses must not expose stack traces.
+* Logs should contain request IDs and technical context.
+* Logs must not contain passwords, tokens, contract files, or complete form submissions.
+* Not-found conditions should not be treated as unexpected server crashes.
+* Add appropriate Next.js `not-found.tsx` and `error.tsx` boundaries.
+
+---
+
+# 22. Accessibility and Performance
+
+All initial sections must follow these rules:
+
+* Semantic HTML.
+* Keyboard-accessible controls.
+* Visible focus states.
+* Proper form labels.
+* Accessible error messages.
+* Correct heading hierarchy.
+* Useful image alternative text.
+* Responsive design.
+* Minimal Client Components.
+* No unnecessary animation.
+* Images rendered through the appropriate Next.js image strategy.
+* Avoid layout shifts.
+* Avoid loading large JavaScript bundles for static content.
+
+Do not sacrifice maintainability for premature micro-optimization.
+
+---
+
+# 23. Explicit Non-Goals Before Client One
+
+Do not implement these unless required by existing code:
+
+* Automated Netlify project creation.
+* Automated custom-domain DNS setup.
+* Stripe or another payment provider.
+* Automated invoice generation.
+* Usage-based billing.
+* Full analytics dashboard.
+* Supabase Auth.
+* Real-time collaborative editing.
+* Custom drag-and-drop page builder.
+* Separate repository per client.
+* Permanent branch per client.
+* Dedicated deployment per client.
+* White-label client dashboard.
+* Advertising-platform integration.
+* Automated translation.
+* Full CRM.
+* Automated contract signing.
+* Complex workflow engine.
+* Custom portal for clients.
+* Custom visual theme editor.
+* Arbitrary user-provided CSS or JavaScript.
+
+Create clean extension points where appropriate, but do not build these systems now.
+
+---
+
+# 24. Required Documentation
+
+Create:
+
+```text
+docs/architecture.md
+docs/model-view-separation.md
+docs/local-development.md
+docs/environment.md
+docs/deployment-netlify.md
+docs/tenant-security.md
+docs/adding-a-site.md
+docs/adding-a-section.md
+docs/localization.md
+docs/forms-and-data-retention.md
+docs/backup-and-restore.md
+docs/first-client-checklist.md
+```
+
+`docs/model-view-separation.md` must explain:
+
+* What belongs in Models.
+* What belongs in Repositories.
+* What belongs in Services.
+* What belongs in ViewModels.
+* What belongs in Views.
+* Where data fetching occurs.
+* Where localization is resolved.
+* Where permissions are enforced.
+* Examples of prohibited cross-layer imports.
+
+Include an import-direction rule:
+
+```text
+Views may import view-model types.
+Views must not import repositories, Payload config, or collections.
+
+ViewModels may import domain types.
+ViewModels must not query Payload.
+
+Services may import repositories and domain types.
+Services must not import React views.
+
+Repositories may import Payload server utilities and domain types.
+Repositories must not import React.
+
+Models must not import application views.
+```
+
+---
+
+# 25. Before-First-Client Completion Checklist
+
+The architecture is not complete until all these conditions are satisfied:
+
+## Platform
+
+* Next.js production build succeeds.
+* Payload Admin works.
+* Supabase Postgres connection works.
+* Supabase Storage upload works.
+* Database migrations are committed.
+* Generated Payload types are current.
+* Environment validation works.
+* Netlify configuration exists.
+
+## Multi-Tenancy
+
+* Two demo tenants exist.
+* Each demo tenant has its own site.
+* Hostname resolution works.
+* Tenant isolation tests pass.
+* Draft content is protected.
+* Private documents are protected.
+
+## Website Rendering
+
+* Business Presence template works.
+* Lead-Generation template works.
+* Required reusable sections work.
+* Portuguese content works.
+* English content works.
+* Language switching works.
+* SEO metadata works.
+* Unknown pages return not found.
+
+## Forms
+
+* Contact form works.
+* Lead-generation form works.
+* Form data is associated with the correct tenant and site.
+* Consent is recorded.
+* Spam-protection integration point exists.
+* Sensitive submission data is not logged.
+
+## Baxhen Operations
+
+* Baxhen service landing page exists.
+* Administrator can create a client.
+* Administrator can create a tenant and site.
+* Administrator can edit page sections.
+* Administrator can upload media.
+* Administrator can preview and publish.
+* Administrator can review submissions.
+* Administrator can record a service plan and contract.
+* Administrator can upload private contract documents.
+
+## Quality
+
+* Type checking passes.
+* Linting passes.
+* Integration tests pass.
+* Critical Cypress tests pass.
+* No known cross-tenant data leak exists.
+* Documentation is complete.
+* The first-client onboarding checklist can be followed by another developer.
+
+---
+
+# 26. Implementation Order
+
+Work in this order:
+
+## Phase 1: Audit and Foundation
+
+* Inspect existing code.
+* Confirm dependency compatibility.
+* Update scripts and environment validation.
+* Establish folder boundaries.
+* Configure migrations.
+* Preserve all working existing features.
+
+## Phase 2: Core Models and Security
+
+* Users.
+* Clients.
+* Tenants.
+* Sites.
+* Domains.
+* Access-control functions.
+* Multi-tenant plugin.
+* Tenant-isolation tests.
+
+## Phase 3: Content Architecture
+
+* Pages.
+* Media.
+* Blocks.
+* Localization.
+* Repositories.
+* Services.
+* ViewModels.
+* Typed block renderer.
+
+## Phase 4: Website Resolution
+
+* `src/proxy.ts`.
+* Hostname normalization.
+* Internal website route.
+* Site resolution.
+* Locale resolution.
+* Page resolution.
+* Error states.
+
+## Phase 5: Views
+
+* Primitives.
+* Shared components.
+* Required sections.
+* Business Presence template.
+* Lead-Generation template.
+* Theme variables.
+
+## Phase 6: Forms
+
+* Forms.
+* Submissions.
+* Submission service.
+* Consent.
+* Validation.
+* Anti-spam abstraction.
+* Notifications abstraction.
+
+## Phase 7: Commercial Administration
+
+* Service Plans.
+* Contracts.
+* Private Contract Documents.
+* Basic administrative access.
+
+## Phase 8: Demo and Baxhen Landing Page
+
+* Demo tenants.
+* Demo websites.
+* Baxhen website-service landing page.
+* First-five-client offer content.
+
+## Phase 9: Netlify and Operations
+
+* Netlify configuration.
+* Deployment documentation.
+* Backup runbook.
+* First-client checklist.
+
+## Phase 10: Verification
+
+* Generate Payload types.
+* Generate Payload import map.
+* Create migration.
+* Run migration.
+* Run type checking.
+* Run lint.
+* Run integration tests.
+* Run Cypress critical paths.
+* Run production build.
+* Report remaining limitations.
+
+---
+
+# 27. Code Quality Rules
+
+* Prefer small pure functions.
+* Prefer composition over inheritance.
+* Avoid giant collection configuration files.
+* Avoid giant React components.
+* Avoid business logic inside JSX.
+* Avoid CMS queries inside sections.
+* Avoid `any`.
+* Avoid non-null assertions unless proven safe.
+* Avoid duplicated locale fallback logic.
+* Avoid duplicated tenant filters.
+* Avoid passing complete Payload documents through the entire UI.
+* Avoid exposing private fields in public view models.
+* Use explicit names rather than generic `utils.ts` files.
+* Add comments only where the reason is not evident from the implementation.
+* Keep functions focused on one responsibility.
+* Keep public interfaces small.
+* Ensure errors are actionable.
+* Preserve exact Payload package-version alignment.
+
+---
+
+# 28. Completion Report
+
+When finished, provide:
+
+1. A summary of the implemented architecture.
+2. The final folder structure.
+3. Collections and globals created.
+4. Access-control approach.
+5. Model/View separation approach.
+6. Hostname-routing approach.
+7. Localization approach.
+8. Environment variables required.
+9. Database migrations created.
+10. Tests added and their results.
+11. Production-build result.
+12. Manual steps still required in Supabase.
+13. Manual steps still required in Netlify.
+14. Known limitations.
+15. Recommended next step for onboarding the first real client.
+
+Do not claim completion when tests or the production build are failing. Clearly identify anything that could not be completed because credentials or external service access were unavailable.

@@ -1,0 +1,34 @@
+[build]
+  command = "pnpm build:ci"
+  publish = ".next"
+
+[build.environment]
+  PNPM_VERSION = "10"
+  NODE_VERSION = "22"
+
+# Required environment variables for production deployment:
+#
+# DATABASE_URL          — Supabase PostgreSQL connection string (pooler)
+# PAYLOAD_SECRET        — JWT encryption secret
+# CRON_SECRET           — Cron job authentication secret
+# PREVIEW_SECRET        — Preview mode secret
+# NEXT_PUBLIC_SERVER_URL — Production URL (no trailing slash)
+#
+# S3_ENDPOINT           — Supabase S3 endpoint
+# S3_REGION             — S3 region
+# S3_ACCESS_KEY_ID      — S3 access key
+# S3_SECRET_ACCESS_KEY  — S3 secret key
+# S3_BUCKET             — S3 bucket name
+# S3_PUBLIC_BASE_URL    — Public base URL for uploaded media
+#
+# BAXHEN_PLATFORM_HOSTS — Comma-separated platform hostnames
+# BAXHEN_DEFAULT_LOCALE — Default locale (pt)
+# BAXHEN_SUPPORTED_LOCALES — Supported locales (pt,en)
+
+# Deploy Previews are supported — database migrations run as part of build:ci.
+# Ensure DATABASE_URL is set in Netlify's deploy preview environment.
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/:splat"
+  status = 200

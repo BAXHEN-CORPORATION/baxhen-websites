@@ -23,24 +23,54 @@ export const Media: CollectionConfig = {
     read: anyone,
     update: authenticated,
   },
+  admin: {
+    group: 'Content',
+    defaultColumns: ['filename', 'alt', 'usage', 'tenant'],
+  },
   fields: [
+    {
+      name: 'tenant',
+      type: 'relationship',
+      relationTo: 'tenants',
+      admin: {
+        description: 'Tenant that owns this media',
+      },
+    },
+    {
+      name: 'site',
+      type: 'relationship',
+      relationTo: 'sites',
+      admin: {
+        description: 'Site this media belongs to (optional)',
+      },
+    },
     {
       name: 'alt',
       type: 'text',
-      //required: true,
+      localized: true,
     },
     {
       name: 'caption',
       type: 'richText',
+      localized: true,
       editor: lexicalEditor({
         features: ({ rootFeatures }) => {
           return [...rootFeatures, FixedToolbarFeature(), InlineToolbarFeature()]
         },
       }),
     },
+    {
+      name: 'usage',
+      type: 'select',
+      defaultValue: 'public-website',
+      options: [
+        { label: 'Public Website', value: 'public-website' },
+        { label: 'Private Document', value: 'private-document' },
+        { label: 'Platform Asset', value: 'platform-asset' },
+      ],
+    },
   ],
   upload: {
-    // Upload to the public/media directory in Next.js making them publicly accessible even outside of Payload
     staticDir: path.resolve(dirname, '../../public/media'),
     adminThumbnail: 'thumbnail',
     focalPoint: true,
