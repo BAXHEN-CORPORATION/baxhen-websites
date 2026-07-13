@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="pt"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Falcão Mudanças - Orçamento</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "secondary-container": "#e0e3e5",
+                        "on-tertiary-fixed-variant": "#544600",
+                        "inverse-on-surface": "#ecf1ff",
+                        "surface-tint": "#2559bf",
+                        "on-tertiary-fixed": "#221b00",
+                        "on-background": "#111c2d",
+                        "surface-bright": "#f9f9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#ffe16d",
+                        "primary-fixed": "#dae2ff",
+                        "on-secondary-fixed-variant": "#444749",
+                        "outline-variant": "#c3c6d5",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#e7eeff",
+                        "secondary": "#5c5f61",
+                        "on-surface-variant": "#434653",
+                        "on-secondary-fixed": "#191c1e",
+                        "primary": "#00317e",
+                        "tertiary-container": "#c9a900",
+                        "surface-variant": "#d8e3fb",
+                        "on-primary-fixed-variant": "#0040a0",
+                        "inverse-primary": "#b2c5ff",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "outline": "#737784",
+                        "on-secondary-container": "#626567",
+                        "on-primary-container": "#a5bdff",
+                        "tertiary": "#705d00",
+                        "surface-container-high": "#dee8ff",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "on-tertiary-container": "#4c3f00",
+                        "surface-container-highest": "#d8e3fb",
+                        "tertiary-fixed-dim": "#e9c400",
+                        "secondary-fixed": "#e0e3e5",
+                        "inverse-surface": "#263143",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#111c2d",
+                        "on-primary-fixed": "#001847",
+                        "error": "#ba1a1a",
+                        "primary-container": "#0046ad",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#c4c7c9",
+                        "surface-dim": "#cfdaf2",
+                        "surface-container-low": "#f0f3ff",
+                        "background": "#f9f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max-width": "1200px",
+                        "section-gap-desktop": "80px",
+                        "base": "8px",
+                        "section-gap-mobile": "48px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-caps": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .progress-bar-glow {
+            box-shadow: 0 0 15px rgba(0, 49, 126, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex justify-between items-center px-gutter w-full max-w-container-max-width mx-auto bg-surface border-b border-outline-variant shadow-sm h-16">
+<div class="font-headline-sm text-headline-sm font-bold text-primary">Falcão Mudanças</div>
+<nav class="hidden md:flex gap-8 items-center h-full">
+<a class="text-secondary hover:text-primary-container transition-colors font-body-md" href="#">Serviços</a>
+<a class="text-secondary hover:text-primary-container transition-colors font-body-md" href="#">Içamento</a>
+<a class="text-secondary hover:text-primary-container transition-colors font-body-md" href="#">Embalagem</a>
+<a class="text-secondary hover:text-primary-container transition-colors font-body-md" href="#">Depoimentos</a>
+</nav>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-caps hover:bg-primary-container transition-all active:scale-95">
+            Pedir Orçamento
+        </button>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center px-margin-mobile py-section-gap-mobile md:py-section-gap-desktop">
+<div class="w-full max-w-md space-y-12">
+<!-- Progress Section -->
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<span class="font-label-caps text-primary uppercase tracking-widest">Passo Final</span>
+<span class="font-headline-sm text-primary">80%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary progress-bar-glow transition-all duration-1000 ease-out" style="width: 80%"></div>
+</div>
+</div>
+<!-- Content Canvas (Bento-lite Layout) -->
+<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant shadow-md space-y-8">
+<div class="space-y-2">
+<h1 class="font-headline-md text-headline-md text-primary text-center">Como podemos contactar?</h1>
+<p class="text-on-surface-variant text-center font-body-md">Quase lá! Insira os seus dados para receber a sua cotação personalizada.</p>
+</div>
+<form class="space-y-6" onsubmit="event.preventDefault();">
+<div class="space-y-2">
+<label class="font-label-caps text-on-surface-variant block ml-1" for="name">Nome Completo</label>
+<div class="relative">
+<input class="w-full px-4 py-3 rounded-lg border border-outline focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-surface" id="name" placeholder="Ex: João Silva" type="text">
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-on-surface-variant block ml-1" for="phone">Telemóvel</label>
+<div class="relative">
+<input class="w-full px-4 py-3 rounded-lg border border-outline focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-surface" id="phone" placeholder="+351 912 345 678" type="tel">
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-on-surface-variant block ml-1" for="email">Email</label>
+<div class="relative">
+<input class="w-full px-4 py-3 rounded-lg border border-outline focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-surface" id="email" placeholder="joao@exemplo.pt" type="email">
+</div>
+</div>
+<div class="pt-4">
+<button class="w-full bg-[#EAB308] text-[#1e293b] font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:shadow-lg transition-all active:scale-[0.98] group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="send">send</span>
+<span class="font-body-lg font-bold">Enviar para WhatsApp</span>
+</button>
+</div>
+</form>
+<div class="flex items-center justify-center gap-4 pt-4 grayscale opacity-50">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="shield">shield</span>
+<span class="text-[10px] font-label-caps">Seguro Total</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="verified_user">verified_user</span>
+<span class="text-[10px] font-label-caps">Dados Protegidos</span>
+</div>
+</div>
+</div>
+<div class="flex justify-center">
+<button class="text-on-surface-variant font-label-caps hover:text-primary flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_back">arrow_back</span>
+                    Voltar
+                </button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap-mobile md:py-section-gap-desktop px-gutter flex flex-col md:flex-row justify-between items-center gap-base bg-surface-container-highest border-t border-outline-variant">
+<div class="flex flex-col items-center md:items-start gap-2">
+<div class="font-headline-sm text-headline-sm font-bold text-primary">Falcão Mudanças</div>
+<p class="text-on-surface-variant text-body-md text-center md:text-left">© 2024 Falcão Mudanças - Mudando vidas com precisão e cuidado.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-on-surface-variant hover:underline font-body-md" href="#">Termos de Serviço</a>
+<a class="text-on-surface-variant hover:underline font-body-md" href="#">Política de Privacidade</a>
+<a class="text-on-surface-variant hover:underline font-body-md" href="#">Contato</a>
+<a class="text-on-surface-variant hover:underline font-body-md" href="#">Trabalhe Conosco</a>
+</div>
+</footer>
+<!-- WhatsApp FAB -->
+<div class="fixed bottom-8 right-8 z-[60] flex items-center gap-3">
+<div class="bg-white px-4 py-2 rounded-full shadow-lg border border-outline-variant hidden md:block">
+<span class="text-on-surface font-label-caps">Fale Conosco</span>
+</div>
+<a class="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-2xl hover:scale-110 active:scale-90 transition-all" href="https://wa.me/#">
+<svg class="w-8 h-8 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path>
+</svg>
+</a>
+</div>
+<script>
+        // Micro-interaction for input floating effects (optional enhancement)
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.previousElementSibling.classList.add('text-primary');
+                input.parentElement.previousElementSibling.classList.add('font-bold');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.previousElementSibling.classList.remove('text-primary');
+                input.parentElement.previousElementSibling.classList.remove('font-bold');
+            });
+        });
+    </script>
+</body></html>

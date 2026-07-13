@@ -1,0 +1,245 @@
+<!DOCTYPE html><html class="light" lang="pt-PT"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Falcão Mudanças - Detalhes do Orçamento</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-primary": "#ffffff",
+                "surface": "#f9f9ff",
+                "secondary-container": "#e0e3e5",
+                "on-tertiary-fixed-variant": "#544600",
+                "inverse-on-surface": "#ecf1ff",
+                "surface-tint": "#2559bf",
+                "on-tertiary-fixed": "#221b00",
+                "on-background": "#111c2d",
+                "surface-bright": "#f9f9ff",
+                "surface-container-lowest": "#ffffff",
+                "tertiary-fixed": "#ffe16d",
+                "primary-fixed": "#dae2ff",
+                "on-secondary-fixed-variant": "#444749",
+                "outline-variant": "#c3c6d5",
+                "on-error-container": "#93000a",
+                "surface-container": "#e7eeff",
+                "secondary": "#5c5f61",
+                "on-surface-variant": "#434653",
+                "on-secondary-fixed": "#191c1e",
+                "primary": "#00317e",
+                "tertiary-container": "#c9a900",
+                "surface-variant": "#d8e3fb",
+                "on-primary-fixed-variant": "#0040a0",
+                "inverse-primary": "#b2c5ff",
+                "on-error": "#ffffff",
+                "error-container": "#ffdad6",
+                "outline": "#737784",
+                "on-secondary-container": "#626567",
+                "on-primary-container": "#a5bdff",
+                "tertiary": "#705d00",
+                "surface-container-high": "#dee8ff",
+                "primary-fixed-dim": "#b2c5ff",
+                "on-tertiary-container": "#4c3f00",
+                "surface-container-highest": "#d8e3fb",
+                "tertiary-fixed-dim": "#e9c400",
+                "secondary-fixed": "#e0e3e5",
+                "inverse-surface": "#263143",
+                "on-secondary": "#ffffff",
+                "on-surface": "#111c2d",
+                "on-primary-fixed": "#001847",
+                "error": "#ba1a1a",
+                "primary-container": "#0046ad",
+                "on-tertiary": "#ffffff",
+                "secondary-fixed-dim": "#c4c7c9",
+                "surface-dim": "#cfdaf2",
+                "surface-container-low": "#f0f3ff",
+                "background": "#f9f9ff"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "container-max-width": "1200px",
+                "section-gap-desktop": "80px",
+                "base": "8px",
+                "section-gap-mobile": "48px",
+                "gutter": "24px",
+                "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                "headline-sm": ["Inter"],
+                "display-lg": ["Inter"],
+                "display-lg-mobile": ["Inter"],
+                "body-md": ["Inter"],
+                "body-lg": ["Inter"],
+                "label-caps": ["Inter"],
+                "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "label-caps": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .step-progress {
+            transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+        .form-card {
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar (Shared Component) -->
+<header class="sticky top-0 z-50 flex justify-between items-center px-gutter w-full max-w-container-max-width mx-auto bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none transition-all duration-300 h-20">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm font-bold text-primary dark:text-inverse-primary">Falcão Mudanças</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary-container dark:hover:text-primary-fixed transition-colors" href="#">Serviços</a>
+<a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary-container dark:hover:text-primary-fixed transition-colors" href="#">Içamento</a>
+<a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary-container dark:hover:text-primary-fixed transition-colors" href="#">Embalagem</a>
+<a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary-container dark:hover:text-primary-fixed transition-colors" href="#">Depoimentos</a>
+</nav>
+<button class="font-label-caps text-label-caps px-6 py-3 rounded-lg hover:brightness-95 transition-all shadow-md active:scale-95 bg-primary text-on-primary hover:brightness-110">
+            Pedir Orçamento
+        </button>
+</header>
+<main class="min-h-[calc(100vh-160px)] flex flex-col items-center justify-center py-section-gap-mobile md:py-section-gap-desktop px-margin-mobile md:px-gutter">
+<div class="w-full max-w-3xl">
+<!-- Progress Bar -->
+<div class="mb-12">
+<div class="flex justify-between items-end mb-4">
+<div>
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Passo 02 de 03</span>
+<h1 class="font-headline-md text-headline-md md:font-display-lg md:text-display-lg mt-1">Quais são os detalhes?</h1>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary">60%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="step-progress h-full bg-primary" style="width: 60%;"></div>
+</div>
+</div>
+<!-- Form Container -->
+<div class="form-card bg-surface-container-lowest border border-outline-variant p-8 md:p-10 rounded-xl shadow-sm">
+<form class="space-y-6">
+<!-- Date Input -->
+<div class="group">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 transition-colors group-focus-within:text-primary" for="data_pretendida">
+                            Data pretendida
+                        </label>
+<div class="relative">
+<input class="w-full bg-surface border border-surface-dim rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent py-4 px-4 font-body-md text-body-md text-on-surface transition-all" id="data_pretendida" name="data_pretendida" required="" type="date">
+</div>
+</div>
+<!-- Floors Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="group">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 transition-colors group-focus-within:text-primary" for="andar_origem">
+                                Andar (Origem)
+                            </label>
+<input class="w-full bg-surface border border-surface-dim rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent py-4 px-4 font-body-md text-body-md text-on-surface transition-all" id="andar_origem" name="andar_origem" placeholder="Ex: 4º andar" type="number">
+</div>
+<div class="group">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 transition-colors group-focus-within:text-primary" for="andar_destino">
+                                Andar (Destino)
+                            </label>
+<input class="w-full bg-surface border border-surface-dim rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent py-4 px-4 font-body-md text-body-md text-on-surface transition-all" id="andar_destino" name="andar_destino" placeholder="Ex: Térreo" type="number">
+</div>
+</div>
+<!-- Elevator Toggle -->
+<div class="pt-2">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-4">Elevador disponível?</p>
+<div class="flex flex-wrap gap-4">
+<label class="flex-1 cursor-pointer group">
+<input checked="" class="peer hidden" name="elevador" type="radio" value="sim">
+<div class="flex items-center justify-center gap-3 p-4 border border-surface-dim rounded-lg font-body-md text-body-md text-on-surface-variant peer-checked:border-primary peer-checked:bg-primary-container/10 peer-checked:text-primary hover:border-primary transition-all">
+<span class="material-symbols-outlined">check_circle</span>
+                                    Sim, disponível
+                                </div>
+</label>
+<label class="flex-1 cursor-pointer group">
+<input class="peer hidden" name="elevador" type="radio" value="nao">
+<div class="flex items-center justify-center gap-3 p-4 border border-surface-dim rounded-lg font-body-md text-body-md text-on-surface-variant peer-checked:border-primary peer-checked:bg-primary-container/10 peer-checked:text-primary hover:border-primary transition-all">
+<span class="material-symbols-outlined">cancel</span>
+                                    Não disponível
+                                </div>
+</label>
+</div>
+</div>
+<!-- Actions -->
+<div class="pt-6 flex flex-col md:flex-row gap-4">
+<button class="flex-1 border border-outline-variant text-secondary font-label-caps text-label-caps py-4 rounded-lg hover:bg-surface-container transition-all flex items-center justify-center gap-2" onclick="history.back()" type="button">
+<span class="material-symbols-outlined">arrow_back</span>
+                            Voltar
+                        </button>
+<button class="flex-[2] bg-primary text-on-primary font-label-caps text-label-caps py-4 rounded-lg hover:brightness-110 transition-all flex items-center justify-center gap-2 shadow-lg active:scale-[0.98]" type="submit">
+                            Continuar para o Resumo
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Trust Context Section (Minimalist) -->
+<div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 opacity-70">
+<div class="flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary mb-2" style="font-size: 32px;">verified_user</span>
+<p class="font-label-caps text-label-caps">Seguro Total</p>
+</div>
+<div class="flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary mb-2" style="font-size: 32px;">groups</span>
+<p class="font-label-caps text-label-caps">Equipe Própria</p>
+</div>
+<div class="flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary mb-2" style="font-size: 32px;">speed</span>
+<p class="font-label-caps text-label-caps">Agilidade Garantida</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="w-full py-section-gap-mobile md:py-section-gap-desktop px-gutter flex flex-col md:flex-row justify-between items-center gap-base bg-surface-container-highest dark:bg-inverse-surface opacity-90 hover:opacity-100 transition-all">
+<div class="flex flex-col gap-2 text-center md:text-left">
+<span class="font-headline-sm text-headline-sm font-bold text-primary dark:text-inverse-primary">Falcão Mudanças</span>
+<p class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant max-w-sm">© 2024 Falcão Mudanças - Mudando vidas com precisão e cuidado.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:underline" href="#">Termos de Serviço</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:underline" href="#">Política de Privacidade</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:underline" href="#">Contato</a>
+</div>
+</footer>
+<!-- WhatsApp FAB (Style Guidance) -->
+<a class="fixed bottom-8 right-8 z-[60] flex items-center gap-3 bg-[#25D366] text-white px-6 py-4 rounded-full shadow-2xl hover:scale-110 transition-all active:scale-95 group" href="https://wa.me/5500000000000">
+<span class="font-label-caps text-label-caps">Fale Conosco</span>
+<svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+<path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.438 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"></path>
+</svg>
+</a>
+
+
+</body></html>

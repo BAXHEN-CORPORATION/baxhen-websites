@@ -7,6 +7,7 @@ import { getSitePage } from '@/sites'
 import { SiteNotFoundError, SiteSuspendedError, UnsupportedLocaleError } from '@/domain/errors'
 import { BusinessPresenceTemplate } from '@/views/templates/BusinessPresenceTemplate'
 import { LeadGenerationTemplate } from '@/views/templates/LeadGenerationTemplate'
+import { MinimalTemplate } from '@/views/templates/MinimalTemplate'
 import type { Locale } from '@/domain/shared/types'
 
 interface SitePageProps { params: Promise<{ siteSlug: string; locale: string; path?: string[] }> }
@@ -27,7 +28,9 @@ export default async function SitePage({ params }: SitePageProps) {
     const PageComponent = getSitePage(site.slug || siteSlug, pagePath)
     if (!PageComponent) notFound()
 
-    const Template = siteVM.siteType === 'lead-generation' ? LeadGenerationTemplate : BusinessPresenceTemplate
+    const Template = site.slug === 'falcao-mudancas' ? MinimalTemplate
+      : siteVM.siteType === 'lead-generation' ? LeadGenerationTemplate
+      : BusinessPresenceTemplate
 
     return (
       <Template siteName={siteVM.name} logo={siteVM.theme.logo} navigation={[]} currentLocale={resolvedLocale} enabledLocales={siteVM.enabledLocales}>

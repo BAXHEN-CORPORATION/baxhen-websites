@@ -1,0 +1,201 @@
+<!DOCTYPE html><html lang="pt"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Falcão Mudanças - Pedido Enviado</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "surface": "#f9f9ff",
+                    "secondary-container": "#e0e3e5",
+                    "on-tertiary-fixed-variant": "#544600",
+                    "inverse-on-surface": "#ecf1ff",
+                    "surface-tint": "#2559bf",
+                    "on-tertiary-fixed": "#221b00",
+                    "on-background": "#111c2d",
+                    "surface-bright": "#f9f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#ffe16d",
+                    "primary-fixed": "#dae2ff",
+                    "on-secondary-fixed-variant": "#444749",
+                    "outline-variant": "#c3c6d5",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#e7eeff",
+                    "secondary": "#5c5f61",
+                    "on-surface-variant": "#434653",
+                    "on-secondary-fixed": "#191c1e",
+                    "primary": "#00317e",
+                    "tertiary-container": "#c9a900",
+                    "surface-variant": "#d8e3fb",
+                    "on-primary-fixed-variant": "#0040a0",
+                    "inverse-primary": "#b2c5ff",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "outline": "#737784",
+                    "on-secondary-container": "#626567",
+                    "on-primary-container": "#a5bdff",
+                    "tertiary": "#705d00",
+                    "surface-container-high": "#dee8ff",
+                    "primary-fixed-dim": "#b2c5ff",
+                    "on-tertiary-container": "#4c3f00",
+                    "surface-container-highest": "#d8e3fb",
+                    "tertiary-fixed-dim": "#e9c400",
+                    "secondary-fixed": "#e0e3e5",
+                    "inverse-surface": "#263143",
+                    "on-secondary": "#ffffff",
+                    "on-surface": "#111c2d",
+                    "on-primary-fixed": "#001847",
+                    "error": "#ba1a1a",
+                    "primary-container": "#0046ad",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#c4c7c9",
+                    "surface-dim": "#cfdaf2",
+                    "surface-container-low": "#f0f3ff",
+                    "background": "#f9f9ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max-width": "1200px",
+                    "section-gap-desktop": "80px",
+                    "base": "8px",
+                    "section-gap-mobile": "48px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-caps": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .success-animation {
+            animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-tertiary-fixed-dim selection:text-on-tertiary-fixed overflow-x-hidden">
+<!-- Top Navigation (Shell Suprressed for focus, but maintaining logo for identity as per Hierarchy) -->
+<header class="sticky top-0 z-50 flex justify-between items-center px-gutter w-full max-w-container-max-width mx-auto bg-surface py-4">
+<div class="font-headline-sm text-headline-sm font-bold text-primary">Falcão Mudanças</div>
+</header>
+<main class="min-h-[819px] flex flex-col items-center justify-center px-margin-mobile md:px-gutter">
+<!-- Progress Bar Container -->
+<div class="w-full max-w-[600px] mb-12">
+<div class="flex justify-between items-center mb-4">
+<span class="font-label-caps text-label-caps text-primary">STATUS DO PEDIDO</span>
+<span class="font-label-caps text-label-caps text-primary">100%</span>
+</div>
+<div class="w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary transition-all duration-1000 ease-out" style="width: 100%;"></div>
+</div>
+</div>
+<!-- Success Content Card -->
+<div class="w-full max-w-[600px] bg-white border border-outline-variant p-8 md:p-12 shadow-sm rounded-lg text-center success-animation">
+<!-- Icon -->
+<div class="mb-8 inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/5 text-primary">
+<span class="material-symbols-outlined !text-[48px]" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+</div>
+<!-- Text Content -->
+<h1 class="font-headline-md text-headline-md text-on-background mb-4">Pedido Enviado!</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-[440px] mx-auto">
+                O seu orçamento foi enviado com sucesso para a nossa equipa via WhatsApp. Entraremos em contacto brevemente.
+            </p>
+<!-- Action Button -->
+<a class="inline-flex items-center justify-center px-10 py-4 bg-primary text-on-primary font-label-caps text-label-caps rounded-full transition-all duration-300 hover:bg-primary-container hover:shadow-lg active:scale-95" href="/">
+                Voltar ao Início
+            </a>
+</div>
+<!-- Decorative Elements/Trust Tokens -->
+<div class="mt-16 flex flex-wrap justify-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+<span class="font-label-caps text-label-caps">Seguro Total</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">schedule</span>
+<span class="font-label-caps text-label-caps">Resposta em 2h</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+<span class="font-label-caps text-label-caps">Frota Própria</span>
+</div>
+</div>
+</main>
+<!-- Contextual Aesthetic Background Image -->
+<div class="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
+<img alt="" class="w-full h-full object-cover opacity-[0.03] scale-110" data-alt="A serene, minimalist interior of a high-end modern home featuring clean lines, large windows with soft natural light, and a sense of calm organization. The scene is bright and airy with a professional light-mode aesthetic, using a palette of soft whites and subtle greys. The atmosphere conveys the successful completion of a move into a peaceful, premium new beginning." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkXGuotgS9wm-3YDoEL8QJFve8szj3eMf00hij3bDH4oiP4YG2-lgG0IE7m2vWbLbR-SxaAYpuy2BNts7WwO0DGoTHpPLF5uIevqV5jtkRQQvTZAvTPUy0ntK4pvrxMFy6O4DgaGnVdUZZ40LMf97dPYvucA3M2lWHc14bFBqJitmjuUjTOb-TyTSMNA0t7wrYj5JLUxC2aGCgt7EiV7K_M2XUrKF9szBK5T2jb0gGihqRtz8eNkTs0b4kCU9o5_V625plCrYs9wg">
+</div>
+<!-- Minimal Footer (Consistent with JSON context but simplified for focus) -->
+<footer class="w-full py-section-gap-mobile md:py-12 px-gutter flex flex-col md:flex-row justify-center items-center gap-base">
+<p class="font-body-md text-body-md text-on-surface-variant text-center opacity-70">
+            © 2024 Falcão Mudanças - Mudando vidas com precisão e cuidado.
+        </p>
+</footer>
+<!-- WhatsApp FAB (Contextual for assistance as per guidelines) -->
+<div class="fixed bottom-gutter right-gutter z-50 flex items-center gap-3">
+<div class="hidden md:block bg-white px-4 py-2 rounded-xl shadow-lg border border-outline-variant animate-bounce-slow">
+<span class="font-label-caps text-label-caps text-on-background">Precisa de ajuda?</span>
+</div>
+<button class="w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined !text-[32px]" style="font-variation-settings: 'FILL' 1;">chat</span>
+</button>
+</div>
+<style>
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-bounce-slow {
+            animation: bounce-slow 3s infinite ease-in-out;
+        }
+    </style>
+<script>
+        // Subtle micro-interaction: update background scale on mouse move for "floating" feel
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            const bg = document.querySelector('img[data-alt*="A serene"]');
+            if (bg) {
+                bg.style.transform = `scale(1.1) translate(${moveX}px, ${moveY}px)`;
+            }
+        });
+    </script>
+</body></html>

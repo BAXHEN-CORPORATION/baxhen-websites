@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-PT"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Falcão Mudanças - Mudanças de Confiança em Portugal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-transition {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .hidden-step {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        .active-step {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "tertiary-fixed-dim": "#e9c400",
+                "on-surface-variant": "#434653",
+                "on-secondary-container": "#626567",
+                "tertiary-container": "#c9a900",
+                "secondary-container": "#e0e3e5",
+                "outline": "#737784",
+                "on-secondary": "#ffffff",
+                "on-primary-fixed": "#001847",
+                "inverse-on-surface": "#ecf1ff",
+                "on-surface": "#111c2d",
+                "background": "#f9f9ff",
+                "on-tertiary-fixed-variant": "#544600",
+                "surface-container-high": "#dee8ff",
+                "on-tertiary": "#ffffff",
+                "on-primary-container": "#a5bdff",
+                "primary-fixed-dim": "#b2c5ff",
+                "on-tertiary-container": "#4c3f00",
+                "on-error-container": "#93000a",
+                "primary-container": "#0046ad",
+                "surface-tint": "#2559bf",
+                "surface-container-low": "#f0f3ff",
+                "surface-container-lowest": "#ffffff",
+                "tertiary-fixed": "#ffe16d",
+                "primary": "#00317e",
+                "on-primary": "#ffffff",
+                "primary-fixed": "#dae2ff",
+                "surface-variant": "#d8e3fb",
+                "on-secondary-fixed": "#191c1e",
+                "surface-bright": "#f9f9ff",
+                "tertiary": "#705d00",
+                "on-secondary-fixed-variant": "#444749",
+                "outline-variant": "#c3c6d5",
+                "surface-container-highest": "#d8e3fb",
+                "secondary-fixed-dim": "#c4c7c9",
+                "on-background": "#111c2d",
+                "error-container": "#ffdad6",
+                "surface": "#f9f9ff",
+                "secondary-fixed": "#e0e3e5",
+                "secondary": "#5c5f61",
+                "inverse-primary": "#b2c5ff",
+                "on-tertiary-fixed": "#221b00",
+                "on-primary-fixed-variant": "#0040a0",
+                "surface-container": "#e7eeff",
+                "inverse-surface": "#263143",
+                "surface-dim": "#cfdaf2",
+                "on-error": "#ffffff",
+                "error": "#ba1a1a",
+                "action-yellow": "#ffe16d"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.5rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "margin-mobile": "16px",
+                "gutter": "24px",
+                "container-max-width": "1200px",
+                "container-max": "800px",
+                "section-gap-mobile": "48px",
+                "section-gap-desktop": "80px",
+                "stack-sm": "16px",
+                "stack-md": "32px",
+                "stack-lg": "80px",
+                "base": "8px"
+        },
+        "fontFamily": {
+                "label-caps": ["Inter"],
+                "headline-md": ["Inter"],
+                "headline-sm": ["Inter"],
+                "body-md": ["Inter"],
+                "display-lg-mobile": ["Inter"],
+                "display-lg": ["Inter"],
+                "body-lg": ["Inter"]
+        },
+        "fontSize": {
+                "label-caps": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+        }
+},
+    },
+  }
+</script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="bg-background fixed top-0 w-full z-50 border-b border-outline-variant/30">
+<div class="flex justify-between items-center px-margin-mobile md:px-gutter py-4 max-w-container-max mx-auto">
+<div class="font-headline-sm text-primary">Falcão Mudanças</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-body-md" href="#">Serviços</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-body-md" href="#">Sobre Nós</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-body-md" href="#">Contacto</a>
+</nav>
+<a class="bg-primary text-on-primary px-6 py-3 rounded-lg font-label-caps hover:bg-primary-container transition-all duration-200 active:scale-95" href="#orcamento">Pedir Orçamento</a>
+</div>
+</header>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile text-center py-stack-lg">
+<span class="text-secondary font-label-caps tracking-widest block mb-4 uppercase">MUDANÇAS DE CONFIANÇA</span>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-stack-md leading-tight">
+                Mais do que <span class="text-tertiary italic">objetos</span>, transportamos o seu <span class="text-tertiary italic">futuro</span>.
+            </h1>
+<!-- Video Player Placeholder -->
+<div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl bg-surface-dim group cursor-pointer mb-stack-lg">
+<img alt="Moving logistics service in Portugal" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmRGm_QH6rSAw1hIgspdI2kfYJEXW5g4s3-yJl_qvFEgAFNb4R4RGZwpzk18t-7PXRYhg4QMbQ9cmRWSyMTmgLCB9Bz2H9hP9cUGvUt6N3yI7mgGSreCmEVau_wRk-fs_4mHFsRor3n-7ofC2gvfvy9XtCCdTt8ia48EwQZDL6__4BtzvVcQAwG0KMJzPW8PKh3ow7CChD-WTmMKQaD-bDZGdHU1P1Qd63-t3BMlp9dunwuvxfIRoynafrhET5VEAXn2MwuTYer4s"/>
+<div class="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-all duration-300">
+<div class="w-20 h-20 bg-surface-container-lowest/90 rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Form Section -->
+<section class="bg-surface-container-low py-stack-lg" id="orcamento">
+<div class="max-w-[800px] mx-auto px-margin-mobile">
+<!-- Progress Bar -->
+<div class="w-full h-1 bg-surface-dim mb-stack-md overflow-hidden rounded-full">
+<div class="h-full bg-action-yellow transition-all duration-500 ease-out" id="progress-bar" style="width: 25%;"></div>
+</div>
+<div class="text-center mb-stack-md">
+<span class="material-symbols-outlined text-tertiary text-3xl mb-2">auto_awesome</span>
+<h2 class="font-headline-md text-primary">Vamos planejar o seu envio?</h2>
+<p class="text-on-surface-variant font-body-md mt-2">Personalize o seu serviço de mudanças em poucos passos.</p>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/30 p-8 min-h-[400px] flex flex-col justify-center">
+<!-- Step 1: Objective -->
+<div class="active-step step-transition" id="step-1">
+<h3 class="font-headline-sm text-center text-primary mb-8">O que precisa de mudar?</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<button class="flex flex-col items-center justify-center p-6 border border-outline-variant rounded-lg hover:border-primary hover:bg-surface-container transition-all group" onclick="nextStep(2, 'Casa')">
+<span class="material-symbols-outlined text-primary text-3xl mb-3">home</span>
+<span class="font-label-caps uppercase text-on-surface">Casa</span>
+</button>
+<button class="flex flex-col items-center justify-center p-6 border border-outline-variant rounded-lg hover:border-primary hover:bg-surface-container transition-all group" onclick="nextStep(2, 'Escritório')">
+<span class="material-symbols-outlined text-primary text-3xl mb-3">business</span>
+<span class="font-label-caps uppercase text-on-surface">Escritório</span>
+</button>
+<button class="flex flex-col items-center justify-center p-6 border border-outline-variant rounded-lg hover:border-primary hover:bg-surface-container transition-all group" onclick="nextStep(2, 'Móveis')">
+<span class="material-symbols-outlined text-primary text-3xl mb-3">chair</span>
+<span class="font-label-caps uppercase text-on-surface">Apenas Móveis</span>
+</button>
+</div>
+</div>
+<!-- Step 2: Location -->
+<div class="hidden-step step-transition" id="step-2">
+<h3 class="font-headline-sm text-center text-primary mb-8">Origem e Destino</h3>
+<div class="space-y-6">
+<div class="relative">
+<label class="block text-on-surface-variant font-label-caps mb-2 uppercase">Cidade de Origem</label>
+<input class="w-full border-b-2 border-outline-variant focus:border-primary focus:ring-0 bg-transparent py-4 text-body-lg outline-none transition-colors" id="origin" placeholder="Ex: Lisboa" type="text"/>
+</div>
+<div class="relative">
+<label class="block text-on-surface-variant font-label-caps mb-2 uppercase">Cidade de Destino</label>
+<input class="w-full border-b-2 border-outline-variant focus:border-primary focus:ring-0 bg-transparent py-4 text-body-lg outline-none transition-colors" id="destination" placeholder="Ex: Porto" type="text"/>
+</div>
+<button class="w-full h-14 bg-primary text-on-primary rounded-lg font-label-caps uppercase mt-8 hover:bg-primary-container transition-all" onclick="nextStep(3)">Continuar</button>
+</div>
+</div>
+<!-- Step 3: Extra Services -->
+<div class="hidden-step step-transition" id="step-3">
+<h3 class="font-headline-sm text-center text-primary mb-8">Serviços Extra</h3>
+<div class="space-y-4">
+<label class="flex items-center p-4 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container transition-colors">
+<input class="form-checkbox text-primary rounded border-outline-variant w-6 h-6 mr-4" type="checkbox" value="Embalagem"/>
+<div class="flex flex-col">
+<span class="font-body-md font-bold text-on-surface">Embalagem Profissional</span>
+<span class="text-on-surface-variant text-sm">Proteção total dos seus bens.</span>
+</div>
+</label>
+<label class="flex items-center p-4 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container transition-colors">
+<input class="form-checkbox text-primary rounded border-outline-variant w-6 h-6 mr-4" type="checkbox" value="Içamento"/>
+<div class="flex flex-col">
+<span class="font-body-md font-bold text-on-surface">Içamento Externo</span>
+<span class="text-on-surface-variant text-sm">Para prédios com acesso difícil.</span>
+</div>
+</label>
+<label class="flex items-center p-4 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container transition-colors">
+<input class="form-checkbox text-primary rounded border-outline-variant w-6 h-6 mr-4" type="checkbox" value="Montagem"/>
+<div class="flex flex-col">
+<span class="font-body-md font-bold text-on-surface">Montagem de Móveis</span>
+<span class="text-on-surface-variant text-sm">Deixe o trabalho pesado connosco.</span>
+</div>
+</label>
+<button class="w-full h-14 bg-primary text-on-primary rounded-lg font-label-caps uppercase mt-4 hover:bg-primary-container transition-all" onclick="nextStep(4)">Ver Resumo</button>
+</div>
+</div>
+<!-- Step 4: Final Summary -->
+<div class="hidden-step step-transition" id="step-4">
+<h3 class="font-headline-sm text-center text-primary mb-6">Quase lá!</h3>
+<div class="bg-surface-container-low p-6 rounded-lg mb-8 border border-outline-variant/20">
+<ul class="space-y-3 text-body-md text-on-surface-variant" id="summary-list">
+<!-- Filled by JS -->
+</ul>
+</div>
+<button class="w-full h-14 bg-[#25D366] text-white rounded-full font-label-caps flex items-center justify-center gap-2 hover:brightness-110 transition-all shadow-md" onclick="sendToWhatsApp()">
+<svg class="w-6 h-6 fill-current" viewbox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.417-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.305 1.652zm6.599-3.835c1.53.909 3.039 1.389 4.625 1.39 5.25.001 9.522-4.271 9.524-9.521.001-2.544-1.011-4.935-2.852-6.778a9.458 9.458 0 00-6.762-2.808c-5.251 0-9.524 4.272-9.527 9.523-.001 1.696.463 3.197 1.34 4.675l-1.013 3.702 3.865-1.013zm11.383-6.666c-.308-.154-1.822-.9-2.103-.999-.281-.1-.486-.154-.69.154-.204.309-.791.999-.97 1.199-.178.201-.357.227-.665.073-.309-.153-1.303-.481-2.482-1.534-.917-.818-1.536-1.828-1.716-2.137-.179-.309-.019-.476.136-.628.139-.137.309-.359.463-.538.155-.18.206-.308.309-.514.103-.205.051-.385-.026-.539-.077-.154-.69-1.666-.945-2.28-.248-.599-.501-.518-.69-.528-.178-.01-.382-.012-.586-.012-.204 0-.537.077-.817.385-.281.309-1.072 1.051-1.072 2.564s1.1 2.974 1.254 3.18c.154.205 2.164 3.303 5.241 4.634.731.317 1.302.507 1.747.648.735.234 1.403.201 1.931.122.589-.088 1.822-.744 2.077-1.462.256-.718.256-1.334.179-1.462-.076-.128-.282-.205-.59-.359z"></path></svg>
+                            Enviar Pedido via WhatsApp
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Social Proof Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile py-stack-lg">
+<h2 class="font-headline-md text-center text-primary mb-stack-lg">Porquê a Falcão Mudanças?</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 bg-surface-container-high rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">groups</span>
+</div>
+<h4 class="font-body-lg font-bold text-primary mb-2">Equipa Especializada</h4>
+<p class="text-on-surface-variant text-sm">Profissionais treinados para lidar com qualquer tipo de carga com máximo cuidado.</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 bg-surface-container-high rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">verified_user</span>
+</div>
+<h4 class="font-body-lg font-bold text-primary mb-2">Seguro Total</h4>
+<p class="text-on-surface-variant text-sm">Tranquilidade garantida com cobertura total para todos os seus pertences.</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 bg-surface-container-high rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">location_on</span>
+</div>
+<h4 class="font-body-lg font-bold text-primary mb-2">Rastreio em Tempo Real</h4>
+<p class="text-on-surface-variant text-sm">Saiba exatamente onde estão os seus bens com a nossa tecnologia GPS.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low py-stack-md mt-stack-lg border-t border-outline-variant/30">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile max-w-container-max mx-auto gap-stack-sm">
+<div class="font-headline-sm text-primary">Falcão Mudanças</div>
+<div class="flex gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs" href="#">Termos de Serviço</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs" href="#">Privacidade</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-xs" href="#">Cookies</a>
+</div>
+<p class="text-on-surface-variant font-label-caps text-xs">© 2024 Falcão Mudanças. Excelência em Logística.</p>
+</div>
+</footer>
+<script>
+        let userData = {
+            type: '',
+            origin: '',
+            destination: '',
+            extras: []
+        };
+
+        function nextStep(step, value) {
+            // Update Data
+            if (step === 2) userData.type = value;
+            if (step === 3) {
+                userData.origin = document.getElementById('origin').value;
+                userData.destination = document.getElementById('destination').value;
+            }
+            if (step === 4) {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+                userData.extras = Array.from(checkboxes).map(cb => cb.value);
+                updateSummary();
+            }
+
+            // UI Transitions
+            const current = document.querySelector('.active-step');
+            const target = document.getElementById(`step-${step}`);
+            
+            if (current && target) {
+                current.classList.remove('active-step');
+                current.classList.add('hidden-step');
+                
+                target.classList.remove('hidden-step');
+                target.classList.add('active-step');
+
+                // Progress Bar
+                document.getElementById('progress-bar').style.width = `${step * 25}%`;
+            }
+        }
+
+        function updateSummary() {
+            const list = document.getElementById('summary-list');
+            list.innerHTML = `
+                <li class="flex justify-between"><span>Tipo:</span> <strong class="text-on-surface">${userData.type}</strong></li>
+                <li class="flex justify-between"><span>De:</span> <strong class="text-on-surface">${userData.origin || 'Não informado'}</strong></li>
+                <li class="flex justify-between"><span>Para:</span> <strong class="text-on-surface">${userData.destination || 'Não informado'}</strong></li>
+                <li class="flex justify-between"><span>Extras:</span> <strong class="text-on-surface">${userData.extras.join(', ') || 'Nenhum'}</strong></li>
+            `;
+        }
+
+        function sendToWhatsApp() {
+            const phone = "351910000000"; // Placeholder PT number
+            const message = encodeURIComponent(`Olá Falcão Mudanças! Gostaria de um orçamento:\n- Tipo: ${userData.type}\n- Origem: ${userData.origin}\n- Destino: ${userData.destination}\n- Serviços: ${userData.extras.join(', ')}`);
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+    </script>
+</body></html>
