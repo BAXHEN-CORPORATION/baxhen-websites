@@ -57,9 +57,9 @@ export default function proxy(request: NextRequest): NextResponse | undefined {
   // We pass the hostname as a header so the site route can resolve it
   const siteSlug = hostnameWithoutPort.replace(/\./g, '-')
 
-  // Rewrite to internal route: /_sites/:siteSlug/:locale/:path*
+  // Rewrite to internal route: /website/:siteSlug/:locale/:path*
   // The website resolution service will validate the hostname and resolve the actual site
-  url.pathname = `/_sites/${siteSlug}/pt${url.pathname}`
+  url.pathname = `/website/${siteSlug}/pt${url.pathname}`
 
   const response = NextResponse.rewrite(url)
   response.headers.set('x-baxhen-hostname', hostname)

@@ -480,6 +480,7 @@ export interface Media {
     [k: string]: unknown;
   } | null;
   usage?: ('public-website' | 'private-document' | 'platform-asset') | null;
+  prefix?: string | null;
   folder?: (number | null) | FolderInterface;
   updatedAt: string;
   createdAt: string;
@@ -987,6 +988,7 @@ export interface ContractDocument {
   contract: number | Contract;
   documentType: 'contract' | 'addendum' | 'nda' | 'other';
   uploadedAt?: string | null;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -1498,6 +1500,7 @@ export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   caption?: T;
   usage?: T;
+  prefix?: T;
   folder?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -1647,6 +1650,7 @@ export interface ContractDocumentsSelect<T extends boolean = true> {
   contract?: T;
   documentType?: T;
   uploadedAt?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;

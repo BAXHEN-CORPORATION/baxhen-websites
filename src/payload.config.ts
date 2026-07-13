@@ -1,5 +1,6 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { multiTenantPlugin } from '@payloadcms/plugin-multi-tenant'
+import { s3Storage } from '@payloadcms/storage-s3'
 import sharp from 'sharp'
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
@@ -32,6 +33,43 @@ import { getServerSideURL } from './utilities/getURL'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+
+// ── Supabase S3 Storage ────────────────────────────────────────────
+
+const s3Enabled =
+  process.env.S3_ENDPOINT &&
+  process.env.S3_ACCESS_KEY_ID &&
+  process.env.S3_SECRET_ACCESS_KEY &&
+  process.env.S3_BUCKET
+
+const s3Plugins = s3Enabled
+  ? [
+      s3Storage({
+        bucket: process.env.S3_BUCKET!,
+        config: {
+          endpoint: process.env.S3_ENDPOINT,
+          region: process.env.S3_REGION || 'auto',
+          credentials: {
+            accessKeyId: process.env.S3_ACCESS_KEY_ID!,
+            secretAccessKey: process.env.S3_SECRET_ACCESS_KEY!,
+          },
+          forcePathStyle: true, // Required for Supabase S3
+        },
+        collections: {
+          media: {
+            disableLocalStorage: false, // Keep local fallback in dev
+            prefix: 'media',
+          },
+          'contract-documents': {
+            disableLocalStorage: false,
+            prefix: 'private/contract-documents',
+          },
+        },
+        disableLocalStorage: false, // Keep local storage as fallback
+        enabled: true,
+      }),
+    ]
+  : []
 
 export default buildConfig({
   admin: {
@@ -93,6 +131,7 @@ export default buildConfig({
     fallback: true,
   },
   plugins: [
+    ...s3Plugins,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     multiTenantPlugin({
       collections: {

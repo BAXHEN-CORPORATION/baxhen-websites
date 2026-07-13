@@ -11,13 +11,6 @@ interface SiteLayoutProps {
   }>
 }
 
-/**
- * Site-specific layout.
- *
- * Applies theme CSS variables from the resolved site.
- * Renders SiteHeader and SiteFooter (populated in Phase 6).
- * Falls back gracefully until the full View layer is implemented.
- */
 export default async function SiteLayout({ children, params }: SiteLayoutProps) {
   const { siteSlug, locale } = await params
 
@@ -25,8 +18,6 @@ export default async function SiteLayout({ children, params }: SiteLayoutProps) 
     notFound()
   }
 
-  // Phase 4: basic structure in place. Header/Footer components
-  // will be wired in Phase 6 once views are created.
   return (
     <div
       className="min-h-screen flex flex-col"
@@ -35,9 +26,7 @@ export default async function SiteLayout({ children, params }: SiteLayoutProps) 
         color: 'var(--color-text, #dfe2eb)',
       }}
     >
-      {/* SiteHeader will render here — Phase 6 */}
       <main className="flex-1">{children}</main>
-      {/* SiteFooter will render here — Phase 6 */}
     </div>
   )
 }
