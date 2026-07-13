@@ -1,59 +1,22 @@
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
-import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
-import { redirectsPlugin } from '@payloadcms/plugin-redirects'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import { Plugin } from 'payload'
-import { revalidateRedirects } from '@/hooks/revalidateRedirects'
-import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
 import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
-
-import { Page } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
 
-const generateTitle: GenerateTitle<Page> = ({ doc }) => {
+const generateTitle = ({ doc }: { doc?: { title?: string } }) => {
   return doc?.title ? `${doc.title} | Baxhen` : 'Baxhen'
 }
 
-const generateURL: GenerateURL<Page> = ({ doc }) => {
+const generateURL = ({ doc }: { doc?: { slug?: string } }) => {
   const url = getServerSideURL()
   return doc?.slug ? `${url}/${doc.slug}` : url
 }
 
 export const plugins: Plugin[] = [
-  redirectsPlugin({
-    collections: ['pages'],
-    overrides: {
-      // @ts-expect-error - mapped fields type mismatch in Payload plugin overrides
-      fields: ({ defaultFields }) => {
-        return defaultFields.map((field) => {
-          if ('name' in field && field.name === 'from') {
-            return {
-              ...field,
-              admin: {
-                description: 'You will need to rebuild the website when changing this field.',
-              },
-            }
-          }
-          return field
-        })
-      },
-      hooks: {
-        afterChange: [revalidateRedirects],
-      },
-    },
-  }),
-  nestedDocsPlugin({
-    collections: ['pages'],
-    generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, ''),
-  }),
-  seoPlugin({
-    generateTitle,
-    generateURL,
-  }),
+  seoPlugin({ generateTitle, generateURL }),
   formBuilderPlugin({
-    fields: {
-      payment: false,
-    },
+    fields: { payment: false },
     formOverrides: {
       fields: ({ defaultFields }) => {
         return defaultFields.map((field) => {
@@ -61,13 +24,11 @@ export const plugins: Plugin[] = [
             return {
               ...field,
               editor: lexicalEditor({
-                features: ({ rootFeatures }) => {
-                  return [
-                    ...rootFeatures,
-                    FixedToolbarFeature(),
-                    HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                  ]
-                },
+                features: ({ rootFeatures }) => [
+                  ...rootFeatures,
+                  FixedToolbarFeature(),
+                  HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+                ],
               }),
             }
           }

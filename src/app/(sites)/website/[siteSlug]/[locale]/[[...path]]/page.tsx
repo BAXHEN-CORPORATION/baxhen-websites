@@ -1,56 +1,41 @@
 import { notFound } from 'next/navigation'
-import { SiteNotFoundError, SiteSuspendedError, PageNotFoundError, UnsupportedLocaleError } from '@/domain/errors'
-import type { Metadata } from 'next'
+import { headers } from 'next/headers'
+import { resolveWebsiteRequest } from '@/services/website-resolution.service'
+import { getSiteContent } from '@/repositories/site-content.repository'
+import { toSiteViewModel } from '@/view-models/site.view-model'
+import { getSitePage } from '@/sites'
+import { SiteNotFoundError, SiteSuspendedError, UnsupportedLocaleError } from '@/domain/errors'
+import { BusinessPresenceTemplate } from '@/views/templates/BusinessPresenceTemplate'
+import { LeadGenerationTemplate } from '@/views/templates/LeadGenerationTemplate'
 import type { Locale } from '@/domain/shared/types'
 
-interface SitePageProps {
-  params: Promise<{
-    siteSlug: string
-    locale: string
-    path?: string[]
-  }>
-}
+interface SitePageProps { params: Promise<{ siteSlug: string; locale: string; path?: string[] }> }
 
 export default async function SitePage({ params }: SitePageProps) {
   const { siteSlug, locale, path } = await params
+  const resolvedLocale = locale as Locale
+  const pagePath = path?.[0] || 'home'
 
   try {
-    const resolvedLocale = locale as Locale
-    const pagePath = path?.join('/') || 'index'
+    const heads = await headers()
+    const hostname = heads.get('x-baxhen-hostname') || `${siteSlug}.localhost`
+    const { site } = await resolveWebsiteRequest(hostname)
+    if (!site?.id) throw new SiteNotFoundError(hostname)
+
+    const siteVM = toSiteViewModel(site)
+    const content = await getSiteContent(site.slug || siteSlug, resolvedLocale)
+    const PageComponent = getSitePage(site.slug || siteSlug, pagePath)
+    if (!PageComponent) notFound()
+
+    const Template = siteVM.siteType === 'lead-generation' ? LeadGenerationTemplate : BusinessPresenceTemplate
 
     return (
-      <div className="container mx-auto px-4 py-16" style={{ maxWidth: 'var(--content-width, 1200px)' }}>
-        <h1 className="text-4xl font-light mb-4">Site: {siteSlug}</h1>
-        <p className="text-lg opacity-70">
-          Locale: {resolvedLocale} &middot; Page: {pagePath}
-        </p>
-        <p className="mt-8 text-sm opacity-50">
-          Full rendering will be wired in Phase 5-6.
-        </p>
-      </div>
+      <Template siteName={siteVM.name} logo={siteVM.theme.logo} navigation={[]} currentLocale={resolvedLocale} enabledLocales={siteVM.enabledLocales}>
+        <PageComponent content={content} />
+      </Template>
     )
   } catch (error) {
-    if (error instanceof SiteNotFoundError || error instanceof PageNotFoundError || error instanceof UnsupportedLocaleError) {
-      notFound()
-    }
-    if (error instanceof SiteSuspendedError) {
-      return (
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="text-center">
-            <h1 className="text-2xl font-light mb-4">Site Temporarily Unavailable</h1>
-            <p className="opacity-70">This site is currently suspended.</p>
-          </div>
-        </div>
-      )
-    }
+    if (error instanceof SiteNotFoundError || error instanceof SiteSuspendedError || error instanceof UnsupportedLocaleError) notFound()
     throw error
-  }
-}
-
-export async function generateMetadata({ params }: SitePageProps): Promise<Metadata> {
-  const { siteSlug, locale } = await params
-  return {
-    title: `${siteSlug} — Baxhen`,
-    description: `Website for ${siteSlug}`,
   }
 }

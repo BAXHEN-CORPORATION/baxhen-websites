@@ -15,6 +15,7 @@ import { Domains } from './collections/Domains'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { ServicePlans } from './collections/ServicePlans'
+import { SiteContent } from './collections/SiteContent'
 import { Sites } from './collections/Sites'
 import { Tenants } from './collections/Tenants'
 import { Users } from './collections/Users'
@@ -117,6 +118,7 @@ export default buildConfig({
     Sites,
     Pages,
     Media,
+    SiteContent,
     Domains,
     ServicePlans,
     Contracts,
@@ -137,8 +139,9 @@ export default buildConfig({
       collections: {
         sites: { customTenantField: true },
         pages: { customTenantField: true },
+        'site-content': { customTenantField: true },
         media: { customTenantField: true },
-        domains: { customTenantField: true },
+        domains: { customTenantField: true, useTenantAccess: false },
         contracts: { customTenantField: true },
         'contract-documents': { customTenantField: true },
         deployments: { customTenantField: true },

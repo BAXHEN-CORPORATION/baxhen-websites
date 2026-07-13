@@ -13,7 +13,6 @@ interface SiteHeaderProps {
   navigation: NavigationItemViewModel[]
   currentLocale: Locale
   enabledLocales: Locale[]
-  onLocaleChange: (locale: Locale) => void
 }
 
 export const SiteHeader: React.FC<SiteHeaderProps> = ({
@@ -22,7 +21,6 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({
   navigation,
   currentLocale,
   enabledLocales,
-  onLocaleChange,
 }) => {
   return (
     <header
@@ -40,7 +38,6 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({
             <LanguageSwitcher
               currentLocale={currentLocale}
               enabledLocales={enabledLocales}
-              onLocaleChange={onLocaleChange}
             />
             <MobileNavigation items={navigation} />
           </div>

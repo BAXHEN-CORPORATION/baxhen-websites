@@ -15,11 +15,11 @@ export const findSiteBySlug = async (
     where: {
       and: [
         { slug: { equals: siteSlug } },
-        { status: { in: ['published', 'approved'] } },
       ],
     },
     depth: 0,
     limit: 1,
+    overrideAccess: true,
   })
 
   return result.docs[0] || null

@@ -3,7 +3,7 @@ import { Container } from '@/views/primitives/Container'
 import { Heading } from '@/views/primitives/Heading'
 import { Text } from '@/views/primitives/Text'
 import { Button } from '@/views/primitives/Button'
-import type { CTASectionViewModel } from '@/view-models/blocks/cta.view-model'
+import type { CTASectionViewModel } from '@/view-models/blocks/types'
 
 interface CTASectionProps { data: CTASectionViewModel }
 

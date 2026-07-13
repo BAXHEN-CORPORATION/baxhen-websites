@@ -1,4 +1,5 @@
 import { getPayload } from 'payload'
+import type { User } from '@/payload-types'
 import configPromise from '@payload-config'
 import type { Locale } from '@/domain/shared/types'
 
@@ -18,8 +19,9 @@ export interface DemoConfig {
  * Provision a demo tenant with a site and domain.
  * Idempotent — checks for existing tenant before creating.
  */
-export const provisionDemoTenant = async (config: DemoConfig): Promise<string> => {
+export const provisionDemoTenant = async (config: DemoConfig, adminUser?: User): Promise<string> => {
   const payload = await getPayload({ config: configPromise })
+  const req = adminUser ? { user: adminUser } : undefined
 
   // Check if tenant already exists
   const existingTenants = await payload.find({
@@ -43,6 +45,8 @@ export const provisionDemoTenant = async (config: DemoConfig): Promise<string> =
         status: config.tenantStatus,
         enabled: true,
       },
+      overrideAccess: true,
+      req,
     })
     tenantId = String(tenant.id)
   }
@@ -78,6 +82,8 @@ export const provisionDemoTenant = async (config: DemoConfig): Promise<string> =
         defaultLocale: config.defaultLocale,
         enabledLocales: config.enabledLocales,
       },
+      overrideAccess: true,
+      req,
     })
     siteId = String(site.id)
   }
@@ -101,6 +107,8 @@ export const provisionDemoTenant = async (config: DemoConfig): Promise<string> =
         status: 'active',
         isPrimary: true,
       },
+      overrideAccess: true,
+      req,
     })
   }
 

@@ -19,8 +19,11 @@ export interface ResolvedWebsite {
 export const resolveWebsiteRequest = async (
   hostname: string,
 ): Promise<ResolvedWebsite> => {
-  // Normalize hostname
-  const normalizedHostname = hostname.toLowerCase().trim()
+  // Normalize hostname — strip protocol, port, trailing dot
+  let normalizedHostname = hostname.toLowerCase().trim()
+  normalizedHostname = normalizedHostname.replace(/^https?:\/\//, '')
+  normalizedHostname = normalizedHostname.split(':')[0] // remove port
+  normalizedHostname = normalizedHostname.replace(/\.$/, '')
 
   // Look up domain
   const domain = await findActiveDomain(normalizedHostname)

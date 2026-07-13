@@ -5,7 +5,7 @@ import { Container } from '@/views/primitives/Container'
 import { Heading } from '@/views/primitives/Heading'
 import { Text } from '@/views/primitives/Text'
 import { ChevronDown } from 'lucide-react'
-import type { FAQSectionViewModel } from '@/view-models/blocks/faq.view-model'
+import type { FAQSectionViewModel } from '@/view-models/blocks/types'
 
 interface FAQSectionProps { data: FAQSectionViewModel }
 

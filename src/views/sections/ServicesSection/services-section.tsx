@@ -2,7 +2,7 @@ import React from 'react'
 import { Container } from '@/views/primitives/Container'
 import { Heading } from '@/views/primitives/Heading'
 import { Text } from '@/views/primitives/Text'
-import type { ServicesSectionViewModel } from '@/view-models/blocks/services.view-model'
+import type { ServicesSectionViewModel } from '@/view-models/blocks/types'
 import { Wrench } from 'lucide-react'
 
 interface ServicesSectionProps { data: ServicesSectionViewModel }

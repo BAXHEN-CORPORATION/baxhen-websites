@@ -21,6 +21,7 @@ export const findActiveDomain = async (
     },
     depth: 1,
     limit: 1,
+    overrideAccess: true,
   })
 
   if (!result.docs.length) return null
