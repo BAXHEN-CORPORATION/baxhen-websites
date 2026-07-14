@@ -175,7 +175,7 @@ export const FalcaoHome = ({ content }: { content: FalcaoHomeContent }) => {
   return (
     <FalcaoLayout>
       {/* Hero with video */}
-      <section className="max-w-[1200px] mx-auto px-4 text-center pt-20 md:pt-24 pb-12">
+      <section className="max-w-[1200px] mx-auto px-4 text-center pt-8 md:pt-12 pb-12">
         <span
           className="text-sm font-semibold tracking-widest uppercase block mb-4"
           style={{ color: c.secondary }}
