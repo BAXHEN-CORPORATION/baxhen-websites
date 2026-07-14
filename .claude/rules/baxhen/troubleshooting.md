@@ -87,6 +87,14 @@ Also ensure `src/proxy.ts` platform path bypass includes `/assets` for static fi
 const PLATFORM_PATHS = ['/admin', '/api', '/_next', '/favicon.ico', '/next', '/website', '/assets']
 ```
 
+### Custom Headers Don't Survive Netlify Rewrite
+
+`x-baxhen-hostname` header set via `NextResponse.rewrite()` is not forwarded by Netlify's Next.js plugin. Use `host` header directly:
+
+```ts
+const hostname = heads.get('host')?.split(':')[0] || `${siteSlug}.localhost`
+```
+
 ## Double html/body Nesting (Console Warning)
 
 `You are mounting a new html component when a previous one has not first unmounted`
