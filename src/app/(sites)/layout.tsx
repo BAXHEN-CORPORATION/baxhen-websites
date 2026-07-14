@@ -3,6 +3,8 @@ import { cn } from '@/utilities/ui'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 import React from 'react'
+
+export const dynamic = 'force-dynamic'
 import { AdminBar } from '@/components/AdminBar'
 import { Providers } from '@/providers'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
