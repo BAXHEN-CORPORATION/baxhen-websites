@@ -127,6 +127,15 @@ Models must NOT import application views.
 | Sections | `src/views/sections/{Name}Section/{name}-section.tsx` | `src/views/sections/HeroSection/hero-section.tsx` |
 | Templates | `src/views/templates/{Name}Template/{name}-template.tsx` | `src/views/templates/BusinessPresenceTemplate/business-presence-template.tsx` |
 
+## Layout Structure
+
+- `app/layout.tsx` — Root layout with `<html><body>` + Providers + AdminBar + metadata
+- `(baxhen)/layout.tsx` — pass-through (`<>{children}</>`)
+- `(sites)/layout.tsx` — pass-through (`<>{children}</>`)
+- `(payload)/layout.tsx` — Payload's RootLayout (has own `<html><body>`)
+
+**Rule**: Never render `<html>` or `<body>` in both root AND route group layouts. Only the root layout provides the document shell. Exception: Payload admin uses its own RootLayout.
+
 ## Error Handling
 
 Expected failures use typed errors from `src/domain/errors.ts`:
