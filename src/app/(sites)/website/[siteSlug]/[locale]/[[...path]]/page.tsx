@@ -19,7 +19,7 @@ export default async function SitePage({ params }: SitePageProps) {
 
   try {
     const heads = await headers()
-    const hostname = heads.get('x-baxhen-hostname') || `${siteSlug}.localhost`
+    const hostname = heads.get('x-baxhen-hostname') || heads.get('host')?.split(':')[0] || `${siteSlug}.localhost`
     const { site } = await resolveWebsiteRequest(hostname)
     if (!site?.id) throw new SiteNotFoundError(hostname)
 
