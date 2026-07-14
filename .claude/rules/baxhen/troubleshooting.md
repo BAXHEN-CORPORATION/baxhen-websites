@@ -63,6 +63,30 @@ Deleting the collection files before fixing references causes 100+ type errors t
 
 `getServerSideURL()` returned a URL without protocol. Add `if (!url.startsWith('http')) url = 'https://' + url` or set `NEXT_PUBLIC_SERVER_URL` with `https://` prefix on Netlify.
 
+## 404 on Platform Routes (Netlify)
+
+Baxhen landing pages (`/pt/websites`, `/en/websites`) return 404 on Netlify but work locally.
+
+**Root cause**: Proxy rewrites platform URLs as client site URLs because `BAXHEN_PLATFORM_HOSTS` doesn't include the Netlify domain.
+
+**How to diagnose**: Check the RSC payload in the 404 response body. If the route segments show `["website","...","pt","en/websites"]` instead of `["[locale]","websites"]`, the proxy is misrouting the request through `(sites)` instead of `(baxhen)`.
+
+```bash
+curl -s https://baxhen-websites.netlify.app/en/websites | grep -o '"c":\[[^]]*\]'
+# If you see "website" → proxy is rewriting to client site route
+# Should show "[locale]" → correct routing through baxhen group
+```
+
+**Fix**: Set `BAXHEN_PLATFORM_HOSTS` on Netlify env vars to include ALL platform domains:
+```
+BAXHEN_PLATFORM_HOSTS=localhost:3000,baxhen-websites.netlify.app,websites.baxhen.com
+```
+
+Also ensure `src/proxy.ts` platform path bypass includes `/assets` for static files:
+```ts
+const PLATFORM_PATHS = ['/admin', '/api', '/_next', '/favicon.ico', '/next', '/website', '/assets']
+```
+
 ## Double html/body Nesting (Console Warning)
 
 `You are mounting a new html component when a previous one has not first unmounted`
