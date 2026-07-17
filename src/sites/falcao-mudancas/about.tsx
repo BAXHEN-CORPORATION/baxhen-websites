@@ -1,8 +1,8 @@
 import React from 'react'
 import { FalcaoLayout } from './layout'
-import { Clock, Shield, MapPin, Phone } from 'lucide-react'
-
-const c = { bg: '#f9f9ff', surface: '#f0f3ff', primary: '#00317e', onSurface: '#111c2d', onSurfaceVariant: '#434653', actionYellow: '#ffe16d' } as const
+import { Button } from './components/Button'
+import { c, PHONE, PHONE_DISPLAY } from './config'
+import { Clock, Shield, MapPin } from 'lucide-react'
 
 export const defaultContent = {}
 
@@ -21,7 +21,7 @@ export const FalcaoAbout = () => (
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
         {values.map((v, i) => { const Icon = v.icon; return (
-          <div key={i} className="text-center p-8 rounded-xl" style={{ backgroundColor: '#fff' }}>
+          <div key={i} className="text-center p-8 rounded-xl" style={{ backgroundColor: c.cardBg }}>
             <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: c.surface }}>
               <Icon size={28} color={c.primary} />
             </div>
@@ -34,9 +34,7 @@ export const FalcaoAbout = () => (
         <p className="text-sm leading-relaxed mb-4" style={{ color: c.onSurfaceVariant }}>
           A Falcão Mudanças oferece um serviço completo: recolha, transporte, desmontagem, montagem e embalamento. Trabalhamos com residências, escritórios e lojas, sempre com foco na organização e no respeito pelos seus bens.
         </p>
-        <a href="tel:351938711729" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold mt-6 hover:opacity-90 transition-all" style={{ backgroundColor: c.primary, color: '#fff' }}>
-          <Phone size={18} /> Ligar 938 711 729
-        </a>
+        <Button variant="solid" href={`tel:${PHONE}`} className="mt-6">Ligar {PHONE_DISPLAY}</Button>
       </div>
     </section>
   </FalcaoLayout>

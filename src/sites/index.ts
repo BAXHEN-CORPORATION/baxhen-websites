@@ -7,6 +7,7 @@ import { FalcaoServices } from './falcao-mudancas/services'
 import { FalcaoAbout } from './falcao-mudancas/about'
 import { FalcaoContact } from './falcao-mudancas/contact'
 import { FalcaoTerms } from './falcao-mudancas/terms'
+import { FalcaoOrcamento } from './falcao-mudancas/orcamento'
 import { FalcaoPrivacy } from './falcao-mudancas/privacy'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -20,6 +21,7 @@ const sitePages: Record<string, Record<string, PageComponent>> = {
     services: FalcaoServices,
     about: FalcaoAbout,
     contact: FalcaoContact,
+    orcamento: FalcaoOrcamento,
     terms: FalcaoTerms,
     privacy: FalcaoPrivacy,
   },
