@@ -3,17 +3,16 @@ import { create } from 'zustand'
 export interface QuoteState {
   step: number
   tipo: string
-  origem: string
-  destino: string
+  recolha: string
+  entrega: string
   data: string
-  pisoOrigem: string
-  pisoDestino: string
+  pisoRecolha: string
+  pisoEntrega: string
   elevador: string
-  estacionamento: string
-  notas: string
+  desmontagem: string
   extras: string[]
   nome: string
-  telefone: string
+  observacoes: string
   setField: (key: string, value: string | string[]) => void
   nextStep: () => void
   prevStep: () => void
@@ -23,9 +22,9 @@ export interface QuoteState {
 
 const initial = {
   step: 1,
-  tipo: '', origem: '', destino: '', data: '',
-  pisoOrigem: '', pisoDestino: '', elevador: '', estacionamento: '', notas: '',
-  extras: [] as string[], nome: '', telefone: '',
+  tipo: '', recolha: '', entrega: '', data: '',
+  pisoRecolha: '', pisoEntrega: '', elevador: '',
+  desmontagem: '', extras: [] as string[], nome: '', observacoes: '',
 }
 
 export const useQuoteStore = create<QuoteState>((set) => ({
