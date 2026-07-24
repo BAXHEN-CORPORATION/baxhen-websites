@@ -16,7 +16,7 @@ export interface QuoteState {
   setField: (key: string, value: string | string[]) => void
   nextStep: () => void
   prevStep: () => void
-  initStep: () => void
+  initStep: (skipFirst?: boolean) => void
   reset: () => void
 }
 
@@ -27,11 +27,17 @@ const initial = {
   desmontagem: '', extras: [] as string[], nome: '', observacoes: '',
 }
 
-export const useQuoteStore = create<QuoteState>((set) => ({
+export const useQuoteStore = create<QuoteState>()((set) => ({
   ...initial,
   setField: (key, value) => set({ [key]: value }),
   nextStep: () => set((s) => ({ step: s.step + 1 })),
   prevStep: () => set((s) => ({ step: Math.max(1, s.step - 1) })),
-  initStep: () => set((s) => ({ step: s.tipo ? 2 : 1 })),
+  initStep: (skipFirst) => set((s) => {
+    // From homepage: tipo already answered → skip to step 2 (nome)
+    if (skipFirst) return { step: 2 }
+    // Direct: resume if name already filled, else step 1 (nome)
+    if (s.nome) return { step: s.step > 1 ? s.step : 2 }
+    return { step: 1 }
+  }),
   reset: () => set(initial),
 }))

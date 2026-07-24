@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useRef, useCallback, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from './components/Button'
 import { useQuoteStore } from './stores/quote-flow'
@@ -8,7 +9,8 @@ import { c, LOGO, FONT, PHONE } from './config'
 import Image from 'next/image'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { Home, Building2, Armchair, MapPin, Calendar as CalendarIcon, Wrench, ArrowLeft } from 'lucide-react'
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
+import { Home, Building2, Armchair, MapPin, Calendar as CalendarIcon, Wrench, ChevronUp, ChevronDown } from 'lucide-react'
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover'
 import { DayPicker } from 'react-day-picker'
 import { format, parse } from 'date-fns'
@@ -38,26 +40,50 @@ export const FalcaoOrcamento = () => {
   const { step, tipo, recolha, entrega, data, pisoRecolha, pisoEntrega, elevador, desmontagem, extras, nome, observacoes, setField, nextStep, prevStep, initStep } = useQuoteStore()
   const inputRef = useRef<HTMLInputElement>(null)
   const [dateOpen, setDateOpen] = useState(false)
+  const [errors, setErrors] = useState<Record<string, boolean>>({})
 
-  useEffect(() => { initStep() }, [initStep])
+  const searchParams = useSearchParams()
+  const fromHome = searchParams.get('from') === 'home'
 
-  // Auto-focus input on text steps
+  useEffect(() => { initStep(fromHome) }, [initStep, fromHome])
+
+  // Auto-focus input on text steps (nome, recolha, entrega)
   useEffect(() => {
-    if ([2, 3, 8].includes(step)) {
+    const nomeStep = fromHome ? 2 : 1
+    if ([nomeStep, 3, 4].includes(step)) {
       setTimeout(() => inputRef.current?.focus(), 400)
     }
-  }, [step])
+  }, [step, fromHome])
+
+  const handleAdvance = useCallback(() => {
+    const nomeStep = fromHome ? 2 : 1
+    const tipoStep = fromHome ? 1 : 2
+
+    const required: Record<number, { field: string; value: string }> = {
+      [nomeStep]: { field: 'nome', value: nome },
+      [tipoStep]: { field: 'tipo', value: tipo },
+      3: { field: 'recolha', value: recolha },
+      4: { field: 'entrega', value: entrega },
+    }
+
+    const req = required[step]
+    if (req && !req.value) {
+      setErrors(prev => ({ ...prev, [req.field]: true }))
+      return
+    }
+    if (req) {
+      setErrors(prev => ({ ...prev, [req.field]: false }))
+    }
+    nextStep()
+  }, [step, nome, tipo, recolha, entrega, fromHome, nextStep])
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      if (step === 8 && !nome) return
-      if (step === 2 && !recolha) return
-      if (step === 3 && !entrega) return
-      nextStep()
+      handleAdvance()
     }
-  }, [step, nome, recolha, entrega, nextStep])
+  }, [handleAdvance])
 
-  const selectTipo = (value: string) => { setField('tipo', value); nextStep() }
+  const selectTipo = (value: string) => { setField('tipo', value); setErrors(prev => ({ ...prev, tipo: false })); nextStep() }
   const selectDesmontagem = (value: string) => { setField('desmontagem', value); nextStep() }
 
   const toggleExtra = (val: string) => {
@@ -68,113 +94,185 @@ export const FalcaoOrcamento = () => {
   const sendWhatsApp = () => {
     const msg = [
       `Olá Falcão Mudanças! Gostaria de um orçamento:`, '',
+      `👤 Nome: ${nome}`,
       `📦 Tipo: ${tipo}`,
       `📍 Recolha: ${recolha}${pisoRecolha ? ` (Piso ${pisoRecolha}${elevador ? ', com elevador' : ''})` : ''}`,
       `📍 Entrega: ${entrega}${pisoEntrega ? ` (Piso ${pisoEntrega}${elevador ? ', com elevador' : ''})` : ''}`,
       `📅 Data: ${data || 'A definir'}`,
       `🔧 Desmontagem/Montagem: ${desmontagem || 'Não informado'}`,
       ...(extras.length ? [`📦 Extras: ${extras.join(', ')}`] : []),
-      `👤 Nome: ${nome}`,
       ...(observacoes ? [`📝 Notas: ${observacoes}`] : []),
     ].join('\n')
     window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`, '_blank')
   }
 
-  const showBack = step > 1
-
   return (
     <div style={{ backgroundColor: c.bg, color: c.onSurface, fontFamily: FONT, minHeight: '100vh' }}>
-      {/* Header — logo + progress */}
-      <header className="flex items-center justify-between px-6 pt-6 pb-2">
+      {/* Header — logo + progress bar */}
+      <header className="flex items-center gap-4 px-6 pt-6 pb-2">
         <Image src={LOGO} alt="Falcão Mudanças" width={40} height={40} unoptimized className="h-10 w-auto" />
-        <span className="text-sm tabular-nums" style={{ color: c.onSurfaceVariant }}>{step} de {totalSteps}</span>
+        <div className="flex-1 h-1 rounded-full" style={{ backgroundColor: c.outlineVariant }}>
+          <div className="h-full rounded-full transition-all duration-300"
+            style={{ width: `${(step / totalSteps) * 100}%`, backgroundColor: c.primary }} />
+        </div>
       </header>
 
-      <main className="flex items-center justify-center px-6" style={{ minHeight: 'calc(100vh - 180px)' }}>
+      <main className="flex items-center justify-center px-6 pb-24" style={{ minHeight: 'calc(100vh - 180px)' }}>
         <AnimatePresence mode="wait">
           <motion.div key={step} {...slideUp} className="w-full max-w-lg">
 
-            {showBack && (
-              <button type="button" onClick={prevStep} aria-label="Voltar"
-                className="mb-6 flex min-h-[44px] items-center gap-1.5 text-sm cursor-pointer transition-colors hover:opacity-70"
-                style={{ color: c.onSurfaceVariant }}>
-                <ArrowLeft size={16} /> Voltar
-              </button>
-            )}
-
-            {/* Step 1: Tipo (auto-advance on click) */}
+            {/* Step 1: Nome (direct) OR Tipo (from home) */}
             {step === 1 && (
-              <div>
-                <h2 className="text-3xl font-extrabold mb-3" style={{ color: c.primary }}>O que vai transportar?</h2>
-                <p className="mb-10" style={{ color: c.onSurfaceVariant }}>Selecione a categoria que melhor descreve o volume da sua mudança.</p>
-                <div className="space-y-3">
-                  {tipoOptions.map((opt) => { const Icon = opt.icon; return (
-                    <button key={opt.value} type="button" onClick={() => selectTipo(opt.value)}
-                      className="flex items-center gap-4 p-5 rounded-xl border text-left transition-all cursor-pointer hover:-translate-y-0.5 w-full"
-                      style={{ borderColor: c.outlineVariant, backgroundColor: 'transparent' }}>
-                      <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: c.surface }}>
-                        <Icon size={24} color={c.primary} />
-                      </div>
-                      <div><h3 className="font-bold">{opt.title}</h3><p className="text-sm" style={{ color: c.onSurfaceVariant }}>{opt.desc}</p></div>
-                    </button>
-                  )})}
+              fromHome ? (
+                <div>
+                  <span className="text-xs font-medium mb-2 block" style={{ color: c.onSurfaceVariant }}>{step} de {totalSteps}</span>
+                  <h2 className="text-3xl font-extrabold mb-3" style={{ color: c.primary }}>O que vai transportar?</h2>
+                  <p className="mb-10" style={{ color: c.onSurfaceVariant }}>Selecione a categoria que melhor descreve o volume da sua mudança.</p>
+                  <div className="space-y-3">
+                    {tipoOptions.map((opt) => { const Icon = opt.icon; const selected = tipo === opt.value; return (
+                      <button key={opt.value} type="button" onClick={() => selectTipo(opt.value)}
+                        className="flex items-center gap-4 p-5 rounded-xl border text-left transition-all cursor-pointer hover:-translate-y-0.5 w-full"
+                        style={{ borderColor: selected ? c.primary : c.outlineVariant, backgroundColor: selected ? c.surfaceHigh : 'transparent' }}>
+                        <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: selected ? c.primary : c.surface }}>
+                          <Icon size={24} color={selected ? '#fff' : c.primary} />
+                        </div>
+                        <div><h3 className="font-bold">{opt.title}</h3><p className="text-sm" style={{ color: c.onSurfaceVariant }}>{opt.desc}</p></div>
+                      </button>
+                    )})}
+                  </div>
+                  {errors.tipo && <p className="text-sm mt-2" style={{ color: '#cc0000' }}>Campo obrigatório</p>}
                 </div>
-              </div>
+              ) : (
+                <div>
+                  <span className="text-xs font-medium mb-2 block" style={{ color: c.onSurfaceVariant }}>{step} de {totalSteps}</span>
+                  <div className="mb-12">
+                    <h2 className="text-3xl font-extrabold mb-2" style={{ color: c.primary }}>Qual é o seu nome?</h2>
+                    <p style={{ color: c.onSurfaceVariant }}>Como se chama?</p>
+                  </div>
+                  <Input ref={inputRef} type="text" value={nome} onChange={(e) => { setField('nome', e.target.value); setErrors(prev => ({ ...prev, nome: false })) }}
+                    onKeyDown={handleKeyDown}
+                    placeholder="O seu nome"
+                    className="w-full border-0 border-b-2 rounded-none bg-transparent py-4 text-xl text-left shadow-none ring-0 focus-visible:ring-0 focus-visible:border-[#00317e] transition-colors"
+                    style={{ borderColor: errors.nome ? '#cc0000' : c.outlineVariant }} />
+                  {errors.nome && <p className="text-sm mt-2" style={{ color: '#cc0000' }}>Campo obrigatório</p>}
+                  <div className="mt-10">
+                    <motion.div
+                      initial={false}
+                      animate={{ opacity: nome ? 1 : 0, y: nome ? 0 : 8 }}
+                      transition={{ duration: 0.25 }}
+                      style={{ pointerEvents: nome ? 'auto' : 'none' }}>
+                      <Button onClick={handleAdvance} size="lg">OK</Button>
+                    </motion.div>
+                  </div>
+                </div>
+              )
             )}
 
-            {/* Step 2: Recolha */}
+            {/* Step 2: Tipo (direct) OR Nome (from home) */}
             {step === 2 && (
+              fromHome ? (
+                <div>
+                  <span className="text-xs font-medium mb-2 block" style={{ color: c.onSurfaceVariant }}>{step} de {totalSteps}</span>
+                  <div className="mb-12">
+                    <h2 className="text-3xl font-extrabold mb-2" style={{ color: c.primary }}>Qual é o seu nome?</h2>
+                    <p style={{ color: c.onSurfaceVariant }}>Como se chama?</p>
+                  </div>
+                  <Input ref={inputRef} type="text" value={nome} onChange={(e) => { setField('nome', e.target.value); setErrors(prev => ({ ...prev, nome: false })) }}
+                    onKeyDown={handleKeyDown}
+                    placeholder="O seu nome"
+                    className="w-full border-0 border-b-2 rounded-none bg-transparent py-4 text-xl text-left shadow-none ring-0 focus-visible:ring-0 focus-visible:border-[#00317e] transition-colors"
+                    style={{ borderColor: errors.nome ? '#cc0000' : c.outlineVariant }} />
+                  {errors.nome && <p className="text-sm mt-2" style={{ color: '#cc0000' }}>Campo obrigatório</p>}
+                  <div className="mt-10">
+                    <motion.div
+                      initial={false}
+                      animate={{ opacity: nome ? 1 : 0, y: nome ? 0 : 8 }}
+                      transition={{ duration: 0.25 }}
+                      style={{ pointerEvents: nome ? 'auto' : 'none' }}>
+                      <Button onClick={handleAdvance} size="lg">OK</Button>
+                    </motion.div>
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <span className="text-xs font-medium mb-2 block" style={{ color: c.onSurfaceVariant }}>{step} de {totalSteps}</span>
+                  <h2 className="text-3xl font-extrabold mb-3" style={{ color: c.primary }}>O que vai transportar?</h2>
+                  <p className="mb-10" style={{ color: c.onSurfaceVariant }}>Selecione a categoria que melhor descreve o volume da sua mudança.</p>
+                  <div className="space-y-3">
+                    {tipoOptions.map((opt) => { const Icon = opt.icon; const selected = tipo === opt.value; return (
+                      <button key={opt.value} type="button" onClick={() => selectTipo(opt.value)}
+                        className="flex items-center gap-4 p-5 rounded-xl border text-left transition-all cursor-pointer hover:-translate-y-0.5 w-full"
+                        style={{ borderColor: selected ? c.primary : c.outlineVariant, backgroundColor: selected ? c.surfaceHigh : 'transparent' }}>
+                        <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: selected ? c.primary : c.surface }}>
+                          <Icon size={24} color={selected ? '#fff' : c.primary} />
+                        </div>
+                        <div><h3 className="font-bold">{opt.title}</h3><p className="text-sm" style={{ color: c.onSurfaceVariant }}>{opt.desc}</p></div>
+                      </button>
+                    )})}
+                  </div>
+                  {errors.tipo && <p className="text-sm mt-2" style={{ color: '#cc0000' }}>Campo obrigatório</p>}
+                </div>
+              )
+            )}
+
+            {/* Step 3: Recolha */}
+            {step === 3 && (
               <div>
+                <span className="text-xs font-medium mb-2 block" style={{ color: c.onSurfaceVariant }}>{step} de {totalSteps}</span>
                 <div className="mb-12">
                   <MapPin size={28} className="mb-3" color={c.primary} />
                   <h2 className="text-3xl font-extrabold mb-2" style={{ color: c.primary }}>Local de recolha</h2>
                   <p style={{ color: c.onSurfaceVariant }}>Onde vamos buscar os seus bens?</p>
                 </div>
-                <Input ref={inputRef} type="text" value={recolha} onChange={(e) => setField('recolha', e.target.value)}
+                <Input ref={inputRef} type="text" value={recolha} onChange={(e) => { setField('recolha', e.target.value); setErrors(prev => ({ ...prev, recolha: false })) }}
                   onKeyDown={handleKeyDown}
                   placeholder="Ex: Lisboa, Rua Augusta 123"
                   className="w-full border-0 border-b-2 rounded-none bg-transparent py-4 text-xl text-left shadow-none ring-0 focus-visible:ring-0 focus-visible:border-[#00317e] transition-colors"
-                  style={{ borderColor: c.outlineVariant }} />
+                  style={{ borderColor: errors.recolha ? '#cc0000' : c.outlineVariant }} />
+                {errors.recolha && <p className="text-sm mt-2" style={{ color: '#cc0000' }}>Campo obrigatório</p>}
                 <div className="mt-10">
                   <motion.div
                     initial={false}
                     animate={{ opacity: recolha ? 1 : 0, y: recolha ? 0 : 8 }}
                     transition={{ duration: 0.25 }}
                     style={{ pointerEvents: recolha ? 'auto' : 'none' }}>
-                    <Button onClick={nextStep} size="lg">OK</Button>
+                    <Button onClick={handleAdvance} size="lg">OK</Button>
                   </motion.div>
                 </div>
               </div>
             )}
 
-            {/* Step 3: Entrega */}
-            {step === 3 && (
+            {/* Step 4: Entrega */}
+            {step === 4 && (
               <div>
+                <span className="text-xs font-medium mb-2 block" style={{ color: c.onSurfaceVariant }}>{step} de {totalSteps}</span>
                 <div className="mb-12">
                   <MapPin size={28} className="mb-3" color={c.primary} />
                   <h2 className="text-3xl font-extrabold mb-2" style={{ color: c.primary }}>Local de entrega</h2>
                   <p style={{ color: c.onSurfaceVariant }}>Para onde vão os seus bens?</p>
                 </div>
-                <Input ref={inputRef} type="text" value={entrega} onChange={(e) => setField('entrega', e.target.value)}
+                <Input ref={inputRef} type="text" value={entrega} onChange={(e) => { setField('entrega', e.target.value); setErrors(prev => ({ ...prev, entrega: false })) }}
                   onKeyDown={handleKeyDown}
                   placeholder="Ex: Porto, Rua das Flores 456"
                   className="w-full border-0 border-b-2 rounded-none bg-transparent py-4 text-xl text-left shadow-none ring-0 focus-visible:ring-0 focus-visible:border-[#00317e] transition-colors"
-                  style={{ borderColor: c.outlineVariant }} />
+                  style={{ borderColor: errors.entrega ? '#cc0000' : c.outlineVariant }} />
+                {errors.entrega && <p className="text-sm mt-2" style={{ color: '#cc0000' }}>Campo obrigatório</p>}
                 <div className="mt-10">
                   <motion.div
                     initial={false}
                     animate={{ opacity: entrega ? 1 : 0, y: entrega ? 0 : 8 }}
                     transition={{ duration: 0.25 }}
                     style={{ pointerEvents: entrega ? 'auto' : 'none' }}>
-                    <Button onClick={nextStep} size="lg">OK</Button>
+                    <Button onClick={handleAdvance} size="lg">OK</Button>
                   </motion.div>
                 </div>
               </div>
             )}
 
-            {/* Step 4: Data */}
-            {step === 4 && (
+            {/* Step 5: Data */}
+            {step === 5 && (
               <div>
+                <span className="text-xs font-medium mb-2 block" style={{ color: c.onSurfaceVariant }}>{step} de {totalSteps}</span>
                 <div className="mb-12">
                   <CalendarIcon size={28} className="mb-3" color={c.primary} />
                   <h2 className="text-3xl font-extrabold mb-2" style={{ color: c.primary }}>Data da mudança</h2>
@@ -225,15 +323,16 @@ export const FalcaoOrcamento = () => {
                     animate={{ opacity: data ? 1 : 0, y: data ? 0 : 8 }}
                     transition={{ duration: 0.25 }}
                     style={{ pointerEvents: data ? 'auto' : 'none' }}>
-                    <Button onClick={nextStep} size="lg">OK</Button>
+                    <Button onClick={handleAdvance} size="lg">OK</Button>
                   </motion.div>
                 </div>
               </div>
             )}
 
-            {/* Step 5: Detalhes (opcional — button always visible, can skip) */}
-            {step === 5 && (
+            {/* Step 6: Detalhes (opcional — button always visible, can skip) */}
+            {step === 6 && (
               <div>
+                <span className="text-xs font-medium mb-2 block" style={{ color: c.onSurfaceVariant }}>{step} de {totalSteps}</span>
                 <h2 className="text-3xl font-extrabold mb-2" style={{ color: c.primary }}>Detalhes dos locais</h2>
                 <p className="mb-6 text-sm" style={{ color: c.onSurfaceVariant }}>Opcional — ajuda-nos a preparar a equipa.</p>
                 <div className="space-y-3 mb-8">
@@ -245,24 +344,30 @@ export const FalcaoOrcamento = () => {
                     placeholder="Piso na entrega (ex: 5º)"
                     className="w-full border-0 border-b-2 rounded-none bg-transparent py-3 text-sm shadow-none ring-0 focus-visible:ring-0 focus-visible:border-[#00317e] transition-colors"
                     style={{ borderColor: c.outlineVariant }} />
-                  <select value={elevador} onChange={(e) => setField('elevador', e.target.value)}
-                    className="w-full border-b-2 bg-transparent py-3 text-sm outline-none" style={{ borderColor: c.outlineVariant }}>
-                    <option value="">Tem elevador?</option>
-                    <option value="Sim, ambos">Sim, em ambos</option>
-                    <option value="Só na recolha">Só na recolha</option>
-                    <option value="Só na entrega">Só na entrega</option>
-                    <option value="Não">Não</option>
-                  </select>
+                  <Select value={elevador} onValueChange={(value) => setField('elevador', value)}>
+                    <SelectTrigger
+                      className="w-full border-0 border-b-2 rounded-none bg-transparent py-3 text-sm shadow-none ring-0 focus-visible:ring-0 h-auto"
+                      style={{ borderColor: c.outlineVariant }}>
+                      <SelectValue placeholder="Tem elevador?" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Sim, ambos">Sim, em ambos</SelectItem>
+                      <SelectItem value="Só na recolha">Só na recolha</SelectItem>
+                      <SelectItem value="Só na entrega">Só na entrega</SelectItem>
+                      <SelectItem value="Não">Não</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div className="flex justify-end">
-                  <Button onClick={nextStep}>Continuar</Button>
+                  <Button onClick={handleAdvance}>Continuar</Button>
                 </div>
               </div>
             )}
 
-            {/* Step 6: Desmontagem (auto-advance on click) */}
-            {step === 6 && (
+            {/* Step 7: Desmontagem (auto-advance on click) */}
+            {step === 7 && (
               <div>
+                <span className="text-xs font-medium mb-2 block" style={{ color: c.onSurfaceVariant }}>{step} de {totalSteps}</span>
                 <Wrench size={28} className="mb-3" color={c.primary} />
                 <h2 className="text-3xl font-extrabold mb-8" style={{ color: c.primary }}>Precisa de desmontagem e/ou montagem de móveis?</h2>
                 <div className="grid grid-cols-2 gap-4">
@@ -277,9 +382,10 @@ export const FalcaoOrcamento = () => {
               </div>
             )}
 
-            {/* Step 7: Extras */}
-            {step === 7 && (
+            {/* Step 8: Extras */}
+            {step === 8 && (
               <div>
+                <span className="text-xs font-medium mb-2 block" style={{ color: c.onSurfaceVariant }}>{step} de {totalSteps}</span>
                 <h2 className="text-3xl font-extrabold mb-2" style={{ color: c.primary }}>Serviços extra</h2>
                 <p className="mb-8 text-sm" style={{ color: c.onSurfaceVariant }}>Opcional — selecione o que precisar.</p>
                 <div className="space-y-3 mb-8">
@@ -293,35 +399,7 @@ export const FalcaoOrcamento = () => {
                   ))}
                 </div>
                 <div className="flex justify-end">
-                  <Button onClick={nextStep}>Continuar</Button>
-                </div>
-              </div>
-            )}
-
-            {/* Step 8: Nome */}
-            {step === 8 && (
-              <div>
-                <div className="mb-12">
-                  <h2 className="text-3xl font-extrabold mb-2" style={{ color: c.primary }}>Quase lá!</h2>
-                  <p style={{ color: c.onSurfaceVariant }}>Como se chama?</p>
-                </div>
-                <Input ref={inputRef} type="text" value={nome} onChange={(e) => setField('nome', e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  placeholder="O seu nome"
-                  className="w-full border-0 border-b-2 rounded-none bg-transparent py-4 text-xl text-left shadow-none ring-0 focus-visible:ring-0 focus-visible:border-[#00317e] transition-colors"
-                  style={{ borderColor: c.outlineVariant }} />
-                <Textarea value={observacoes} onChange={(e) => setField('observacoes', e.target.value)}
-                  placeholder="Alguma observação? (opcional)" rows={2}
-                  className="w-full border-0 border-b-2 rounded-none bg-transparent py-3 text-sm resize-none shadow-none ring-0 focus-visible:ring-0 focus-visible:border-[#00317e] transition-colors mt-6"
-                  style={{ borderColor: c.outlineVariant }} />
-                <div className="mt-10">
-                  <motion.div
-                    initial={false}
-                    animate={{ opacity: nome ? 1 : 0, y: nome ? 0 : 8 }}
-                    transition={{ duration: 0.25 }}
-                    style={{ pointerEvents: nome ? 'auto' : 'none' }}>
-                    <Button onClick={nextStep} size="lg">Ver Resumo</Button>
-                  </motion.div>
+                  <Button onClick={handleAdvance}>Continuar</Button>
                 </div>
               </div>
             )}
@@ -329,14 +407,15 @@ export const FalcaoOrcamento = () => {
             {/* Step 9: Resumo */}
             {step === 9 && (
               <div>
+                <span className="text-xs font-medium mb-2 block" style={{ color: c.onSurfaceVariant }}>{step} de {totalSteps}</span>
                 <h2 className="text-3xl font-extrabold mb-6" style={{ color: c.primary }}>Resumo do pedido</h2>
                 <div className="p-6 rounded-lg border mb-8 text-left text-sm" style={{ backgroundColor: c.surface, borderColor: c.outlineVariant }}>
                   <ul className="space-y-2" style={{ color: c.onSurfaceVariant }}>
                     {[
-                      ['📦 Tipo', tipo], ['📍 Recolha', recolha + (pisoRecolha ? ` (Piso ${pisoRecolha})` : '')],
+                      ['👤 Nome', nome], ['📦 Tipo', tipo], ['📍 Recolha', recolha + (pisoRecolha ? ` (Piso ${pisoRecolha})` : '')],
                       ['📍 Entrega', entrega + (pisoEntrega ? ` (Piso ${pisoEntrega})` : '')],
                       ['📅 Data', data || '—'], ['🔧 Desmontagem', desmontagem || '—'],
-                      ['📦 Extras', extras.join(', ') || 'Nenhum'], ['👤 Nome', nome],
+                      ['📦 Extras', extras.join(', ') || 'Nenhum'],
                       ...(observacoes ? [['📝 Notas', observacoes] as const] : []),
                     ].map(([label, value]) => (
                       <li key={label} className="flex justify-between"><span>{label}:</span><strong style={{ color: c.onSurface }}>{value}</strong></li>
@@ -353,8 +432,23 @@ export const FalcaoOrcamento = () => {
         </AnimatePresence>
       </main>
 
-      <footer className="text-center py-4">
-        <p className="text-xs" style={{ color: c.onSurfaceVariant }}>© {new Date().getFullYear()} Falcão Mudanças</p>
+      {/* Fixed footer — up/down navigation */}
+      <footer className="fixed bottom-0 left-0 right-0 flex items-center justify-between px-6 py-4" style={{ backgroundColor: c.bg }}>
+        <span className="text-xs" style={{ color: c.onSurfaceVariant }}>© {new Date().getFullYear()} Falcão Mudanças</span>
+        <div className="flex gap-1">
+          <button onClick={prevStep} disabled={step <= 1}
+            className="p-2 rounded-full transition-opacity cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+            aria-label="Navigate to previous question"
+            style={{ backgroundColor: c.surface, color: c.primary }}>
+            <ChevronUp size={20} />
+          </button>
+          <button onClick={handleAdvance} disabled={step >= totalSteps}
+            className="p-2 rounded-full transition-opacity cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+            aria-label="Navigate to next question"
+            style={{ backgroundColor: c.surface, color: c.primary }}>
+            <ChevronDown size={20} />
+          </button>
+        </div>
       </footer>
     </div>
   )

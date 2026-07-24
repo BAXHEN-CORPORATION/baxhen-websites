@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { FalcaoLayout } from './layout'
 import { VideoPlayer } from './components/VideoPlayer'
@@ -30,9 +31,11 @@ export const FalcaoHome = ({ content }: { content: FalcaoHomeContent }) => {
   const router = useRouter()
   const { tipo, setField } = useQuoteStore()
 
+  useEffect(() => { setField('tipo', '') }, [setField])
+
   const selectTipo = (value: string) => {
     setField('tipo', value)
-    router.push('/orcamento')
+    router.push('/orcamento?from=home')
   }
 
   return (
