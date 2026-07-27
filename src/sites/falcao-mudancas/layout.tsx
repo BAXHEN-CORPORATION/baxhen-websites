@@ -21,9 +21,11 @@ export const FalcaoLayout = ({ children }: { children: React.ReactNode }) => (
             className="h-14 w-auto"
           />
         </Link>
-        <Button variant="solid" size="sm" href="/orcamento">
-          Pedir Orçamento
-        </Button>
+        <span className="hidden md:inline">
+          <Button variant="solid" size="sm" href="/orcamento">
+            Pedir Orçamento
+          </Button>
+        </span>
       </div>
     </header>
     <main className="pt-20">{children}</main>

@@ -21,19 +21,27 @@ export const VideoPlayer = () => {
     return () => { vid.removeEventListener('play', onPlay); vid.removeEventListener('pause', onPause) }
   }, [])
 
+  useEffect(() => {
+    return () => clearTimeout(hideTimer.current)
+  }, [])
+
+  const handleInteraction = () => {
+    clearTimeout(hideTimer.current)
+    setShowControls(true)
+    hideTimer.current = setTimeout(() => setShowControls(false), 3000)
+  }
+
   const handleClick = () => {
+    handleInteraction()
     const vid = videoRef.current
     if (!vid) return
     if (muted) { vid.currentTime = 0; vid.muted = false; setMuted(false); vid.play() }
     else { if (vid.paused) vid.play(); else vid.pause() }
   }
 
-  const handleMouseEnter = () => { clearTimeout(hideTimer.current); setShowControls(true) }
-  const handleMouseLeave = () => { hideTimer.current = setTimeout(() => setShowControls(false), 800) }
-
   return (
     <div className="relative w-full max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl" style={{ backgroundColor: c.videoBg }}
-      onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleClick}>
+      onMouseMove={handleInteraction} onTouchStart={handleInteraction} onClick={handleClick}>
       <video ref={videoRef} className="w-full h-full object-cover cursor-pointer" autoPlay loop muted playsInline src={VIDEO} />
       <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${showControls || muted || !playing ? 'opacity-100' : 'opacity-0'}`}
         style={{ background: !playing || muted ? 'rgba(0,0,0,0.2)' : 'transparent' }}>
