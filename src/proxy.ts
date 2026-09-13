@@ -5,7 +5,17 @@ const PLATFORM_HOSTS = (process.env.BAXHEN_PLATFORM_HOSTS || 'localhost:3000')
   .split(',')
   .map((h) => h.trim().toLowerCase())
 
-const PLATFORM_PATHS = ['/admin', '/api', '/_next', '/favicon.ico', '/next', '/website-template-OG.webp', '/website', '/assets']
+const PLATFORM_PATHS = [
+  '/admin',
+  '/api',
+  '/_next',
+  '/favicon.ico',
+  '/next',
+  '/website-template-OG.webp',
+  '/website',
+  '/assets',
+  '/cut-engine',
+]
 
 /**
  * Normalize a hostname:
