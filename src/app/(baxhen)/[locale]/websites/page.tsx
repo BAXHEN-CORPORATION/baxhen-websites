@@ -96,7 +96,7 @@ const content = {
       subtext: 'A recomendação será baseada nas prioridades e fase atual do seu negócio.',
     },
     footer: '© {year} Baxhen. Minimalismo Profissional em Consultoria Web.',
-    footerLinks: { privacy: 'Privacidade', terms: 'Termos', cookies: 'Cookies' },
+    footerLinks: { privacy: 'Privacidade', terms: 'Termos', cookies: 'Cookies', cutEnginePrivacy: 'Privacidade do Cut Engine', cutEngineTerms: 'Termos do Cut Engine' },
   },
   en: {
     title: 'Professional Websites — Baxhen',
@@ -186,7 +186,7 @@ const content = {
       subtext: 'The recommendation will be based on your business priorities and current stage.',
     },
     footer: '© {year} Baxhen. Professional Minimalism in Web Consulting.',
-    footerLinks: { privacy: 'Privacy', terms: 'Terms', cookies: 'Cookies' },
+    footerLinks: { privacy: 'Privacy', terms: 'Terms', cookies: 'Cookies', cutEnginePrivacy: 'Cut Engine Privacy', cutEngineTerms: 'Cut Engine Terms' },
   },
 }
 
@@ -551,6 +551,8 @@ export default async function BaxhenWebsitesPage({ params }: PageProps) {
           </div>
           <div className="flex flex-col gap-3">
             <Link href={`/${locale}/websites/privacy`} className="text-xs font-semibold uppercase tracking-wider hover:opacity-80 transition-colors" style={{ color: c.onSurfaceVariant }}>{t.footerLinks.privacy}</Link>
+            <Link href="/cut-engine/privacy" className="text-xs font-semibold uppercase tracking-wider hover:opacity-80 transition-colors" style={{ color: c.primary }}>{t.footerLinks.cutEnginePrivacy}</Link>
+            <Link href="/cut-engine/terms" className="text-xs font-semibold uppercase tracking-wider hover:opacity-80 transition-colors" style={{ color: c.primary }}>{t.footerLinks.cutEngineTerms}</Link>
             <Link href={`/${locale}/websites/terms`} className="text-xs font-semibold uppercase tracking-wider hover:opacity-80 transition-colors" style={{ color: c.onSurfaceVariant }}>{t.footerLinks.terms}</Link>
             <Link href={`/${locale}/websites/cookies`} className="text-xs font-semibold uppercase tracking-wider hover:opacity-80 transition-colors" style={{ color: c.onSurfaceVariant }}>{t.footerLinks.cookies}</Link>
           </div>
