@@ -15,6 +15,7 @@ const PLATFORM_PATHS = [
   '/website',
   '/assets',
   '/cut-engine',
+  '/udemy-caption-kit',
 ]
 
 /**

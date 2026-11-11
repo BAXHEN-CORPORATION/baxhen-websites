@@ -1,0 +1,47 @@
+{
+  "productId": "PROD-20261111-acddd015",
+  "publicUrl": "https://www.baxhen.com/udemy-caption-kit",
+  "sourceProject": "AI Challenge/04-products/prod-20261111-acddd015-udemy-caption-kit",
+  "edition": "en-v1.0",
+  "deployment": "Push main; existing repository hosting deploys automatically.",
+  "routes": {
+    "salesPage": "/udemy-caption-kit",
+    "englishAlias": "/udemy-caption-kit/en",
+    "checkout": "/udemy-caption-kit/checkout",
+    "signup": "POST /udemy-caption-kit/api/waitlist",
+    "unsubscribePage": "/udemy-caption-kit/unsubscribe?token=...",
+    "unsubscribe": "POST /udemy-caption-kit/api/unsubscribe",
+    "ownerRequests": "GET /udemy-caption-kit/api/requests?page=1"
+  },
+  "storage": {
+    "adapter": "Existing Payload DatabaseKVAdapter / PostgreSQL payload_kv table",
+    "namespace": "udemy-caption-kit:request:",
+    "schemaChange": false,
+    "access": "Collection public CRUD denied. Owner endpoint requires authenticated active super-admin or baxhen-admin.",
+    "deduplication": "SHA256 of normalized email, platform, other platform and requested format",
+    "manageLink": "Stable HMAC signed request ID, using existing PAYLOAD_SECRET; signature purpose scoped to unsubscribe. Rotating that secret invalidates old links.",
+    "removal": "Sets active=false; owner notification selection must include active=true.",
+    "rateLimit": "Best effort 6 valid signup attempts per minute per server instance, not a shared distributed limit."
+  },
+  "notifications": {
+    "automaticEmailEnabled": false,
+    "ownerWorkflow": "Sign in to /admin as platform admin, open ownerRequests on the same host. Filter active=true and matching platform/format before any explicitly authorized email. Include the matching signed leave link in future notifications.",
+    "syntheticQA": "caption-kit-release-check@example.invalid / Release QA — synthetic request; inactive after smoke test. Exclude reserved invalid addresses from demand counts."
+  },
+  "localization": {
+    "master": "public/udemy-caption-kit/locales/en.json",
+    "assets": "public/udemy-caption-kit/assets/en/",
+    "commercialConfig": "src/features/caption-kit/settings.json",
+    "futureWork": "Add approved locale JSON, translated media/captions and route/locale selection together; validate guide, workbook, prompts, templates, DM flow, sales page and Whop listing/delivery as one edition. Only English is currently enabled."
+  },
+  "paidContent": "Buyer PDFs and ZIP are product-gated on Whop. No paid files, private HARs or database exports are in public/.",
+  "videoSHA256": "56de846c6d8339d575de46017c221d044ad596f9ce9d3872254e4bf50a105b7d",
+  "price": {
+    "amount": 47,
+    "currency": "USD",
+    "billing": "one_time",
+    "tax": "additional_applicable_tax"
+  },
+  "checkout": "https://whop.com/checkout/plan_Kv6WsO8Zi6LOo",
+  "independentBuyerPurchaseVerified": false
+}

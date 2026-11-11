@@ -1,0 +1,21 @@
+{
+  "productId": "PROD-20261111-acddd015",
+  "title": "Udemy Caption Kit",
+  "price": 47,
+  "currency": "USD",
+  "billing": "one_time",
+  "whatsappDigits": "351932529986",
+  "whatsappDisplay": "+351 932 529 986",
+  "locales": ["en"],
+  "checkout": {
+    "url": "https://whop.com/checkout/plan_Kv6WsO8Zi6LOo",
+    "verified": true,
+    "whopProductId": "prod_J0WRF8IyJNGmz",
+    "whopVariantId": "plan_Kv6WsO8Zi6LOo",
+    "fileBindingVerified": true,
+    "fileReadbackVerified": true,
+    "buyerAccessVerified": false
+  },
+  "plannedCanonicalPath": "https://www.baxhen.com/udemy-caption-kit",
+  "tax": "additional_applicable_tax"
+}

@@ -1,0 +1,186 @@
+{
+  "lang": "en",
+  "dir": "ltr",
+  "pageTitle": "Udemy Caption Kit | Baxhen",
+  "description": "Turn available Udemy course captions into a practical AI source library with the CAP method, prompts and reusable templates.",
+  "nav": {
+    "inside": "Inside the kit",
+    "method": "The method",
+    "custom": "Custom request"
+  },
+  "hero": {
+    "eyebrow": "UDEMY CAPTION KIT",
+    "title": "Put the courses you already own to work.",
+    "body": "Useful courses. Not enough time to watch them all. Capture the captions, organise the lessons and use the right parts with AI to learn or help with a project.",
+    "watch": "Watch the 2-minute walkthrough",
+    "videoLabel": "The CAP method and a real manual HAR export",
+    "videoFallback": "Your browser cannot play this video.",
+    "link": "See what is inside",
+    "chips": [
+      "Manual workflow",
+      "12 copyable prompts",
+      "Reusable files"
+    ]
+  },
+  "offer": {
+    "eyebrow": "ONE KIT. A REPEATABLE WORKFLOW.",
+    "title": "Your next course can become a useful source library.",
+    "body": "Follow the full CAP steps, copy the prompts and reuse the files for your own lessons.",
+    "buy": "Get the Caption Kit",
+    "once": "USD · one-time, plus applicable tax",
+    "pending": "Purchases are not open yet.",
+    "previewNotice": "Website preview: the kit is built; Whop checkout is being connected.",
+    "contents": [
+      "23-page practical guide",
+      "4-page printable CAP workbook",
+      "12 prompts as copyable text files",
+      "Blank course, lesson, source and project templates",
+      "Original practice HARs and a filled library"
+    ],
+    "language": "English edition",
+    "coverAlt": "Udemy Caption Kit cover: turn the courses you already own into a library you can use with AI.",
+    "customLink": "Request something custom on WhatsApp",
+    "waitlistLink": "Prefer a tool or another platform?"
+  },
+  "method": {
+    "eyebrow": "THE CAP METHOD",
+    "title": "From a saved lesson to something you can use.",
+    "steps": [
+      {
+        "letter": "C",
+        "title": "Capture",
+        "body": "Open Network, record a captioned lesson and save the HAR. Give a suitable input to AI and ask it to extract the captions.",
+        "result": "Your lesson text, with its names and times."
+      },
+      {
+        "letter": "A",
+        "title": "Arrange",
+        "body": "Sort by course, topic and lesson. Use a simple index so you can find the useful passage again.",
+        "result": "A course library with links back to its sources."
+      },
+      {
+        "letter": "P",
+        "title": "Put to work",
+        "body": "Choose the useful parts and a clear task. Ask for an explanation, an exercise, a checklist or help with a project.",
+        "result": "One practical output and a next action."
+      }
+    ]
+  },
+  "inside": {
+    "eyebrow": "OPEN THE ACTUAL KIT",
+    "title": "Steps to follow. Prompts to copy. Files to keep.",
+    "body": "The guide and companion files follow the same three steps. Start with one lesson, then build your library at your own pace.",
+    "captureAlt": "Actual guide page showing the manual lesson capture steps.",
+    "promptAlt": "Actual guide page containing the C05 caption-extraction prompt and C06 optional recovery prompt.",
+    "captureCaption": "The manual capture walkthrough",
+    "promptCaption": "Copyable prompts, also included as .txt files"
+  },
+  "example": {
+    "eyebrow": "ONE SOURCE, DIFFERENT USES",
+    "title": "What would you like to do with a lesson?",
+    "disclosure": "Original practice lesson included in the kit. These are authored examples.",
+    "tabs": [
+      {
+        "label": "Understand",
+        "title": "Choose the screens your app needs.",
+        "body": "Start with one person and one job. List only the screens needed to finish it.",
+        "source": "Start with one job · 00:00-00:56"
+      },
+      {
+        "label": "Practise",
+        "title": "Write a clearer button label.",
+        "body": "A course-note screen has one main action. Instead of a vague Continue button, try Create an action and explain what should happen.",
+        "source": "Start with one job · 00:56-01:18. The button wording is our example."
+      },
+      {
+        "label": "Apply",
+        "title": "Sketch a course-note mobile app.",
+        "body": "Try a lesson list, a note view and an action view. Sketch the path before writing code. These screen choices are our application of the lesson.",
+        "source": "Start with one job · 00:37-01:42"
+      }
+    ]
+  },
+  "waitlist": {
+    "eyebrow": "HELP CHOOSE WHAT COMES NEXT",
+    "title": "Want a caption tool or another platform?",
+    "body": "Tell us your platform and whether a guide, a caption tool or both would help. We will contact you if a relevant offer becomes available.",
+    "platform": "Course platform",
+    "choose": "Choose one",
+    "other": "Other course website",
+    "otherLabel": "Platform name or public website",
+    "type": "What would help?",
+    "guide": "A platform guide",
+    "tool": "A caption tool",
+    "both": "Both",
+    "email": "Your email",
+    "consent": "Email me about a matching guide or caption tool. I can leave the list at any time.",
+    "submit": "Join the free waiting list",
+    "submitting": "Saving your request…",
+    "success": "Your request is saved. Keep this link if you want to leave the list.",
+    "manage": "Manage or leave the list",
+    "error": "We could not save your request. Please try again.",
+    "invalid": "Please complete the required fields and consent choice.",
+    "rate": "Please wait a little before trying again.",
+    "note": "Joining does not require buying the kit. Future products depend on demand and feasibility."
+  },
+  "contact": {
+    "title": "Need something specific?",
+    "body": "Tell me which course platform you use and what you need. We can discuss a custom request.",
+    "button": "Request something custom on WhatsApp",
+    "prefill": "Hi, I have a custom request about course captions. My platform is ___. I need help with ___."
+  },
+  "faq": {
+    "title": "A few useful answers",
+    "items": [
+      {
+        "q": "Do I need to build an extension?",
+        "a": "You use the manual browser/Network/HAR workflow and AI prompts. The guide walks through the steps. Basic confidence with browser tools and files helps."
+      },
+      {
+        "q": "Can I use this with every course?",
+        "a": "The workflow needs available caption text. Some captures contain a full track; others need more playback or a smaller batch. The kit includes optional help for missing or confusing inputs."
+      },
+      {
+        "q": "Can AI teach me the whole course?",
+        "a": "Give AI the relevant lessons and a clear task. Captions cover spoken material; return to the video for diagrams, code or demonstrations shown only on screen."
+      },
+      {
+        "q": "Is a ready-made caption tool included?",
+        "a": "The current kit contains the guide, workbook, prompts, templates and practice files. You can join the separate free list to request a future tool or another platform."
+      },
+      {
+        "q": "Which AI tool do I need?",
+        "a": "Use an assistant that can read the files you supply. A local file-capable assistant can work with a private HAR. AI subscriptions are not included."
+      }
+    ]
+  },
+  "footer": {
+    "label": "An independent practical guide by Baxhen.",
+    "privacy": "Your email and privacy",
+    "copyright": "Baxhen"
+  },
+  "privacy": {
+    "title": "Your waitlist request",
+    "body": "We store your email, platform preference, requested format, language and consent date to notify you about a matching guide or caption tool. Joining does not make a purchase. Use the manage link shown after signup to leave the list, or contact the WhatsApp number on this page. No course account details or HAR upload is requested here.",
+    "close": "Close"
+  },
+  "unsubscribe": {
+    "title": "Leave the waiting list",
+    "body": "Use the button below to remove this request from the active notification list.",
+    "button": "Leave the list",
+    "success": "You have left the list.",
+    "invalid": "This manage link is invalid or no longer active.",
+    "back": "Back to the Caption Kit"
+  },
+  "checkout": {
+    "title": "The Caption Kit checkout is being connected",
+    "body": "The kit and website are prepared. Purchases will open after the correct Whop checkout and file delivery are connected.",
+    "back": "Back to the kit"
+  },
+  "a11y": {
+    "brandHome": "Baxhen home",
+    "mainNav": "Main navigation",
+    "exampleTabs": "Lesson uses",
+    "captionTrack": "English"
+  }
+}

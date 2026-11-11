@@ -49,6 +49,33 @@ const nextConfig: NextConfig = {
   },
   reactStrictMode: true,
   redirects,
+  async rewrites() {
+    return [
+      { source: '/udemy-caption-kit', destination: '/udemy-caption-kit/index.html' },
+      { source: '/udemy-caption-kit/en', destination: '/udemy-caption-kit/index.html' },
+      {
+        source: '/udemy-caption-kit/unsubscribe',
+        destination: '/udemy-caption-kit/unsubscribe.html',
+      },
+    ]
+  },
+  async headers() {
+    return [
+      {
+        source: '/udemy-caption-kit/:path*',
+        headers: [
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'no-referrer' },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          {
+            key: 'Content-Security-Policy',
+            value:
+              "default-src 'self'; img-src 'self' data:; media-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+          },
+        ],
+      },
+    ]
+  },
   turbopack: {
     root: path.resolve(dirname),
   },
