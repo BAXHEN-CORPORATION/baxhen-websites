@@ -47,6 +47,15 @@ const data = {
 }
 
 describe('Caption Kit buyer path', () => {
+  it('accepts the approved www origin when the public site forwards a request to the backend', async () => {
+    const f = fixture()
+    const request = new Request('https://websites.baxhen.com/udemy-caption-kit/api/waitlist', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Origin: 'https://www.baxhen.com' },
+      body: JSON.stringify(data),
+    })
+    expect((await handleCaptionApi(request, 'waitlist', f.context)).status).toBe(201)
+  })
   it('uses the exact USD47 one-time checkout', () => {
     expect(verifiedCheckout()).toBe('https://whop.com/checkout/plan_Kv6WsO8Zi6LOo')
   })

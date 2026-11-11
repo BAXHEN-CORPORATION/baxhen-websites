@@ -93,7 +93,10 @@ export async function handleCaptionApi(request: Request, action: string, context
   if (!['waitlist', 'unsubscribe'].includes(action)) return json({ error: 'not_found' }, 404)
   if (request.method !== 'POST') return json({ error: 'method_not_allowed' }, 405)
   const origin = request.headers.get('origin')
-  if (origin && origin !== new URL(request.url).origin)
+  // The public www site forwards this path to this backend. Allow that exact
+  // approved sales-page origin as well as direct same-origin requests.
+  const salesOrigin = new URL(config.plannedCanonicalPath).origin
+  if (origin && origin !== new URL(request.url).origin && origin !== salesOrigin)
     return json({ error: 'origin_not_allowed' }, 403)
   if (!request.headers.get('content-type')?.startsWith('application/json')) {
     return json({ error: 'json_required' }, 415)
