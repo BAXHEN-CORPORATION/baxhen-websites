@@ -56,7 +56,7 @@ describe('Caption Kit buyer path', () => {
     })
     expect((await handleCaptionApi(request, 'waitlist', f.context)).status).toBe(201)
   })
-  it('uses the exact USD47 one-time checkout', () => {
+  it('uses the exact USD17 one-time checkout', () => {
     expect(verifiedCheckout()).toBe('https://whop.com/checkout/plan_Kv6WsO8Zi6LOo')
   })
   it('persists one request per preference, keeps a stable manage link and deactivates it explicitly', async () => {
