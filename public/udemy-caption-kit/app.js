@@ -1,5 +1,5 @@
-const scriptURL=new URL(document.querySelector('script[src$="/app.js"]').src);
-const base=scriptURL.pathname.replace(/\/app\.js$/,'');
+const scriptURL=new URL(document.querySelector('script[type="module"][src]').src);
+const base=new URL('.',scriptURL).pathname.replace(/\/$/,'');
 const locale=document.documentElement.lang||'en';
 const [copy,config]=await Promise.all([fetch(`${base}/locales/${locale}.json`).then(r=>{if(!r.ok)throw Error('Locale unavailable');return r.json();}),fetch(`${base}/api/config`).then(r=>r.json())]);
 const get=key=>key.split('.').reduce((value,part)=>value?.[part],copy);
@@ -14,7 +14,7 @@ for(const item of copy.faq.items){const details=node('details');details.append(n
 document.querySelector('#guide-cover').alt=copy.offer.coverAlt;document.querySelector('#capture-preview').alt=copy.inside.captureAlt;document.querySelector('#prompts-preview').alt=copy.inside.promptAlt;
 const assets=`${base}/assets/${locale}`;
 for(const [selector,file] of [['#guide-cover','cover.png'],['#capture-preview','inside-capture.png'],['#prompts-preview','inside-prompts.png']])document.querySelector(selector).src=`${assets}/${file}`;
-const video=document.querySelector('#preview-video');video.poster=`${assets}/poster.jpg`;const videoSource=video.querySelector('source');if(new URL(videoSource.src).pathname!==`${assets}/preview.mp4`){videoSource.src=`${assets}/preview.mp4`;video.load();}video.querySelector('track').src=`${assets}/preview.vtt`;video.querySelector('track').srclang=locale;video.querySelector('track').label=copy.a11y.captionTrack;
+const video=document.querySelector('#preview-video');video.poster=`${assets}/poster.jpg`;const videoSource=video.querySelector('source');if(new URL(videoSource.src).pathname!==`${assets}/preview-price17.mp4`){videoSource.src=`${assets}/preview-price17.mp4`;video.load();}video.querySelector('track').src=`${assets}/preview-price17.vtt`;video.querySelector('track').srclang=locale;video.querySelector('track').label=copy.a11y.captionTrack;
 const price=new Intl.NumberFormat(locale,{style:'currency',currency:config.currency,maximumFractionDigits:0}).format(config.price);document.querySelector('#price').textContent=price;
 const buy=document.querySelector('#buy-button');buy.textContent=copy.offer.buy+' — '+price;buy.href=`${base}/checkout`;
 if(!config.checkoutReady){buy.setAttribute('aria-disabled','true');buy.addEventListener('click',e=>e.preventDefault());document.querySelector('#checkout-status').hidden=false;const notice=document.querySelector('#preview-notice');notice.textContent=copy.offer.previewNotice;notice.hidden=false;}
